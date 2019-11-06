@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Probabilistic Numerics Code Repository &mdash; probnum  documentation</title>
+  <title>Probabilistic Numerics in Python &mdash; probnum  documentation</title>
   
 
   
@@ -87,17 +87,18 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Probabilistic Numerics Code Repository</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Probabilistic Numerics in Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#a-name-introduction-introduction-a"><span class="raw-html-m2r"><a name="introduction">Introduction</a></span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-installation-installation-and-documentation-a"><span class="raw-html-m2r"><a name="installation">Installation and Documentation</a></span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-examples-examples-a"><span class="raw-html-m2r"><a name="examples">Examples</a></span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-contributing-contributing-code-a"><span class="raw-html-m2r"><a name="contributing">Contributing Code</a></span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-name-license-license-and-contact-a"><span class="raw-html-m2r"><a name="license">License and Contact</a></span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-name-installation-a-installation-and-documentation"><span class="raw-html-m2r"><a name="installation"></a></span>Installation and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-name-examples-a-examples"><span class="raw-html-m2r"><a name="examples"></a></span>Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-name-contributing-a-contributing-code"><span class="raw-html-m2r"><a name="contributing"></a></span>Contributing Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-name-license-a-license-and-contact"><span class="raw-html-m2r"><a name="license"></a></span>License and Contact</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authors.html">Probnum Contributors (sorted alphabetically)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Probnum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Code Contributors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -144,7 +145,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Probabilistic Numerics Code Repository</li>
+      <li>Probabilistic Numerics in Python</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,8 +164,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="probabilistic-numerics-code-repository">
-<span id="intro"></span><h1>Probabilistic Numerics Code Repository<a class="headerlink" href="#probabilistic-numerics-code-repository" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="probabilistic-numerics-in-python">
+<span id="intro"></span><h1>Probabilistic Numerics in Python<a class="headerlink" href="#probabilistic-numerics-in-python" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://travis-ci.org/probabilistic-numerics/probnum"><img alt="Build Status" src="https://travis-ci.org/probabilistic-numerics/probnum.svg?branch=master" /></a>
 <a class="reference external image-reference" href="http://codecov.io/github/probabilistic-numerics/probnum?branch=master"><img alt="Coverage Status" src="http://codecov.io/github/probabilistic-numerics/probnum/coverage.svg?branch=master" /></a>
 <ul class="simple">
@@ -180,8 +181,8 @@
 <p>This repository aims to implement standard PN algorithms in Python 3 and to provide a common interface for them. This is
 currently a work in progress (see <a class="reference external" href="#contributing">Contributing Code</a>), therefore interfaces are subject to change.</p>
 </div>
-<div class="section" id="a-name-installation-installation-and-documentation-a">
-<h2><span class="raw-html-m2r"><a name="installation">Installation and Documentation</a></span><a class="headerlink" href="#a-name-installation-installation-and-documentation-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-name-installation-a-installation-and-documentation">
+<h2><span class="raw-html-m2r"><a name="installation"></a></span>Installation and Documentation<a class="headerlink" href="#a-name-installation-a-installation-and-documentation" title="Permalink to this headline">¶</a></h2>
 <p>You can install this Python 3 package using <code class="docutils literal notranslate"><span class="pre">pip</span></code> (or <code class="docutils literal notranslate"><span class="pre">pip3</span></code>):</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">probabilistic</span><span class="o">-</span><span class="n">numerics</span><span class="o">/</span><span class="n">probnum</span><span class="p">.</span><span class="n">git</span>
 </pre></div>
@@ -193,22 +194,22 @@ currently a work in progress (see <a class="reference external" href="#contribut
 </pre></div>
 </div>
 <p>For tips on getting started and how to use this package please refer to the
-<a class="reference external" href="https://probabilistic-numerics.github.io/probnum/">documentation</a>.</p>
+<a class="reference external" href="https://probabilistic-numerics.github.io/probnum/modules.html">documentation</a>.</p>
 </div>
-<div class="section" id="a-name-examples-examples-a">
-<h2><span class="raw-html-m2r"><a name="examples">Examples</a></span><a class="headerlink" href="#a-name-examples-examples-a" title="Permalink to this headline">¶</a></h2>
-<p>In the future we will provide <a class="reference external" href="notebooks">Jupyter notebooks</a> to illustrate basic usage examples of implemented
+<div class="section" id="a-name-examples-a-examples">
+<h2><span class="raw-html-m2r"><a name="examples"></a></span>Examples<a class="headerlink" href="#a-name-examples-a-examples" title="Permalink to this headline">¶</a></h2>
+<p>Example usage of the routines provided by this repository are shown in the <a class="reference external" href="https://probabilistic-numerics.github.io/probnum/examples.html">documentation</a>. In the future we will provide <a class="reference external" href="notebooks">Jupyter notebooks</a> to illustrate basic usage examples of implemented
 probabilistic numerics routines.</p>
 </div>
-<div class="section" id="a-name-contributing-contributing-code-a">
-<h2><span class="raw-html-m2r"><a name="contributing">Contributing Code</a></span><a class="headerlink" href="#a-name-contributing-contributing-code-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-name-contributing-a-contributing-code">
+<h2><span class="raw-html-m2r"><a name="contributing"></a></span>Contributing Code<a class="headerlink" href="#a-name-contributing-a-contributing-code" title="Permalink to this headline">¶</a></h2>
 <p>This repository is currently under development and benefits from contribution to the code, examples or documentation.
 Please refer to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/CONTRIBUTING.md">contribution guide</a> before making a pull request.</p>
 <p>A list of core contributors to Probnum can be found <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/AUTHORS.md">here</a>.</p>
 </div>
-<div class="section" id="a-name-license-license-and-contact-a">
-<h2><span class="raw-html-m2r"><a name="license">License and Contact</a></span><a class="headerlink" href="#a-name-license-license-and-contact-a" title="Permalink to this headline">¶</a></h2>
-<p>This work is released under the <a class="reference external" href="LICENSE.txt">MIT License</a>.</p>
+<div class="section" id="a-name-license-a-license-and-contact">
+<h2><span class="raw-html-m2r"><a name="license"></a></span>License and Contact<a class="headerlink" href="#a-name-license-a-license-and-contact" title="Permalink to this headline">¶</a></h2>
+<p>This work is released under the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/LICENSE.txt">MIT License</a>.</p>
 <p>Please submit an <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/issues/new">issue</a> to report bugs or request
 changes.</p>
 </div>
