@@ -13,6 +13,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="_static/pn_logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license.html" />
@@ -37,7 +38,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo24.png"></span>
           probnum</a>
         <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
       </div>
@@ -45,74 +46,52 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
+                <li><a href="intro.html">About</a></li>
+                <li><a href="modules.html">Documentation</a></li>
+                <li><a href="examples.html">Examples</a></li>
+                <li><a href="#">Development</a></li>
+            
             
               <li class="dropdown globaltoc-container">
   <a role="button"
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="index.html">Site <b class="caret"></b></a>
+     href="index.html">Contents <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Probabilistic Numerics in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Probabilistic Numerics in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation-and-documentation">Installation and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#contributing-code">Contributing Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#license-and-contact">License and Contact</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_solvers.html">probnum.linear_solvers Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#test-example">Test Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-contributors">Code Contributors</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 </ul>
 </li>
               
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Package Development</a><ul>
-<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li><a class="reference internal" href="#code-quality">Code Quality</a><ul>
-<li><a class="reference internal" href="#docstring-example">Docstring Example</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#tests-and-ci">Tests and CI</a></li>
-<li><a class="reference internal" href="#documentation">Documentation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#code-contributors">Code Contributors</a></li>
-</ul>
-</li>
-</ul>
-</ul>
-</li>
-              
-            
-            
-              
-                
-  <li>
-    <a href="examples.html" title="Previous Chapter: Examples"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Examples</span>
-    </a>
-  </li>
-  <li>
-    <a href="license.html" title="Next Chapter: License"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">License &raquo;</span>
-    </a>
-  </li>
-              
             
             
             
             
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="_sources/contributing.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
             
           </ul>
 
@@ -132,26 +111,7 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-md-3">
-        <div id="sidebar" class="bs-sidenav" role="complementary">
-  <li>
-    <a href="examples.html" title="Previous Chapter: Examples"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Examples</span>
-    </a>
-  </li>
-  <li>
-    <a href="license.html" title="Next Chapter: License"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">License &raquo;</span>
-    </a>
-  </li>
-<form action="search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-        </div>
-      </div>
-    <div class="body col-md-9 content" role="main">
+    <div class="body col-md-12 content" role="main">
       
   <div class="section" id="package-development">
 <span id="contributing"></span><h1>Package Development<a class="headerlink" href="#package-development" title="Permalink to this headline">¶</a></h1>
@@ -172,9 +132,9 @@ good PR are:</p>
 <p>Code quality is an essential component in a collaborative open-source project.</p>
 <ul class="simple">
 <li><p>All code should be covered by tests. We use the <a class="reference external" href="https://docs.pytest.org/">pytest</a> framework. Every time a commit is
-made <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">travis</a> builds the project and runs the test suite.</p></li>
+made <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a> builds the project and runs the test suite.</p></li>
 <li><p>Documentation of code is essential for any collaborative project. ProbNum uses the
-<a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy docstring format</a>.</p></li>
+<a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">NumPy docstring format</a>.</p></li>
 <li><p>Python code should follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">*PEP8* style</a>.</p></li>
 <li><p>Keep dependencies to a minimum.</p></li>
 <li><p>Make sure to observe good coding practice. The existing ProbNum code is a good starting point for coding style.</p></li>
@@ -184,8 +144,9 @@ made <a class="reference external" href="https://travis-ci.org/probabilistic-num
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Short function description.</span>
 
-<span class="sd">    Extensive function description which explains its purpose in more detail and may reference parameters or output.</span>
-<span class="sd">    References [1]_ can also be included, e.g. if the method implementation is based on a paper.</span>
+<span class="sd">    Extensive function description which explains its purpose in more detail and may reference</span>
+<span class="sd">    parameters or output. References [1]_ can also be included, e.g. if the method</span>
+<span class="sd">    implementation is based on a paper.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -211,12 +172,12 @@ made <a class="reference external" href="https://travis-ci.org/probabilistic-num
 <div class="section" id="tests-and-ci">
 <h3>Tests and CI<a class="headerlink" href="#tests-and-ci" title="Permalink to this headline">¶</a></h3>
 <p>We aim to cover as much code with tests as possible. Make sure to add tests for newly implemented code. Tests are run by
-the continuous integration (CI) tool <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">travis</a> and coverage is reported by <a class="reference external" href="https://codecov.io/github/probabilistic-numerics/probnum?branch=master">codecov</a>.</p>
+the continuous integration (CI) tool <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a> and coverage is reported by <a class="reference external" href="https://codecov.io/github/probabilistic-numerics/probnum?branch=master">codecov</a>.</p>
 </div>
 <div class="section" id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://probabilistic-numerics.github.io/probnum/modules.html">Documentation</a> is automatically built using <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and
-<a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">travis</a>. When implementing published methods please give credit
+<p><a class="reference external" href="https://probabilistic-numerics.github.io/probnum/modules.html">Documentation</a> is automatically built using <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> and
+<a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a>. When implementing published methods please give credit
 and include the appropriate citations.</p>
 </div>
 </div>
@@ -244,6 +205,13 @@ file alongside your contributions and to the <a class="reference external" href=
   <div class="container">
     <p class="pull-right">
       <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/contributing.rst.txt"
+     rel="nofollow">Source</a>
+</div>
       
     </p>
     <p>
