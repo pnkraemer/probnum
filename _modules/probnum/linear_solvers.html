@@ -114,24 +114,55 @@
     <div class="body col-md-12 content" role="main">
       
   <h1>Source code for probnum.linear_solvers</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span></span><span class="kn">import</span> <span class="nn">abc</span>
 
 
-<div class="viewcode-block" id="ProbabilisticLinearSolver"><a class="viewcode-back" href="../../automod/probnum.linear_solvers.ProbabilisticLinearSolver.html#probnum.linear_solvers.ProbabilisticLinearSolver">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticLinearSolver</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="ProbabilisticLinearSolver"><a class="viewcode-back" href="../../automod/probnum.linear_solvers.ProbabilisticLinearSolver.html#probnum.linear_solvers.ProbabilisticLinearSolver">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticLinearSolver</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Probabilistic linear solvers infer solutions to linear systems in a Bayesian framework.</span>
 
 <span class="sd">    Probabilistic numerical linear solvers infer solutions to problems of the form</span>
 
 <span class="sd">    .. math:: Ax^*=b,</span>
+
 <span class="sd">    where :math:`A \\in \\mathbb{R}^{m \\times n}` and :math:`b \\in \\mathbb{R}^{m}`. They output a probability measure</span>
-<span class="sd">    which quantifies uncertainty in the solution. </span>
+<span class="sd">    which quantifies uncertainty in the solution.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ProbabilisticLinearSolver.solve"><a class="viewcode-back" href="../../automod/probnum.linear_solvers.ProbabilisticLinearSolver.html#probnum.linear_solvers.ProbabilisticLinearSolver.solve">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="ProbabilisticLinearSolver.solve"><a class="viewcode-back" href="../../automod/probnum.linear_solvers.ProbabilisticLinearSolver.html#probnum.linear_solvers.ProbabilisticLinearSolver.solve">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solve the given linear system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        A : array-like</span>
+<span class="sd">            The matrix of the linear system.</span>
+<span class="sd">        b : array-like</span>
+<span class="sd">            The right-hand-side of the linear system.</span>
+<span class="sd">        kwargs :</span>
+<span class="sd">            Additional arguments passed on to the probabilistic linear solver.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
 
+
+<div class="viewcode-block" id="MatrixBasedConjugateGradients"><a class="viewcode-back" href="../../automod/probnum.linear_solvers.MatrixBasedConjugateGradients.html#probnum.linear_solvers.MatrixBasedConjugateGradients">[docs]</a><span class="k">class</span> <span class="nc">MatrixBasedConjugateGradients</span><span class="p">(</span><span class="n">ProbabilisticLinearSolver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Conjugate Gradients using prior information on the matrix inverse.</span>
+
+<span class="sd">    In the setting where :math:`A` is a symmetric positive-definite matrix, this solver takes prior information either</span>
+<span class="sd">    on the matrix inverse :math:`H=A^{-1}` and outputs a posterior belief over :math:`H`. This code implements the</span>
+<span class="sd">    method described in [1]_.</span>
+
+<span class="sd">    .. [1] Hennig, P., Probabilistic Interpretation of Linear Solvers, _SIAM Journal on Optimization_, 2015, 25, 234-260</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MatrixBasedConjugateGradients.solve"><a class="viewcode-back" href="../../automod/probnum.linear_solvers.MatrixBasedConjugateGradients.html#probnum.linear_solvers.MatrixBasedConjugateGradients.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
 
 </pre></div>
 
