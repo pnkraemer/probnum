@@ -1,174 +1,160 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Contributing to ProbNum &mdash; probnum  documentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Package Development &#8212; probnum  documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Code Contributors" href="authors.html" />
-    <link rel="prev" title="Examples" href="examples.html" /> 
-</head>
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
 
-<body class="wy-body-for-nav">
+  </head><body>
 
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          probnum</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
 
-          
-            <a href="index.html" class="icon icon-home"> probnum
-          
-
-          
-          </a>
-
-          
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
             
             
-              <div class="version">
-                0.1
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Probabilistic Numerics in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to ProbNum</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code-quality">Code Quality</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#docstring-example">Docstring Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#tests-and-ci">Tests and CI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#credit">Credit</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="authors.html">Code Contributors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
-
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Package Development</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#code-quality">Code Quality</a><ul>
+<li><a class="reference internal" href="#docstring-example">Docstring Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests-and-ci">Tests and CI</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code-contributors">Code Contributors</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
             
+            
+              
+                
+  <li>
+    <a href="examples.html" title="Previous Chapter: Examples"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Examples</span>
+    </a>
+  </li>
+  <li>
+    <a href="license.html" title="Next Chapter: License"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">License &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/contributing.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
           
         </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+  <li>
+    <a href="examples.html" title="Previous Chapter: Examples"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Examples</span>
+    </a>
+  </li>
+  <li>
+    <a href="license.html" title="Next Chapter: License"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">License &raquo;</span>
+    </a>
+  </li>
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
       </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
+    <div class="body col-md-9 content" role="main">
       
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">probnum</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Contributing to ProbNum</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <div class="section" id="contributing-to-probnum">
-<span id="contributing"></span><h1>Contributing to ProbNum<a class="headerlink" href="#contributing-to-probnum" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="package-development">
+<span id="contributing"></span><h1>Package Development<a class="headerlink" href="#package-development" title="Permalink to this headline">¶</a></h1>
 <p>Contributions to ProbNum are very welcome. Before getting started make sure to read the following guidelines.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
@@ -181,9 +167,8 @@ good PR are:</p>
 </ul>
 <p>If you would like to contribute but are unsure how, then writing examples, documentation or working on
 <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/issues">open issues</a> are a good way to start.</p>
-</div>
 <div class="section" id="code-quality">
-<h2>Code Quality<a class="headerlink" href="#code-quality" title="Permalink to this headline">¶</a></h2>
+<h3>Code Quality<a class="headerlink" href="#code-quality" title="Permalink to this headline">¶</a></h3>
 <p>Code quality is an essential component in a collaborative open-source project.</p>
 <ul class="simple">
 <li><p>All code should be covered by tests. We use the <a class="reference external" href="https://docs.pytest.org/">pytest</a> framework. Every time a commit is
@@ -195,7 +180,7 @@ made <a class="reference external" href="https://travis-ci.org/probabilistic-num
 <li><p>Make sure to observe good coding practice. The existing ProbNum code is a good starting point for coding style.</p></li>
 </ul>
 <div class="section" id="docstring-example">
-<h3>Docstring Example<a class="headerlink" href="#docstring-example" title="Permalink to this headline">¶</a></h3>
+<h4>Docstring Example<a class="headerlink" href="#docstring-example" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Short function description.</span>
 
@@ -224,69 +209,48 @@ made <a class="reference external" href="https://travis-ci.org/probabilistic-num
 </div>
 </div>
 <div class="section" id="tests-and-ci">
-<h2>Tests and CI<a class="headerlink" href="#tests-and-ci" title="Permalink to this headline">¶</a></h2>
+<h3>Tests and CI<a class="headerlink" href="#tests-and-ci" title="Permalink to this headline">¶</a></h3>
 <p>We aim to cover as much code with tests as possible. Make sure to add tests for newly implemented code. Tests are run by
 the continuous integration (CI) tool <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">travis</a> and coverage is reported by <a class="reference external" href="https://codecov.io/github/probabilistic-numerics/probnum?branch=master">codecov</a>.</p>
 </div>
 <div class="section" id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://probabilistic-numerics.github.io/probnum/modules.html">Documentation</a> is automatically built using <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and
-<a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">travis</a>. When implementing published probabilistic numeric methods please give credit and include citations.</p>
+<a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">travis</a>. When implementing published methods please give credit
+and include the appropriate citations.</p>
 </div>
-<div class="section" id="credit">
-<h2>Credit<a class="headerlink" href="#credit" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="code-contributors">
+<h2>Code Contributors<a class="headerlink" href="#code-contributors" title="Permalink to this headline">¶</a></h2>
+<p>The following people contributed to the ProbNum repository.</p>
+<ul class="simple">
+<li><p><strong>Jonathan Wenger</strong>: (<a class="reference external" href="https://github.com/JonathanWenger">https://github.com/JonathanWenger</a>)</p>
+<ul>
+<li><p>example contribution</p></li>
+</ul>
+</li>
+</ul>
 <p>If you feel like you have contributed significantly to ProbNum make sure to add your name to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/AUTHORS.md">authors</a>
 file alongside your contributions and to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/LICENSE.txt">license</a>.</p>
 </div>
 </div>
 
 
-           </div>
-           
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="authors.html" class="btn btn-neutral float-right" title="Code Contributors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
     </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
     <p>
-        &copy; Copyright 2019, Jonathan Wenger
-
+        &copy; Copyright 2019.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
 </footer>
-
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
-    
-   
-
-</body>
+  </body>
 </html>
