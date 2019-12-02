@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Overview: module code &#8212; probnum  documentation</title>
+    <title>SolutionBasedConjugateGradients &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -18,6 +18,8 @@
     <link rel="shortcut icon" href="../_static/pn_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="../examples.html" />
+    <link rel="prev" title="ProbabilisticLinearSolver" href="probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -62,7 +64,7 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
@@ -71,9 +73,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#license-and-contact">License and Contact</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Documentation</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_solvers Module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
@@ -115,10 +117,75 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="probnum/linalg/linear_solvers.html">probnum.linalg.linear_solvers</a></li>
-<li><a href="probnum/probability.html">probnum.probability</a></li>
+  <div class="section" id="solutionbasedconjugategradients">
+<h1>SolutionBasedConjugateGradients<a class="headerlink" href="#solutionbasedconjugategradients" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_solvers.</code><code class="sig-name descname">SolutionBasedConjugateGradients</code><span class="sig-paren">(</span><em class="sig-param">x_mean=None</em>, <em class="sig-param">x_cov=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#SolutionBasedConjugateGradients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver" title="probnum.linalg.linear_solvers.ProbabilisticLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linalg.linear_solvers.ProbabilisticLinearSolver</span></code></a></p>
+<p>Conjugate Gradients using prior information on the solution of the linear system.</p>
+<p>In the setting where <span class="math notranslate nohighlight">\(A\)</span> is a symmetric positive-definite matrix, this solver takes prior information
+on the solution and outputs a posterior belief over <span class="math notranslate nohighlight">\(x\)</span>. This code implements the
+method described in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Cockayne, J. et al., A Bayesian Conjugate Gradient Method, <em>Bayesian Analysis</em>, 2019, 14, 937-1012</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.x_mean">
+<code class="sig-name descname">x_mean</code><a class="headerlink" href="#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.x_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean of the Gaussian prior on <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.x_cov">
+<code class="sig-name descname">x_cov</code><a class="headerlink" href="#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.x_cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>Covariance <span class="math notranslate nohighlight">\(\Sigma\)</span> of the Gaussian prior on <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.solve" title="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.solve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solve</span></code></a>(A, b[, maxiter])</p></td>
+<td><p>Solve the given linear system.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.solve">
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">maxiter=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#SolutionBasedConjugateGradients.solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the given linear system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>array-like</em>) – The matrix of the linear system.</p></li>
+<li><p><strong>b</strong> (<em>array-like</em>) – The right-hand-side of the linear system.</p></li>
+<li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of iterations.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
 
     </div>
       
@@ -131,6 +198,10 @@
       
         <br/>
         
+<div id="sourcelink">
+  <a href="../_sources/automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.rst.txt"
+     rel="nofollow">Source</a>
+</div>
       
     </p>
     <p>

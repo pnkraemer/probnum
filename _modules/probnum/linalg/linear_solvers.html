@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>probnum.linalg.linear_solvers &#8212; probnum  documentation</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="shortcut icon" href="../../../_static/pn_logo.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html"><span><img src="../../../_static/pn_logo.png"></span>
+          probnum</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../../intro.html">About</a></li>
+                <li><a href="../../../modules.html">Documentation</a></li>
+                <li><a href="../../../examples.html">Examples</a></li>
+                <li><a href="../../../contributing.html">Development</a></li>
+                <li><a href="https://github.com/probabilistic-numerics/probnum">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Probabilistic Numerics in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#installation-and-documentation">Installation and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#package-development">Package Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html#license-and-contact">License and Contact</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../linalg.html">probnum.linalg.linear_solvers Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#test-example">Test Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Package Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#code-contributors">Code Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <h1>Source code for probnum.linalg.linear_solvers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Probabilistic numerical methods for solving linear systems.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span>
+
+
+<div class="viewcode-block" id="ProbabilisticLinearSolver"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver">[docs]</a><span class="k">class</span> <span class="nc">ProbabilisticLinearSolver</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probabilistic linear solvers infer solutions to linear systems in a Bayesian framework.</span>
+
+<span class="sd">    Probabilistic numerical linear solvers infer solutions to problems of the form</span>
+
+<span class="sd">    .. math:: Ax^*=b,</span>
+
+<span class="sd">    where :math:`A \\in \\mathbb{R}^{m \\times n}` and :math:`b \\in \\mathbb{R}^{m}`. They output a probability measure</span>
+<span class="sd">    which quantifies uncertainty in the solution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ProbabilisticLinearSolver.solve"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver.solve">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solve the given linear system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        A : array-like</span>
+<span class="sd">            The matrix of the linear system.</span>
+<span class="sd">        b : array-like</span>
+<span class="sd">            The right-hand-side of the linear system.</span>
+<span class="sd">        maxiter : int</span>
+<span class="sd">            Maximum number of iterations.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_check_linear_system</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check linear system dimensions.</span>
+
+<span class="sd">    Raises an exception if the input arguments are not compatible.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    A : array-like</span>
+<span class="sd">        Matrix.</span>
+<span class="sd">    b : array-like</span>
+<span class="sd">        Right-hand side vector.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dimension mismatch.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Matrix A must be square.&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MatrixBasedLinearSolver"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver">[docs]</a><span class="k">class</span> <span class="nc">MatrixBasedLinearSolver</span><span class="p">(</span><span class="n">ProbabilisticLinearSolver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Probabilistic linear solver using prior information on the matrix inverse.</span>
+
+<span class="sd">    In the setting where :math:`A` is a symmetric positive-definite matrix, this solver takes prior information either</span>
+<span class="sd">    on the matrix inverse :math:`H=A^{-1}` and outputs a posterior belief over :math:`H`. For a specific prior choice</span>
+<span class="sd">    this recovers the iterates of the conjugate gradient method. This code implements the method described in [1]_ and</span>
+<span class="sd">    [2]_.</span>
+
+<span class="sd">    .. [1] Hennig, P., Probabilistic Interpretation of Linear Solvers, *SIAM Journal on Optimization*, 2015, 25, 234-260</span>
+<span class="sd">    .. [2] Hennig, P. et al., Probabilistic Numerics, 2020</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    H_mean : array-like</span>
+<span class="sd">        Mean of the Gaussian prior on :math:`H=A^{-1}`.</span>
+<span class="sd">    H_cov_kronfac : array-like</span>
+<span class="sd">        Kronecker factor of the covariance :math:`W_H \\otimes W_H` of the Gaussian prior on :math:`H=A^{-1}`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H_mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">H_cov_kronfac</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># todo: refactor as dimension of linear operator is not known at this point</span>
+        <span class="k">if</span> <span class="n">H_mean</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">H_mean</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">H_cov_kronfac</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">H_cov_kronfac</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_has_converged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">iter</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">resid</span><span class="p">,</span> <span class="n">resid_tol</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        iter : int</span>
+<span class="sd">            Current iteration of solver.</span>
+<span class="sd">        maxiter : int</span>
+<span class="sd">            Maximum number of iterations</span>
+<span class="sd">        resid : array-like</span>
+<span class="sd">            Residual vector :math:`\\lVert r_i \\rVert = \\lVert Ax_i - b \\rVert` of the current iteration.</span>
+<span class="sd">        resid_tol : float</span>
+<span class="sd">            Residual tolerance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        has_converged : bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># maximum iterations</span>
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">&gt;=</span> <span class="n">maxiter</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="c1"># residual below error tolerance</span>
+        <span class="c1"># todo: add / replace with relative tolerance</span>
+        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">resid_tol</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="c1"># uncertainty-based</span>
+        <span class="c1"># todo: based on posterior contraction</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_mean_update_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the rank 2 update term for the posterior mean of :math:`H`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        u : array-like</span>
+<span class="sd">            Update vector :math:`u_i=\\frac{W_iy_i}{y_i^{\\top}W_iy_i}`</span>
+<span class="sd">        v : array-like</span>
+<span class="sd">            Update vector :math:`v_i=\\Delta - \\frac{1}{2} u_iy_i^{\\top}\\Delta`</span>
+<span class="sd">        shape : tuple</span>
+<span class="sd">            Shape of the resulting update operator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        update : LinearOperator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span>
+
+        <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+            <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">matmat</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_cov_kron_fac_update_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">Wy</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the rank 1 update term for the posterior covariance Kronecker factor :math:`W`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        u : array-like</span>
+<span class="sd">            Update vector :math:`u_i=\\frac{W_iy_i}{y_i^{\\top}W_iy_i}`</span>
+<span class="sd">        Wy : array-like</span>
+<span class="sd">            Update vector :math:`W_iy_i`</span>
+<span class="sd">        shape : tuple</span>
+<span class="sd">            Shape of the resulting update operator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        update : LinearOperator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Wy</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
+
+        <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">Wy</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+            <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">matmat</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="MatrixBasedLinearSolver.solve"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="n">reorth</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solve the given linear system for symmetric, positive-definite :math:`A`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        A : array-like</span>
+<span class="sd">            The matrix of the linear system.</span>
+<span class="sd">        b : array-like</span>
+<span class="sd">            The right-hand-side of the linear system.</span>
+<span class="sd">        maxiter : int, default=len(b)*10</span>
+<span class="sd">            Maximum number of iterations.</span>
+<span class="sd">        resid_tol : float</span>
+<span class="sd">            Residual tolerance. If :math:`\\lVert r_i \\rVert = \\lVert Ax_i - b \\rVert &lt; \\text{tol}`, the iteration</span>
+<span class="sd">            terminates.</span>
+<span class="sd">        reorth : bool, default=False</span>
+<span class="sd">            Reorthogonalize search directions at each step with all previous ones.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        x : array-like</span>
+<span class="sd">            Approximate solution :math:`Ax \\approx b` to the linear system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># todo: make sure for A-conjugate search directions (i.e. choice of W st. Y&#39;WY diagonal) this is similarly</span>
+        <span class="c1">#  efficient as CG modulo uncertainty estimation</span>
+
+        <span class="c1"># make linear system</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+        <span class="c1"># check linear system dimensionality</span>
+        <span class="n">_check_linear_system</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+
+        <span class="c1"># setup</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">maxiter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">maxiter</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">10</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># todo: use / implement better operator classes (PyLops?) that can perform .T, .todense() for H_mean as well</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">IdentityOperator</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">IdentityOperator</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+        <span class="c1"># initialization</span>
+        <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">resid</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span>
+
+        <span class="c1"># iteration with stopping criteria</span>
+        <span class="c1"># todo: extract iteration and make into iterator</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_converged</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="nb">iter</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">resid</span><span class="o">=</span><span class="n">resid</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="n">resid_tol</span><span class="p">):</span>
+
+            <span class="c1"># compute search direction</span>
+            <span class="n">search_dir</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">reorth</span><span class="p">:</span>
+                <span class="c1"># todo: re-orthogonalize to all previous search directions (i.e. perform full inversion of MxM matrix?)</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not yet implemented.&quot;</span><span class="p">)</span>
+
+            <span class="c1"># perform action and observe</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">search_dir</span><span class="p">)</span>
+
+            <span class="c1"># compute step size</span>
+            <span class="n">step_size</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">resid</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
+            <span class="c1"># step and residual update</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">search_dir</span>
+            <span class="n">resid</span> <span class="o">=</span> <span class="n">resid</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">obs</span>
+
+            <span class="c1"># (symmetric) mean and covariance updates</span>
+            <span class="n">Wy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">search_dir</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">Wy</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">Wy</span><span class="p">)</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
+
+            <span class="c1"># rank 2 mean update operator (+= uv&#39; + vu&#39;)</span>
+            <span class="c1"># todo: speedup: implement full update as operator and do not rely on +?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean_update_operator</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+            <span class="c1"># rank 1 covariance kronecker factor update operator (-= u(Wy)&#39;)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cov_kron_fac_update_operator</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">Wy</span><span class="o">=</span><span class="n">Wy</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+            <span class="c1"># iteration increment</span>
+            <span class="nb">iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># information about convergence</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;n_iter&quot;</span><span class="p">:</span> <span class="nb">iter</span><span class="p">,</span>
+            <span class="s2">&quot;resid_norm&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">resid</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+        <span class="c1"># todo: return solution, some general distribution class and dict with</span>
+        <span class="c1">#  convergence info (iter, resid, convergence criterion)</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">info</span></div></div>
+
+
+<div class="viewcode-block" id="SolutionBasedConjugateGradients"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients">[docs]</a><span class="k">class</span> <span class="nc">SolutionBasedConjugateGradients</span><span class="p">(</span><span class="n">ProbabilisticLinearSolver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Conjugate Gradients using prior information on the solution of the linear system.</span>
+
+<span class="sd">    In the setting where :math:`A` is a symmetric positive-definite matrix, this solver takes prior information</span>
+<span class="sd">    on the solution and outputs a posterior belief over :math:`x`. This code implements the</span>
+<span class="sd">    method described in [1]_.</span>
+
+<span class="sd">    .. [1] Cockayne, J. et al., A Bayesian Conjugate Gradient Method, *Bayesian Analysis*, 2019, 14, 937-1012</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x_mean : array-like</span>
+<span class="sd">        Mean of the Gaussian prior on :math:`x`.</span>
+<span class="sd">    x_cov : array-like</span>
+<span class="sd">        Covariance :math:`\\Sigma` of the Gaussian prior on :math:`x`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x_cov</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_mean</span> <span class="o">=</span> <span class="n">x_mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_cov</span> <span class="o">=</span> <span class="n">x_cov</span>
+
+<div class="viewcode-block" id="SolutionBasedConjugateGradients.solve"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solve the given linear system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        A : array-like</span>
+<span class="sd">            The matrix of the linear system.</span>
+<span class="sd">        b : array-like</span>
+<span class="sd">            The right-hand-side of the linear system.</span>
+<span class="sd">        maxiter : int</span>
+<span class="sd">            Maximum number of iterations.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># check linear system dimensionality</span>
+        <span class="n">_check_linear_system</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not yet implemented.&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+        &copy; Copyright 2019.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

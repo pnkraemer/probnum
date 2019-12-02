@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>MatrixBasedConjugateGradients &#8212; probnum  documentation</title>
+    <title>Normal &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -18,8 +18,8 @@
     <link rel="shortcut icon" href="../_static/pn_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ProbabilisticLinearSolver" href="probnum.linear_solvers.ProbabilisticLinearSolver.html" />
-    <link rel="prev" title="probnum.linear_solvers Module" href="../linear_solvers.html" />
+    <link rel="next" title="RandomVariable" href="probnum.probability.RandomVariable.html" />
+    <link rel="prev" title="probnum.probability Module" href="../probability.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -74,7 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../linear_solvers.html">probnum.linear_solvers Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_solvers Module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
@@ -116,21 +117,12 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="matrixbasedconjugategradients">
-<h1>MatrixBasedConjugateGradients<a class="headerlink" href="#matrixbasedconjugategradients" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="normal">
+<h1>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="probnum.linear_solvers.MatrixBasedConjugateGradients">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.linear_solvers.</code><code class="sig-name descname">MatrixBasedConjugateGradients</code><a class="reference internal" href="../_modules/probnum/linear_solvers.html#MatrixBasedConjugateGradients"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linear_solvers.MatrixBasedConjugateGradients" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="probnum.linear_solvers.ProbabilisticLinearSolver.html#probnum.linear_solvers.ProbabilisticLinearSolver" title="probnum.linear_solvers.ProbabilisticLinearSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linear_solvers.ProbabilisticLinearSolver</span></code></a></p>
-<p>Conjugate Gradients using prior information on the matrix inverse.</p>
-<p>In the setting where <span class="math notranslate nohighlight">\(A\)</span> is a symmetric positive-definite matrix, this solver takes prior information either
-on the matrix inverse <span class="math notranslate nohighlight">\(H=A^{-1}\)</span> and outputs a posterior belief over <span class="math notranslate nohighlight">\(H\)</span>. This code implements the
-method described in <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Hennig, P., Probabilistic Interpretation of Linear Solvers, <em>SIAM Journal on Optimization</em>, 2015, 25, 234-260</p>
-</dd>
-</dl>
+<dt id="probnum.probability.Normal">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Normal</code><span class="sig-paren">(</span><em class="sig-param">mean=0</em>, <em class="sig-param">covariance=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.probability.RandomVariable</span></code></a></p>
 <p class="rubric">Methods Summary</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -138,23 +130,43 @@ method described in <a class="footnote-reference brackets" href="#id2" id="id1">
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linear_solvers.MatrixBasedConjugateGradients.solve" title="probnum.linear_solvers.MatrixBasedConjugateGradients.solve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solve</span></code></a>(A, b, **kwargs)</p></td>
-<td><p>Solve the given linear system.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.cdf" title="probnum.probability.Normal.cdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cdf</span></code></a>(x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.logpdf" title="probnum.probability.Normal.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.pdf" title="probnum.probability.Normal.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
+<td><p>Returns realizations from the associated random variable.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Methods Documentation</p>
 <dl class="method">
-<dt id="probnum.linear_solvers.MatrixBasedConjugateGradients.solve">
-<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linear_solvers.html#MatrixBasedConjugateGradients.solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linear_solvers.MatrixBasedConjugateGradients.solve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Solve the given linear system.</p>
+<dt id="probnum.probability.Normal.cdf">
+<code class="sig-name descname">cdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.cdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.logpdf">
+<code class="sig-name descname">logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.pdf">
+<code class="sig-name descname">pdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns realizations from the associated random variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<em>array-like</em>) – The matrix of the linear system.</p></li>
-<li><p><strong>b</strong> (<em>array-like</em>) – The right-hand-side of the linear system.</p></li>
-<li><p><strong>kwargs</strong> – Additional arguments passed on to the probabilistic linear solver.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>, </em><em>default=1</em>) – Shape of the realizations.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -176,7 +188,7 @@ method described in <a class="footnote-reference brackets" href="#id2" id="id1">
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/automod/probnum.linear_solvers.MatrixBasedConjugateGradients.rst.txt"
+  <a href="../_sources/automod/probnum.probability.Normal.rst.txt"
      rel="nofollow">Source</a>
 </div>
       

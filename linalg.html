@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>probnum.linear_solvers Module &#8212; probnum  documentation</title>
+    <title>probnum.linalg.linear_solvers Module &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -18,8 +18,8 @@
     <link rel="shortcut icon" href="_static/pn_logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MatrixBasedConjugateGradients" href="automod/probnum.linear_solvers.MatrixBasedConjugateGradients.html" />
-    <link rel="prev" title="Documentation" href="modules.html" />
+    <link rel="next" title="MatrixBasedLinearSolver" href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html" />
+    <link rel="prev" title="RandomVariable" href="automod/probnum.probability.RandomVariable.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -74,7 +74,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">probnum.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">probnum.linalg.linear_solvers Module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -116,8 +117,9 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-probnum.linear_solvers">
-<span id="probnum-linear-solvers-module"></span><h1>probnum.linear_solvers Module<a class="headerlink" href="#module-probnum.linear_solvers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-probnum.linalg.linear_solvers">
+<span id="probnum-linalg-linear-solvers-module"></span><h1>probnum.linalg.linear_solvers Module<a class="headerlink" href="#module-probnum.linalg.linear_solvers" title="Permalink to this headline">¶</a></h1>
+<p>Probabilistic numerical methods for solving linear systems.</p>
 <div class="section" id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
@@ -126,11 +128,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linear_solvers.MatrixBasedConjugateGradients.html#probnum.linear_solvers.MatrixBasedConjugateGradients" title="probnum.linear_solvers.MatrixBasedConjugateGradients"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixBasedConjugateGradients</span></code></a></p></td>
-<td><p>Conjugate Gradients using prior information on the matrix inverse.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver" title="probnum.linalg.linear_solvers.MatrixBasedLinearSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixBasedLinearSolver</span></code></a>([H_mean, H_cov_kronfac])</p></td>
+<td><p>Probabilistic linear solver using prior information on the matrix inverse.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linear_solvers.ProbabilisticLinearSolver.html#probnum.linear_solvers.ProbabilisticLinearSolver" title="probnum.linear_solvers.ProbabilisticLinearSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilisticLinearSolver</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver" title="probnum.linalg.linear_solvers.ProbabilisticLinearSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilisticLinearSolver</span></code></a></p></td>
 <td><p>Probabilistic linear solvers infer solutions to linear systems in a Bayesian framework.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients" title="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolutionBasedConjugateGradients</span></code></a>([x_mean, x_cov])</p></td>
+<td><p>Conjugate Gradients using prior information on the solution of the linear system.</p></td>
 </tr>
 </tbody>
 </table>
@@ -150,7 +155,7 @@
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/linear_solvers.rst.txt"
+  <a href="_sources/linalg.rst.txt"
      rel="nofollow">Source</a>
 </div>
       

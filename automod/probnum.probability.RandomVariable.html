@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Overview: module code &#8212; probnum  documentation</title>
+    <title>RandomVariable &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -18,6 +18,8 @@
     <link rel="shortcut icon" href="../_static/pn_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="probnum.linalg.linear_solvers Module" href="../linalg.html" />
+    <link rel="prev" title="Normal" href="probnum.probability.Normal.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -62,7 +64,7 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
@@ -71,8 +73,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#license-and-contact">License and Contact</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_solvers Module</a></li>
 </ul>
 </li>
@@ -115,10 +117,72 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="probnum/linalg/linear_solvers.html">probnum.linalg.linear_solvers</a></li>
-<li><a href="probnum/probability.html">probnum.probability</a></li>
-</ul>
+  <div class="section" id="randomvariable">
+<h1>RandomVariable<a class="headerlink" href="#randomvariable" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="probnum.probability.RandomVariable">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">RandomVariable</code><span class="sig-paren">(</span><em class="sig-param">mean=None</em>, <em class="sig-param">covariance=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Random variables are the main objects used by probabilistic numerical methods.</p>
+<p>Each probabilistic numerical method should take a random variable encoding the prior distribution and output a
+random variable whose distribution encodes the uncertainty arising from finite computation. The generic signature
+of a probabilistic numerical method is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">output_rv</span> <span class="pre">=</span> <span class="pre">probnum_method(input_rv,</span> <span class="pre">method_params)</span>
+<span class="pre">`</span></code>
+Instances of this class must at least provide a mean and a sampling method.</p>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.cdf" title="probnum.probability.RandomVariable.cdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cdf</span></code></a>(x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.logpdf" title="probnum.probability.RandomVariable.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.pdf" title="probnum.probability.RandomVariable.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.sample" title="probnum.probability.RandomVariable.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
+<td><p>Returns realizations from the associated random variable.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="probnum.probability.RandomVariable.cdf">
+<code class="sig-name descname">cdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.cdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.RandomVariable.logpdf">
+<code class="sig-name descname">logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.RandomVariable.pdf">
+<code class="sig-name descname">pdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.RandomVariable.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns realizations from the associated random variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>, </em><em>default=1</em>) – Shape of the realizations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
 
     </div>
       
@@ -131,6 +195,10 @@
       
         <br/>
         
+<div id="sourcelink">
+  <a href="../_sources/automod/probnum.probability.RandomVariable.rst.txt"
+     rel="nofollow">Source</a>
+</div>
       
     </p>
     <p>
