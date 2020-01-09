@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -15,47 +16,66 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="shortcut icon" href="../_static/pn_logo.ico"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="RandomVariable" href="probnum.probability.RandomVariable.html" />
-    <link rel="prev" title="probnum.probability Module" href="../probability.html" />
+    <link rel="next" title="probnum.linalg.linear_operators Module" href="../linalg.html" />
+    <link rel="prev" title="Dirac" href="probnum.probability.Dirac.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
-          probnum</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
-      </div>
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="../intro.html">About</a></li>
-                <li><a href="../modules.html">Documentation</a></li>
-                <li><a href="../examples.html">Examples</a></li>
-                <li><a href="../contributing.html">Development</a></li>
-                <li><a href="https://github.com/probabilistic-numerics/probnum">GitHub</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="../intro.html">About</a></li>
+              <li><a href="../modules.html">Documentation</a></li>
+              <li><a href="../notebooks/examples.html">Examples</a></li>
+              <li><a href="../contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
   <a role="button"
      id="dLabelGlobalToc"
      data-toggle="dropdown"
@@ -66,7 +86,6 @@
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#package-development">Package Development</a></li>
@@ -75,11 +94,15 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">probnum.utils Module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../examples.html#test-example">Test Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
@@ -91,16 +114,17 @@
 </ul>
 </ul>
 </li>
-              
             
-            
-            
-            
-            
-          </ul>
+          
+          
+          
+          
 
           
-            
+        </ul>
+
+        
+          
 <form class="navbar-form navbar-right" action="../search.html" method="get">
  <div class="form-group">
   <input type="text" name="q" class="form-control" placeholder="Search" />
@@ -108,10 +132,10 @@
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
-          
-        </div>
-    </div>
+        
+      </div>
   </div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -121,8 +145,52 @@
 <h1>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="probnum.probability.Normal">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Normal</code><span class="sig-paren">(</span><em class="sig-param">mean=0</em>, <em class="sig-param">covariance=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.probability.RandomVariable</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Normal</code><span class="sig-paren">(</span><em class="sig-param">mean=0</em>, <em class="sig-param">cov=1</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.probability.Distribution</span></code></a></p>
+<p>The (multi-variate) normal distribution.</p>
+<p>The Gaussian distribution is ubiquitous in probability theory, since it is the final and stable or equilibrium
+distribution to which other distributions gravitate under a wide variety of smooth operations, e.g.,
+convolutions and stochastic transformations. One example of this is the central limit theorem. The Gaussian
+distribution is also attractive from a numerical point of view as it is maintained through many transformations
+(e.g. it is stable).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – Mean of the normal distribution.</p></li>
+<li><p><strong>cov</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – (Co-)variance of the normal distribution.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a></dt><dd><p>Class representing general probability distributions.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum</span> <span class="kn">import</span> <span class="n">Normal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span><span class="o">.</span><span class="n">parameters</span>
+<span class="go">{&#39;mean&#39;: 0.0, &#39;cov&#39;: 4}</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.parameters" title="probnum.probability.Normal.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
+<td><p>Parameters of the probability distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.random_state" title="probnum.probability.Normal.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
+<td><p>Random state of the distribution.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Methods Summary</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -131,42 +199,190 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.cdf" title="probnum.probability.Normal.cdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cdf</span></code></a>(x)</p></td>
-<td><p></p></td>
+<td><p>Cumulative distribution function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.logpdf" title="probnum.probability.Normal.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.logcdf" title="probnum.probability.Normal.logcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logcdf</span></code></a>(x)</p></td>
+<td><p>Log-cumulative distribution function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.pdf" title="probnum.probability.Normal.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.logpdf" title="probnum.probability.Normal.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
+<td><p>Natural logarithm of the probability density function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.mean" title="probnum.probability.Normal.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></a>()</p></td>
+<td><p>Mean <span class="math notranslate nohighlight">\(\mathbb{E}(X)\)</span> of the distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.median" title="probnum.probability.Normal.median"><code class="xref py py-obj docutils literal notranslate"><span class="pre">median</span></code></a>()</p></td>
+<td><p>Median of the distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.pdf" title="probnum.probability.Normal.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
+<td><p>Probability density or mass function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
 <td><p>Returns realizations from the associated random variable.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.std" title="probnum.probability.Normal.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
+<td><p>Standard deviation of the distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.var" title="probnum.probability.Normal.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
+<td><p>Variance <span class="math notranslate nohighlight">\(\operatorname{Var}(X) = \mathbb{E}((X-\mathbb{E}(X))^2)\)</span> of the distribution.</p></td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.probability.Normal.parameters">
+<code class="sig-name descname">parameters</code><a class="headerlink" href="#probnum.probability.Normal.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameters of the probability distribution.</p>
+<p>The parameters of the distribution such as mean, variance, et cetera stored in a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.probability.Normal.random_state">
+<code class="sig-name descname">random_state</code><a class="headerlink" href="#probnum.probability.Normal.random_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Random state of the distribution.</p>
+<p>This attribute defines the RandomState object to use for drawing
+realizations from this distribution.
+If None (or np.random), the global np.random state is used.
+If integer, it is used to seed the local <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomState</span></code> instance.</p>
+</dd></dl>
+
 <p class="rubric">Methods Documentation</p>
 <dl class="method">
 <dt id="probnum.probability.Normal.cdf">
 <code class="sig-name descname">cdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.cdf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cumulative distribution function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array-like</em>) – Evaluation points of the cumulative distribution function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>q</strong> – Value of the cumulative density function at the given points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.logcdf">
+<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.logcdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log-cumulative distribution function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array-like</em>) – Evaluation points of the cumulative distribution function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>q</strong> – Value of the log-cumulative density function at the given points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="probnum.probability.Normal.logpdf">
 <code class="sig-name descname">logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.logpdf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Natural logarithm of the probability density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array-like</em>) – Evaluation points of the log-probability density/mass function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>logp</strong> – Value of the log-probability density / mass function at the given points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.mean">
+<code class="sig-name descname">mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean <span class="math notranslate nohighlight">\(\mathbb{E}(X)\)</span> of the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>mean</strong> – The mean of the distribution.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.median">
+<code class="sig-name descname">median</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.median" title="Permalink to this definition">¶</a></dt>
+<dd><p>Median of the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>median</strong> – The median of the distribution.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="probnum.probability.Normal.pdf">
 <code class="sig-name descname">pdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.pdf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Probability density or mass function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array-like</em>) – Evaluation points of the probability density/mass function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>p</strong> – Value of the probability density / mass function at the given points.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="probnum.probability.Normal.sample">
-<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns realizations from the associated random variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>, </em><em>default=1</em>) – Shape of the realizations.</p>
+<dd class="field-odd"><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>, </em><em>default=</em><em>(</em><em>)</em>) – Size of the realizations.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>realizations</strong> – Realizations of the underlying random variable.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like or <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator">LinearOperator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.std">
+<code class="sig-name descname">std</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.std" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standard deviation of the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>std</strong> – The standard deviation of the distribution.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.var">
+<code class="sig-name descname">var</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Variance <span class="math notranslate nohighlight">\(\operatorname{Var}(X) = \mathbb{E}((X-\mathbb{E}(X))^2)\)</span> of the distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>var</strong> – The variance of the distribution.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array-like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -188,14 +404,14 @@
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/automod/probnum.probability.Normal.rst.txt"
+  <a href="../_sources/automod/probnum.probability.Normal.rst"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2019.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>

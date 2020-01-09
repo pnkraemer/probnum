@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/my-styles.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
@@ -16,45 +17,64 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="shortcut icon" href="_static/pn_logo.ico"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo.png"></span>
-          probnum</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
-      </div>
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="intro.html">About</a></li>
-                <li><a href="modules.html">Documentation</a></li>
-                <li><a href="examples.html">Examples</a></li>
-                <li><a href="contributing.html">Development</a></li>
-                <li><a href="https://github.com/probabilistic-numerics/probnum">GitHub</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="intro.html">About</a></li>
+              <li><a href="modules.html">Documentation</a></li>
+              <li><a href="notebooks/examples.html">Examples</a></li>
+              <li><a href="contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
   <a role="button"
      id="dLabelGlobalToc"
      data-toggle="dropdown"
@@ -65,7 +85,6 @@
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Probabilistic Numerics in Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#installation-and-documentation">Installation and Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#package-development">Package Development</a></li>
@@ -74,11 +93,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linalg.html">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">probnum.utils Module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#test-example">Test Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Package Development</a><ul>
@@ -90,16 +113,17 @@
 </ul>
 </ul>
 </li>
-              
             
-            
-            
-            
-            
-          </ul>
+          
+          
+          
+          
 
           
-            
+        </ul>
+
+        
+          
 <form class="navbar-form navbar-right" action="search.html" method="get">
  <div class="form-group">
   <input type="text" name="q" class="form-control" placeholder="Search" />
@@ -107,10 +131,10 @@
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
-          
-        </div>
-    </div>
+        
+      </div>
   </div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -120,37 +144,156 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#C"><strong>C</strong></a>
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#X"><strong>X</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  
 </div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.__call__">__call__() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.__call__">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.__call__">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.__call__">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.__call__">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.adjoint">adjoint() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.adjoint">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.adjoint">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.adjoint">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.adjoint">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.asdistribution.html#probnum.probability.asdistribution">asdistribution() (in module probnum.probability)</a>
+</li>
+      <li><a href="automod/probnum.linalg.linear_operators.aslinearoperator.html#probnum.linalg.linear_operators.aslinearoperator">aslinearoperator() (in module probnum.linalg.linear_operators)</a>
+</li>
+      <li><a href="automod/probnum.probability.asrandomvariable.html#probnum.probability.asrandomvariable">asrandomvariable() (in module probnum.probability)</a>
+</li>
+      <li><a href="automod/probnum.utils.atleast_1d.html#probnum.utils.atleast_1d">atleast_1d() (in module probnum.utils)</a>
+</li>
+      <li><a href="automod/probnum.utils.atleast_2d.html#probnum.utils.atleast_2d">atleast_2d() (in module probnum.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg">bayescg() (in module probnum.linalg.linear_solvers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.cdf">cdf() (probnum.probability.Normal method)</a>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.cdf">cdf() (probnum.probability.Dirac method)</a>
 
       <ul>
-        <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.cdf">(probnum.probability.RandomVariable method)</a>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.cdf">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.cdf">(probnum.probability.Normal method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.cov">cov() (probnum.probability.RandomVariable method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac">Dirac (class in probnum.probability)</a>
+</li>
+      <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution">Distribution (class in probnum.probability)</a>
+</li>
+      <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.distribution">distribution (probnum.probability.RandomVariable attribute)</a>
+</li>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.dot">dot() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.dot">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.dot">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.dot">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.dot">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.dtype">dtype (probnum.probability.RandomVariable attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver.H_cov_kronfac">H_cov_kronfac (probnum.linalg.linear_solvers.MatrixBasedLinearSolver attribute)</a>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.H">H (probnum.linalg.linear_operators.Identity attribute)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.H">(probnum.linalg.linear_operators.Kronecker attribute)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.H">(probnum.linalg.linear_operators.LinearOperator attribute)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.H">(probnum.linalg.linear_operators.Matrix attribute)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.H">(probnum.linalg.linear_operators.SymmetricKronecker attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity">Identity (class in probnum.linalg.linear_operators)</a>
 </li>
   </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver.H_mean">H_mean (probnum.linalg.linear_solvers.MatrixBasedLinearSolver attribute)</a>
+      <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker">Kronecker (class in probnum.linalg.linear_operators)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -158,10 +301,24 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.logpdf">logpdf() (probnum.probability.Normal method)</a>
+      <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator">LinearOperator (class in probnum.linalg.linear_operators)</a>
+</li>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.logcdf">logcdf() (probnum.probability.Dirac method)</a>
 
       <ul>
-        <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.logpdf">(probnum.probability.RandomVariable method)</a>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.logcdf">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.logcdf">(probnum.probability.Normal method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.logpdf">logpdf() (probnum.probability.Dirac method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.logpdf">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.logpdf">(probnum.probability.Normal method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -170,8 +327,52 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver">MatrixBasedLinearSolver (class in probnum.linalg.linear_solvers)</a>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.matmat">matmat() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.matmat">(probnum.linalg.linear_operators.Kronecker method)</a>
 </li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.matmat">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.matmat">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.matmat">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+      <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix">Matrix (class in probnum.linalg.linear_operators)</a>
+</li>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.matvec">matvec() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.matvec">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.matvec">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.matvec">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.matvec">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.mean">mean() (probnum.probability.Dirac method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.mean">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.mean">(probnum.probability.Normal method)</a>
+</li>
+        <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.mean">(probnum.probability.RandomVariable method)</a>
+</li>
+      </ul></li>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.median">median() (probnum.probability.Dirac method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.median">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.median">(probnum.probability.Normal method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -186,19 +387,33 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.pdf">pdf() (probnum.probability.Normal method)</a>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.parameters">parameters (probnum.probability.Dirac attribute)</a>
 
       <ul>
-        <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.pdf">(probnum.probability.RandomVariable method)</a>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.parameters">(probnum.probability.Distribution attribute)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.parameters">(probnum.probability.Normal attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.pdf">pdf() (probnum.probability.Dirac method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.pdf">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.pdf">(probnum.probability.Normal method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver">ProbabilisticLinearSolver (class in probnum.linalg.linear_solvers)</a>
+      <li><a href="automod/probnum.linalg.linear_solvers.problinsolve.html#probnum.linalg.linear_solvers.problinsolve">problinsolve() (in module probnum.linalg.linear_solvers)</a>
+</li>
+      <li><a href="linalg.html#module-probnum.linalg.linear_operators">probnum.linalg.linear_operators (module)</a>
 </li>
       <li><a href="linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers (module)</a>
 </li>
       <li><a href="probability.html#module-probnum.probability">probnum.probability (module)</a>
+</li>
+      <li><a href="utils.html#module-probnum.utils">probnum.utils (module)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -206,44 +421,134 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.random_state">random_state (probnum.probability.Dirac attribute)</a>
+
+      <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.random_state">(probnum.probability.Distribution attribute)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.random_state">(probnum.probability.Normal attribute)</a>
+</li>
+        <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.random_state">(probnum.probability.RandomVariable attribute)</a>
+</li>
+      </ul></li>
       <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable">RandomVariable (class in probnum.probability)</a>
 </li>
+      <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.reshape">reshape() (probnum.probability.RandomVariable method)</a>
+</li>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.rmatmat">rmatmat() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.rmatmat">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.rmatmat">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.rmatmat">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.rmatmat">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.rmatvec">rmatvec() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.rmatvec">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.rmatvec">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.rmatvec">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.rmatvec">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.sample">sample() (probnum.probability.Normal method)</a>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.sample">sample() (probnum.probability.Dirac method)</a>
 
       <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.sample">(probnum.probability.Distribution method)</a>
+</li>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.sample">(probnum.probability.Normal method)</a>
+</li>
         <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.sample">(probnum.probability.RandomVariable method)</a>
 </li>
       </ul></li>
-      <li><a href="automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients">SolutionBasedConjugateGradients (class in probnum.linalg.linear_solvers)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver.solve">solve() (probnum.linalg.linear_solvers.MatrixBasedLinearSolver method)</a>
+      <li><a href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable.shape">shape (probnum.probability.RandomVariable attribute)</a>
+</li>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.std">std() (probnum.probability.Dirac method)</a>
 
       <ul>
-        <li><a href="automod/probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver.solve">(probnum.linalg.linear_solvers.ProbabilisticLinearSolver method)</a>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.std">(probnum.probability.Distribution method)</a>
 </li>
-        <li><a href="automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.solve">(probnum.linalg.linear_solvers.SolutionBasedConjugateGradients method)</a>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.std">(probnum.probability.Normal method)</a>
+</li>
+      </ul></li>
+      <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker">SymmetricKronecker (class in probnum.linalg.linear_operators)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.T">T (probnum.linalg.linear_operators.Identity attribute)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.T">(probnum.linalg.linear_operators.Kronecker attribute)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.T">(probnum.linalg.linear_operators.LinearOperator attribute)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.T">(probnum.linalg.linear_operators.Matrix attribute)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.T">(probnum.linalg.linear_operators.SymmetricKronecker attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.todense">todense() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.todense">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.todense">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.todense">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.todense">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity.transpose">transpose() (probnum.linalg.linear_operators.Identity method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker.transpose">(probnum.linalg.linear_operators.Kronecker method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.transpose">(probnum.linalg.linear_operators.LinearOperator method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix.transpose">(probnum.linalg.linear_operators.Matrix method)</a>
+</li>
+        <li><a href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker.transpose">(probnum.linalg.linear_operators.SymmetricKronecker method)</a>
 </li>
       </ul></li>
   </ul></td>
 </tr></table>
 
-<h2 id="X">X</h2>
+<h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.x_cov">x_cov (probnum.linalg.linear_solvers.SolutionBasedConjugateGradients attribute)</a>
+      <li><a href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac.var">var() (probnum.probability.Dirac method)</a>
+
+      <ul>
+        <li><a href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution.var">(probnum.probability.Distribution method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.x_mean">x_mean (probnum.linalg.linear_solvers.SolutionBasedConjugateGradients attribute)</a>
+        <li><a href="automod/probnum.probability.Normal.html#probnum.probability.Normal.var">(probnum.probability.Normal method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -263,8 +568,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2019.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>

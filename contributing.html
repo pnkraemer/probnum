@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/my-styles.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
@@ -15,47 +16,66 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="shortcut icon" href="_static/pn_logo.ico"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license.html" />
-    <link rel="prev" title="Examples" href="examples.html" />
+    <link rel="prev" title="Examples" href="notebooks/examples.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo.png"></span>
-          probnum</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
-      </div>
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="intro.html">About</a></li>
-                <li><a href="modules.html">Documentation</a></li>
-                <li><a href="examples.html">Examples</a></li>
-                <li><a href="#">Development</a></li>
-                <li><a href="https://github.com/probabilistic-numerics/probnum">GitHub</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="intro.html">About</a></li>
+              <li><a href="modules.html">Documentation</a></li>
+              <li><a href="notebooks/examples.html">Examples</a></li>
+              <li><a href="#">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
   <a role="button"
      id="dLabelGlobalToc"
      data-toggle="dropdown"
@@ -66,7 +86,6 @@
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Probabilistic Numerics in Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#installation-and-documentation">Installation and Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#package-development">Package Development</a></li>
@@ -75,11 +94,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linalg.html">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">probnum.utils Module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#test-example">Test Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Package Development</a><ul>
@@ -91,16 +114,17 @@
 </ul>
 </ul>
 </li>
-              
             
-            
-            
-            
-            
-          </ul>
+          
+          
+          
+          
 
           
-            
+        </ul>
+
+        
+          
 <form class="navbar-form navbar-right" action="search.html" method="get">
  <div class="form-group">
   <input type="text" name="q" class="form-control" placeholder="Search" />
@@ -108,10 +132,10 @@
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
-          
-        </div>
-    </div>
+        
+      </div>
   </div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -140,7 +164,7 @@ a good PR are:</p>
 made <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a> builds the project and runs the test suite.</p></li>
 <li><p>Documentation of code is essential for any collaborative project. ProbNum uses the
 <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">NumPy docstring format</a>.</p></li>
-<li><p>Python code should follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">*PEP8* style</a>.</p></li>
+<li><p>Python code should follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8 style</a>.</p></li>
 <li><p>Keep dependencies to a minimum.</p></li>
 <li><p>Make sure to observe good coding practice. The existing ProbNum code is a good starting point for coding style.</p></li>
 </ul>
@@ -162,7 +186,7 @@ made <a class="reference external" href="https://travis-ci.org/probabilistic-num
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    float</span>
+<span class="sd">    sum : float</span>
 <span class="sd">        Sum of the input parameters.</span>
 
 <span class="sd">    References</span>
@@ -177,27 +201,23 @@ made <a class="reference external" href="https://travis-ci.org/probabilistic-num
 <div class="section" id="tests-and-ci">
 <h3>Tests and CI<a class="headerlink" href="#tests-and-ci" title="Permalink to this headline">¶</a></h3>
 <p>We aim to cover as much code with tests as possible. Make sure to add tests for newly implemented code. Tests are run by
-the continuous integration (CI) tool <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a> and coverage is reported by <a class="reference external" href="https://codecov.io/github/probabilistic-numerics/probnum?branch=master">codecov</a>.</p>
+the continuous integration tool <a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a> and coverage is reported by <a class="reference external" href="https://codecov.io/github/probabilistic-numerics/probnum?branch=master">codecov</a>.</p>
 </div>
 <div class="section" id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://probabilistic-numerics.github.io/probnum/modules.html">Documentation</a> is automatically built using <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> and
-<a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a>. When implementing published methods please give credit
+<p><a class="reference external" href="https://probabilistic-numerics.github.io/probnum/modules.html">Documentation</a> is automatically built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> and
+<a class="reference external" href="https://travis-ci.org/probabilistic-numerics/probnum">Travis</a>. When implementing published methods give credit
 and include the appropriate citations.</p>
 </div>
 </div>
 <div class="section" id="code-contributors">
 <h2>Code Contributors<a class="headerlink" href="#code-contributors" title="Permalink to this headline">¶</a></h2>
-<p>The following people contributed to the ProbNum repository.</p>
+<p>The following people contributed significantly to the ProbNum repository:</p>
 <ul class="simple">
-<li><p><strong>Jonathan Wenger</strong>: (<a class="reference external" href="https://github.com/JonathanWenger">https://github.com/JonathanWenger</a>)</p>
-<ul>
-<li><p>example contribution</p></li>
+<li><p><strong>Jonathan Wenger</strong>: (<a class="reference external" href="https://github.com/JonathanWenger">https://github.com/JonathanWenger</a>)</p></li>
 </ul>
-</li>
-</ul>
-<p>If you feel like you have contributed significantly to ProbNum make sure to add your name to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/AUTHORS.md">authors</a>
-file alongside your contributions and to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/LICENSE.txt">license</a>.</p>
+<p>If you feel like you have made substantial contributions to ProbNum, contact the maintainers of the package. Your name will then be added to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/AUTHORS.md">authors</a>
+file and to the <a class="reference external" href="https://github.com/probabilistic-numerics/probnum/blob/master/LICENSE.txt">license</a>.</p>
 </div>
 </div>
 
@@ -214,14 +234,14 @@ file alongside your contributions and to the <a class="reference external" href=
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/contributing.rst.txt"
+  <a href="_sources/contributing.rst"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2019.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>

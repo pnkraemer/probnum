@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>problinsolve &#8212; probnum  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="bayescg" href="probnum.linalg.linear_solvers.bayescg.html" />
+    <link rel="prev" title="SymmetricKronecker" href="probnum.linalg.linear_operators.SymmetricKronecker.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  </head><body>
+
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="../intro.html">About</a></li>
+              <li><a href="../modules.html">Documentation</a></li>
+              <li><a href="../notebooks/examples.html">Examples</a></li>
+              <li><a href="../contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#package-development">Package Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#license-and-contact">License and Contact</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">probnum.utils Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-contributors">Code Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+</ul>
+</li>
+            
+          
+          
+          
+          
+
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="problinsolve">
+<h1>problinsolve<a class="headerlink" href="#problinsolve" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="probnum.linalg.linear_solvers.problinsolve">
+<code class="sig-prename descclassname">probnum.linalg.linear_solvers.</code><code class="sig-name descname">problinsolve</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">Ainv=None</em>, <em class="sig-param">x0=None</em>, <em class="sig-param">assume_A='sympos'</em>, <em class="sig-param">maxiter=None</em>, <em class="sig-param">resid_tol=1e-06</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#problinsolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.problinsolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infer a solution to the linear system <span class="math notranslate nohighlight">\(A x = b\)</span> in a Bayesian framework.</p>
+<p>Probabilistic linear solvers infer solutions to problems of the form</p>
+<div class="math notranslate nohighlight">
+\[Ax=b,\]</div>
+<p>where <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{n}\)</span>. They return a probability measure
+which quantifies uncertainty in the output arising from finite computational resources.</p>
+<p>This solver can take prior information either on the linear operator <span class="math notranslate nohighlight">\(A\)</span> or its inverse <span class="math notranslate nohighlight">\(H=A^{-1}\)</span> and
+outputs a posterior belief over <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(H\)</span>. For a specific class of priors this recovers the iterates of
+the conjugate gradient method <a class="footnote-reference brackets" href="#id5" id="id1">1</a> as the posterior mean. This code implements the method described in <a class="footnote-reference brackets" href="#id6" id="id2">2</a>, <a class="footnote-reference brackets" href="#id7" id="id3">3</a>
+and <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Hestenes, M. R. and Stiefel E., Methods of Conjugate Gradients for Solving Linear Systems,
+<em>Journal of Research of the National Bureau of Standards</em>, 1952, 49 (6): 409</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Wenger, J. and Hennig, P., Probabilistic Linear Solvers for Machine Learning, 2020</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Hennig, P., Probabilistic Interpretation of Linear Solvers, <em>SIAM Journal on Optimization</em>, 2015, 25, 234-260</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Hennig, P. and Osborne M. A., <em>Probabilistic Numerics. Computation as Machine Learning</em>, 2020, Cambridge
+University Press</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em>) – A square matrix or linear operator. A prior distribution can be provided as a
+<a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a>. If an array or linear operator is given, a prior distribution is
+chosen automatically.</p></li>
+<li><p><strong>b</strong> (<em>array_like</em><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>(</em><em>n</em><em>, </em><em>nrhs</em><em>)</em>) – Right-hand side vector or matrix in <span class="math notranslate nohighlight">\(A x = b\)</span>.</p></li>
+<li><p><strong>Ainv</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em>) – Optional. A square matrix, linear operator or random variable representing the prior belief over the inverse
+<span class="math notranslate nohighlight">\(H=A^{-1}\)</span>.</p></li>
+<li><p><strong>x0</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>(</em><em>n</em><em>, </em><em>nrhs</em><em>)</em>) – Optional. Initial guess for the solution of the linear system. Will be ignored if <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> is given.</p></li>
+<li><p><strong>assume_A</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>default=&quot;sympos&quot;</em>) – <p>Assumptions on the matrix, which can influence solver choice or behavior. The available options are</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 67%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>generic matrix</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gen</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>symmetric</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sym</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>positive definite</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pos</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>symmetric pos. def.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sympos</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</p></li>
+<li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of iterations. Defaults to <span class="math notranslate nohighlight">\(10n\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><strong>resid_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Residual tolerance. If <span class="math notranslate nohighlight">\(\lVert r_i \rVert = \lVert Ax_i - b \rVert &lt; \text{tol}\)</span>, the iteration
+terminates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>x</strong> (<em>RandomVariable, shape=(n,) or (n, nrhs)</em>) – Approximate solution <span class="math notranslate nohighlight">\(x\)</span> to the linear system. Shape of the return matches the shape of <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
+<li><p><strong>A</strong> (<em>RandomVariable, shape=(n,n)</em>) – Posterior belief over the linear operator.</p></li>
+<li><p><strong>Ainv</strong> (<em>RandomVariable, shape=(n,n)</em>) – Posterior belief over the linear operator inverse <span class="math notranslate nohighlight">\(H=A^{-1}\)</span>.</p></li>
+<li><p><strong>info</strong> (<em>dict</em>) – Information on convergence of the solver.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – If size mismatches detected or input <code class="docutils literal notranslate"><span class="pre">A</span></code> is not square.</p></li>
+<li><p><strong>LinAlgError</strong> – If the matrix is singular.</p></li>
+<li><p><strong>LinAlgWarning</strong> – If an ill-conditioned input a is detected.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg" title="probnum.linalg.linear_solvers.bayescg"><code class="xref py py-func docutils literal notranslate"><span class="pre">bayescg()</span></code></a></dt><dd><p>Solve linear systems with prior information on the solution.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../_sources/automod/probnum.linalg.linear_solvers.problinsolve.rst"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

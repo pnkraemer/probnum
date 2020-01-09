@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Identity &#8212; probnum  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matrix" href="probnum.linalg.linear_operators.Matrix.html" />
+    <link rel="prev" title="LinearOperator" href="probnum.linalg.linear_operators.LinearOperator.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  </head><body>
+
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="../intro.html">About</a></li>
+              <li><a href="../modules.html">Documentation</a></li>
+              <li><a href="../notebooks/examples.html">Examples</a></li>
+              <li><a href="../contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#package-development">Package Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#license-and-contact">License and Contact</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">probnum.utils Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-contributors">Code Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+</ul>
+</li>
+            
+          
+          
+          
+          
+
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="identity">
+<h1>Identity<a class="headerlink" href="#identity" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="probnum.linalg.linear_operators.Identity">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">Identity</code><span class="sig-paren">(</span><em class="sig-param">shape</em>, <em class="sig-param">dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#Identity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.Identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linalg.linear_operators.LinearOperator</span></code></a></p>
+<p>The identity operator.</p>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.H" title="probnum.linalg.linear_operators.Identity.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
+<td><p>Hermitian adjoint.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.T" title="probnum.linalg.linear_operators.Identity.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<td><p>Transpose this linear operator.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.__call__" title="probnum.linalg.linear_operators.Identity.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x)</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.adjoint" title="probnum.linalg.linear_operators.Identity.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
+<td><p>Hermitian adjoint.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.dot" title="probnum.linalg.linear_operators.Identity.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
+<td><p>Matrix-matrix or matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.matmat" title="probnum.linalg.linear_operators.Identity.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
+<td><p>Matrix-matrix multiplication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.matvec" title="probnum.linalg.linear_operators.Identity.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
+<td><p>Matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.rmatmat" title="probnum.linalg.linear_operators.Identity.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<td><p>Adjoint matrix-matrix multiplication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.rmatvec" title="probnum.linalg.linear_operators.Identity.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<td><p>Adjoint matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.todense" title="probnum.linalg.linear_operators.Identity.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<td><p>Dense matrix representation of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Identity.transpose" title="probnum.linalg.linear_operators.Identity.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<td><p>Transpose this linear operator.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.linalg.linear_operators.Identity.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.H" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hermitian adjoint.</p>
+<p>Returns the Hermitian adjoint of self, aka the Hermitian
+conjugate or Hermitian transpose. For a complex matrix, the
+Hermitian adjoint is equal to the conjugate transpose.</p>
+<p>Can be abbreviated self.H instead of self.adjoint().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>A_H</strong> – Hermitian adjoint of self.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator">LinearOperator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.linalg.linear_operators.Identity.T">
+<code class="sig-name descname">T</code><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose this linear operator.</p>
+<p>Returns a LinearOperator that represents the transpose of this one.
+Can be abbreviated self.T instead of self.transpose().</p>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.adjoint">
+<code class="sig-name descname">adjoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.adjoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hermitian adjoint.</p>
+<p>Returns the Hermitian adjoint of self, aka the Hermitian
+conjugate or Hermitian transpose. For a complex matrix, the
+Hermitian adjoint is equal to the conjugate transpose.</p>
+<p>Can be abbreviated self.H instead of self.adjoint().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>A_H</strong> – Hermitian adjoint of self.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator">LinearOperator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.dot">
+<code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-matrix or matrix-vector multiplication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array_like</em>) – 1-d or 2-d array, representing a vector or matrix.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Ax</strong> – 1-d or 2-d array (depending on the shape of x) that represents
+the result of applying this linear operator on x.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.matmat">
+<code class="sig-name descname">matmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.matmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-matrix multiplication.</p>
+<p>Performs the operation y=A*X where A is an MxN linear
+operator and X dense N*K matrix or ndarray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (N,K).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – A matrix or ndarray with shape (M,K) depending on
+the type of the X argument.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This matmat wraps any user-specified matmat routine or overridden
+_matmat method to ensure that y has the correct type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.matvec">
+<code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-vector multiplication.</p>
+<p>Performs the operation y=A*x where A is an MxN linear
+operator and x is a column vector or 1-d array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (N,) or (N,1).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray with shape (M,) or (M,1) depending
+on the type and shape of the x argument.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This matvec wraps the user-specified matvec routine or overridden
+_matvec method to ensure that y has the correct shape and type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.rmatmat">
+<code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.rmatmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjoint matrix-matrix multiplication.</p>
+<p>Performs the operation y = A^H * x where A is an MxN linear
+operator and x is a column vector or 1-d array, or 2-d array.
+The default implementation defers to the adjoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – A matrix or 2D array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – A matrix or 2D array depending on the type of the input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This rmatmat wraps the user-specified rmatmat routine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.rmatvec">
+<code class="sig-name descname">rmatvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.rmatvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjoint matrix-vector multiplication.</p>
+<p>Performs the operation y = A^H * x where A is an MxN linear
+operator and x is a column vector or 1-d array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (M,) or (M,1).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray with shape (N,) or (N,1) depending
+on the type and shape of the x argument.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This rmatvec wraps the user-specified rmatvec routine or overridden
+_rmatvec method to ensure that y has the correct shape and type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.todense">
+<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#Identity.todense"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.todense" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dense matrix representation of the linear operator.</p>
+<p>This operation can be computationally costly depending on the size of the operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>matrix</strong> – Dense matrix representation.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Identity.transpose">
+<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Identity.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose this linear operator.</p>
+<p>Returns a LinearOperator that represents the transpose of this one.
+Can be abbreviated self.T instead of self.transpose().</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../_sources/automod/probnum.linalg.linear_operators.Identity.rst"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -15,47 +16,66 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="shortcut icon" href="../_static/pn_logo.ico"/>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="probnum.linalg.linear_solvers Module" href="../linalg.html" />
-    <link rel="prev" title="Normal" href="probnum.probability.Normal.html" />
+    <link rel="next" title="Distribution" href="probnum.probability.Distribution.html" />
+    <link rel="prev" title="asdistribution" href="probnum.probability.asdistribution.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
-          probnum</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
-      </div>
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="../intro.html">About</a></li>
-                <li><a href="../modules.html">Documentation</a></li>
-                <li><a href="../examples.html">Examples</a></li>
-                <li><a href="../contributing.html">Development</a></li>
-                <li><a href="https://github.com/probabilistic-numerics/probnum">GitHub</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="../intro.html">About</a></li>
+              <li><a href="../modules.html">Documentation</a></li>
+              <li><a href="../notebooks/examples.html">Examples</a></li>
+              <li><a href="../contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
   <a role="button"
      id="dLabelGlobalToc"
      data-toggle="dropdown"
@@ -66,7 +86,6 @@
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#package-development">Package Development</a></li>
@@ -75,11 +94,15 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">probnum.utils Module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../examples.html#test-example">Test Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
@@ -91,16 +114,17 @@
 </ul>
 </ul>
 </li>
-              
             
-            
-            
-            
-            
-          </ul>
+          
+          
+          
+          
 
           
-            
+        </ul>
+
+        
+          
 <form class="navbar-form navbar-right" action="../search.html" method="get">
  <div class="form-group">
   <input type="text" name="q" class="form-control" placeholder="Search" />
@@ -108,10 +132,10 @@
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
-          
-        </div>
-    </div>
+        
+      </div>
   </div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -121,16 +145,56 @@
 <h1>RandomVariable<a class="headerlink" href="#randomvariable" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="probnum.probability.RandomVariable">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">RandomVariable</code><span class="sig-paren">(</span><em class="sig-param">mean=None</em>, <em class="sig-param">covariance=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">RandomVariable</code><span class="sig-paren">(</span><em class="sig-param">shape=()</em>, <em class="sig-param">dtype=None</em>, <em class="sig-param">distribution=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Random variables are the main objects used by probabilistic numerical methods.</p>
-<p>Each probabilistic numerical method should take a random variable encoding the prior distribution and output a
+<p>Every probabilistic numerical method takes a random variable encoding the prior distribution as input and outputs a
 random variable whose distribution encodes the uncertainty arising from finite computation. The generic signature
 of a probabilistic numerical method is:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">output_rv</span> <span class="pre">=</span> <span class="pre">probnum_method(input_rv,</span> <span class="pre">method_params)</span>
-<span class="pre">`</span></code>
-Instances of this class must at least provide a mean and a sampling method.</p>
+<p><code class="docutils literal notranslate"><span class="pre">output_rv</span> <span class="pre">=</span> <span class="pre">probnum_method(input_rv,</span> <span class="pre">method_params)</span></code></p>
+<p>In practice, most random variables used by methods in ProbNum have Dirac or Gaussian measure.</p>
+<p>Instances of <a class="reference internal" href="#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a> can be added, multiplied, etc. with arrays and linear operators. This may
+change their <code class="docutils literal notranslate"><span class="pre">distribution</span></code> and not necessarily all previously available methods are retained.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – Shape of realizations of this random variable.</p></li>
+<li><p><strong>dtype</strong> (<em>numpy.dtype</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – Data type of realizations of this random variable. If <code class="docutils literal notranslate"><span class="pre">object</span></code> will be converted to <code class="docutils literal notranslate"><span class="pre">numpy.dtype</span></code>.</p></li>
+<li><p><strong>distribution</strong> (<a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><em>Distribution</em></a>) – Probability distribution of the random variable.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="probnum.probability.asrandomvariable.html#probnum.probability.asrandomvariable" title="probnum.probability.asrandomvariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">asrandomvariable</span></code></a></dt><dd><p>Transform into a <a class="reference internal" href="#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a>.</p>
+</dd>
+<dt><a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a></dt><dd><p>A class representing probability distributions.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.distribution" title="probnum.probability.RandomVariable.distribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">distribution</span></code></a></p></td>
+<td><p>Distribution of random variable.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.dtype" title="probnum.probability.RandomVariable.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
+<td><p><cite>Dtype</cite> of elements in this random variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.random_state" title="probnum.probability.RandomVariable.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
+<td><p>Random state of the random variable induced by its <code class="docutils literal notranslate"><span class="pre">distribution</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.shape" title="probnum.probability.RandomVariable.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>Shape of realizations of the random variable.</p></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Methods Summary</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -138,43 +202,88 @@ Instances of this class must at least provide a mean and a sampling method.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.cdf" title="probnum.probability.RandomVariable.cdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cdf</span></code></a>(x)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.cov" title="probnum.probability.RandomVariable.cov"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cov</span></code></a>()</p></td>
+<td><p>Covariance operator of the random variable</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.logpdf" title="probnum.probability.RandomVariable.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.mean" title="probnum.probability.RandomVariable.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></a>()</p></td>
+<td><p>Expected value of the random variable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.pdf" title="probnum.probability.RandomVariable.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.reshape" title="probnum.probability.RandomVariable.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(shape)</p></td>
+<td><p>Give a new shape to a random variable.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.RandomVariable.sample" title="probnum.probability.RandomVariable.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
-<td><p>Returns realizations from the associated random variable.</p></td>
+<td><p>Draw realizations from a random variable.</p></td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.probability.RandomVariable.distribution">
+<code class="sig-name descname">distribution</code><a class="headerlink" href="#probnum.probability.RandomVariable.distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distribution of random variable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.probability.RandomVariable.dtype">
+<code class="sig-name descname">dtype</code><a class="headerlink" href="#probnum.probability.RandomVariable.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>Dtype</cite> of elements in this random variable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.probability.RandomVariable.random_state">
+<code class="sig-name descname">random_state</code><a class="headerlink" href="#probnum.probability.RandomVariable.random_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Random state of the random variable induced by its <code class="docutils literal notranslate"><span class="pre">distribution</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.probability.RandomVariable.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#probnum.probability.RandomVariable.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shape of realizations of the random variable.</p>
+</dd></dl>
+
 <p class="rubric">Methods Documentation</p>
 <dl class="method">
-<dt id="probnum.probability.RandomVariable.cdf">
-<code class="sig-name descname">cdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.cdf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="probnum.probability.RandomVariable.cov">
+<code class="sig-name descname">cov</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.cov"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>Covariance operator of the random variable</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="probnum.probability.RandomVariable.logpdf">
-<code class="sig-name descname">logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.logpdf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="probnum.probability.RandomVariable.mean">
+<code class="sig-name descname">mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expected value of the random variable.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="probnum.probability.RandomVariable.pdf">
-<code class="sig-name descname">pdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.pdf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="probnum.probability.RandomVariable.reshape">
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give a new shape to a random variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shape</strong> (<em>tuple of ints</em>) – The new shape should be compatible with the original shape.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reshaped_rv</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">self</span></code> with the new dimensions of <code class="docutils literal notranslate"><span class="pre">shape</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="probnum.probability.RandomVariable.sample">
-<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.sample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns realizations from the associated random variable.</p>
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#RandomVariable.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.RandomVariable.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw realizations from a random variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>, </em><em>default=1</em>) – Shape of the realizations.</p>
+<dd class="field-odd"><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – Size of the drawn sample of realizations.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – Sample of realizations with the given <code class="docutils literal notranslate"><span class="pre">size</span></code> and the inherent <code class="docutils literal notranslate"><span class="pre">shape</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -196,14 +305,14 @@ Instances of this class must at least provide a mean and a sampling method.</p>
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/automod/probnum.probability.RandomVariable.rst.txt"
+  <a href="../_sources/automod/probnum.probability.RandomVariable.rst"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2019.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>

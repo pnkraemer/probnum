@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>probnum.linalg.linear_solvers Module &#8212; probnum  documentation</title>
+    <title>probnum.linalg.linear_operators Module &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/my-styles.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
@@ -15,47 +16,66 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="shortcut icon" href="_static/pn_logo.ico"/>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MatrixBasedLinearSolver" href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html" />
-    <link rel="prev" title="RandomVariable" href="automod/probnum.probability.RandomVariable.html" />
+    <link rel="next" title="aslinearoperator" href="automod/probnum.linalg.linear_operators.aslinearoperator.html" />
+    <link rel="prev" title="Normal" href="automod/probnum.probability.Normal.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+<link rel="manifest" href="../../../img/site.webmanifest">
+<link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="../../../img/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="../../../img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
 <script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
 <script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   </head><body>
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo.png"></span>
-          probnum</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
-      </div>
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><span><img src="_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="intro.html">About</a></li>
-                <li><a href="modules.html">Documentation</a></li>
-                <li><a href="examples.html">Examples</a></li>
-                <li><a href="contributing.html">Development</a></li>
-                <li><a href="https://github.com/probabilistic-numerics/probnum">GitHub</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="intro.html">About</a></li>
+              <li><a href="modules.html">Documentation</a></li>
+              <li><a href="notebooks/examples.html">Examples</a></li>
+              <li><a href="contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
   <a role="button"
      id="dLabelGlobalToc"
      data-toggle="dropdown"
@@ -66,7 +86,6 @@
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Probabilistic Numerics in Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#installation-and-documentation">Installation and Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intro.html#package-development">Package Development</a></li>
@@ -75,11 +94,15 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">probnum.utils Module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#test-example">Test Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Package Development</a><ul>
@@ -91,16 +114,17 @@
 </ul>
 </ul>
 </li>
-              
             
-            
-            
-            
-            
-          </ul>
+          
+          
+          
+          
 
           
-            
+        </ul>
+
+        
+          
 <form class="navbar-form navbar-right" action="search.html" method="get">
  <div class="form-group">
   <input type="text" name="q" class="form-control" placeholder="Search" />
@@ -108,18 +132,37 @@
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
 </form>
-          
-        </div>
-    </div>
+        
+      </div>
   </div>
+</div>
 
 <div class="container">
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-probnum.linalg.linear_solvers">
-<span id="probnum-linalg-linear-solvers-module"></span><h1>probnum.linalg.linear_solvers Module<a class="headerlink" href="#module-probnum.linalg.linear_solvers" title="Permalink to this headline">¶</a></h1>
-<p>Probabilistic numerical methods for solving linear systems.</p>
+  <div class="section" id="module-probnum.linalg.linear_operators">
+<span id="probnum-linalg-linear-operators-module"></span><h1>probnum.linalg.linear_operators Module<a class="headerlink" href="#module-probnum.linalg.linear_operators" title="Permalink to this headline">¶</a></h1>
+<p>Finite dimensional linear operators.</p>
+<p>This module defines classes and methods that implement finite dimensional linear operators. It can be used to do linear
+algebra with (structured) matrices without explicitly representing them in memory. This often allows for the definition
+of a more efficient matrix-vector product. Linear operators can be applied, added, multiplied, transposed, and more as
+one would expect from matrix algebra.</p>
+<p>Several algorithms in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">probnum.linalg</span></code> library are able to operate on <a class="reference internal" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearOperator</span></code></a> instances.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.aslinearoperator.html#probnum.linalg.linear_operators.aslinearoperator" title="probnum.linalg.linear_operators.aslinearoperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aslinearoperator</span></code></a>(A)</p></td>
+<td><p>Return <cite>A</cite> as a <a class="reference internal" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearOperator</span></code></a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <table class="longtable docutils align-default">
@@ -128,13 +171,53 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.MatrixBasedLinearSolver.html#probnum.linalg.linear_solvers.MatrixBasedLinearSolver" title="probnum.linalg.linear_solvers.MatrixBasedLinearSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixBasedLinearSolver</span></code></a>([H_mean, H_cov_kronfac])</p></td>
-<td><p>Probabilistic linear solver using prior information on the matrix inverse.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearOperator</span></code></a>(dtype, shape)</p></td>
+<td><p>Finite dimensional linear operators.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.ProbabilisticLinearSolver.html#probnum.linalg.linear_solvers.ProbabilisticLinearSolver" title="probnum.linalg.linear_solvers.ProbabilisticLinearSolver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProbabilisticLinearSolver</span></code></a></p></td>
-<td><p>Probabilistic linear solvers infer solutions to linear systems in a Bayesian framework.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" title="probnum.linalg.linear_operators.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>(shape[, dtype])</p></td>
+<td><p>The identity operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.SolutionBasedConjugateGradients.html#probnum.linalg.linear_solvers.SolutionBasedConjugateGradients" title="probnum.linalg.linear_solvers.SolutionBasedConjugateGradients"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolutionBasedConjugateGradients</span></code></a>([x_mean, x_cov])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix" title="probnum.linalg.linear_operators.Matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Matrix</span></code></a>(A)</p></td>
+<td><p>A linear operator defined via a matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" title="probnum.linalg.linear_operators.Kronecker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kronecker</span></code></a>(A, B[, dtype])</p></td>
+<td><p>Kronecker product of two linear operators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" title="probnum.linalg.linear_operators.SymmetricKronecker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SymmetricKronecker</span></code></a>(A, B[, dtype])</p></td>
+<td><p>Symmetric Kronecker product of two linear operators.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h2>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><img src="_images/inheritance-13f718d90f0bba9bc53e28c669ec4a5a026f3158.png" alt="Inheritance diagram of probnum.linalg.linear_operators.LinearOperator, probnum.linalg.linear_operators.Identity, probnum.linalg.linear_operators.Matrix, probnum.linalg.linear_operators.Kronecker, probnum.linalg.linear_operators.SymmetricKronecker" usemap="#inheritance4c9c28c3dd" class="inheritance graphviz" /></div>
+<map id="inheritance4c9c28c3dd" name="inheritance4c9c28c3dd">
+<area shape="rect" id="node1" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" target="_top" title="The identity operator." alt="" coords="215,5,287,31"/>
+<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,105,124,131"/>
+<area shape="rect" id="node3" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" target="_top" title="Kronecker product of two linear operators." alt="" coords="207,55,294,80"/>
+<area shape="rect" id="node4" href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,131,449,156"/>
+<area shape="rect" id="node6" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" target="_top" title="Symmetric Kronecker product of two linear operators." alt="" coords="173,205,329,231"/>
+</map></div>
+</div>
+<div class="section" id="module-probnum.linalg.linear_solvers">
+<span id="probnum-linalg-linear-solvers-module"></span><h1>probnum.linalg.linear_solvers Module<a class="headerlink" href="#module-probnum.linalg.linear_solvers" title="Permalink to this headline">¶</a></h1>
+<p>Probabilistic numerical methods for solving linear systems.</p>
+<p>This module provides routines to solve linear systems of equations in a Bayesian framework. This means that a prior
+distribution over elements of the linear system can be provided and is updated with information collected by the solvers
+to return a posterior distribution.</p>
+<div class="section" id="id1">
+<h2>Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.problinsolve.html#probnum.linalg.linear_solvers.problinsolve" title="probnum.linalg.linear_solvers.problinsolve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">problinsolve</span></code></a>(A, b[, Ainv, x0, assume_A, …])</p></td>
+<td><p>Infer a solution to the linear system <span class="math notranslate nohighlight">\(A x = b\)</span> in a Bayesian framework.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg" title="probnum.linalg.linear_solvers.bayescg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bayescg</span></code></a>(A, b[, x0])</p></td>
 <td><p>Conjugate Gradients using prior information on the solution of the linear system.</p></td>
 </tr>
 </tbody>
@@ -155,14 +238,14 @@
         <br/>
         
 <div id="sourcelink">
-  <a href="_sources/linalg.rst.txt"
+  <a href="_sources/linalg.rst"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
-        &copy; Copyright 2019.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.<br/>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
     </p>
   </div>
 </footer>
