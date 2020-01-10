@@ -104,9 +104,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/random_variables.html">Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/linear_operators.html">Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/linear_systems.html">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/discretized_diff_eq.html">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
@@ -161,13 +162,13 @@ This allows arithmetic operations on instances of <a class="reference internal" 
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – Dictionary of distribution parameters such as mean, variance, et cetera.</p></li>
-<li><p><strong>pdf</strong> (<em>function</em>) – Probability density or mass function.</p></li>
-<li><p><strong>logpdf</strong> (<em>function</em>) – Log-probability density or mass function.</p></li>
-<li><p><strong>cdf</strong> (<em>function</em>) – Cumulative distribution function.</p></li>
-<li><p><strong>logcdf</strong> (<em>function</em>) – Log-cumulative distribution function.</p></li>
-<li><p><strong>sample</strong> (<em>function</em>) – Function implementing sampling. Must have signature <code class="docutils literal notranslate"><span class="pre">sample(size=())</span></code>.</p></li>
-<li><p><strong>mean</strong> (<em>function</em>) – Function returning the mean of the distribution.</p></li>
-<li><p><strong>var</strong> (<em>function</em>) – Function returning the variance of the distribution.</p></li>
+<li><p><strong>pdf</strong> (<em>callable</em>) – Probability density or mass function.</p></li>
+<li><p><strong>logpdf</strong> (<em>callable</em>) – Log-probability density or mass function.</p></li>
+<li><p><strong>cdf</strong> (<em>callable</em>) – Cumulative distribution function.</p></li>
+<li><p><strong>logcdf</strong> (<em>callable</em>) – Log-cumulative distribution function.</p></li>
+<li><p><strong>sample</strong> (<em>callable</em>) – Function implementing sampling. Must have signature <code class="docutils literal notranslate"><span class="pre">sample(size=())</span></code>.</p></li>
+<li><p><strong>mean</strong> (<em>callable</em>) – Function returning the mean of the distribution.</p></li>
+<li><p><strong>var</strong> (<em>callable</em>) – Function returning the variance of the distribution.</p></li>
 <li><p><strong>dtype</strong> (<em>numpy.dtype</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – Data type of realizations of a random variable with this distribution. If <code class="docutils literal notranslate"><span class="pre">object</span></code> will be converted to <code class="docutils literal notranslate"><span class="pre">numpy.dtype</span></code>.</p></li>
 <li><p><strong>random_state</strong> (None or int or <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomState</span></code> instance, optional) – This parameter defines the RandomState object to use for drawing
 realizations from this distribution.

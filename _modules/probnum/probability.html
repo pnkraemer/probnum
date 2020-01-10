@@ -102,9 +102,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../notebooks/examples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../notebooks/examples.html#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../notebooks/examples.html#Linear-Systems">Linear Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../notebooks/examples.html#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/random_variables.html">Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/linear_operators.html">Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/linear_systems.html">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/discretized_diff_eq.html">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Package Development</a><ul>
@@ -333,7 +334,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        other : object</span>
-<span class="sd">        op : function</span>
+<span class="sd">        op : callable</span>
 <span class="sd">            Binary operation.</span>
 
 <span class="sd">        Returns</span>
@@ -440,19 +441,19 @@
 <span class="sd">    ----------</span>
 <span class="sd">    parameters : dict</span>
 <span class="sd">        Dictionary of distribution parameters such as mean, variance, et cetera.</span>
-<span class="sd">    pdf : function</span>
+<span class="sd">    pdf : callable</span>
 <span class="sd">        Probability density or mass function.</span>
-<span class="sd">    logpdf : function</span>
+<span class="sd">    logpdf : callable</span>
 <span class="sd">        Log-probability density or mass function.</span>
-<span class="sd">    cdf : function</span>
+<span class="sd">    cdf : callable</span>
 <span class="sd">        Cumulative distribution function.</span>
-<span class="sd">    logcdf : function</span>
+<span class="sd">    logcdf : callable</span>
 <span class="sd">        Log-cumulative distribution function.</span>
-<span class="sd">    sample : function</span>
+<span class="sd">    sample : callable</span>
 <span class="sd">        Function implementing sampling. Must have signature ``sample(size=())``.</span>
-<span class="sd">    mean : function</span>
+<span class="sd">    mean : callable</span>
 <span class="sd">        Function returning the mean of the distribution.</span>
-<span class="sd">    var : function</span>
+<span class="sd">    var : callable</span>
 <span class="sd">        Function returning the variance of the distribution.</span>
 <span class="sd">    dtype : numpy.dtype or object</span>
 <span class="sd">        Data type of realizations of a random variable with this distribution. If ``object`` will be converted to ``numpy.dtype``.</span>

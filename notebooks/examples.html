@@ -20,7 +20,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Package Development" href="../contributing.html" />
+    <link rel="next" title="Random Variables" href="random_variables.html" />
     <link rel="prev" title="atleast_2d" href="../automod/probnum.utils.atleast_2d.html" />
 
 <meta charset='utf-8'>
@@ -104,9 +104,10 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Random-Variables-and-Linear-Operators">Random Variables and Linear Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Linear-Systems">Linear Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Discretized-Differential-Equations">Discretized Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="random_variables.html">Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_operators.html">Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_systems.html">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html">Discretized Differential Equations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
@@ -145,431 +146,43 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  
-<style>
-/* CSS for nbsphinx extension */
-
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
-    border: none;
-    padding: 0 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
-    text-align: right;
-    flex: 0;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-}
-
-/* disable scrollbars on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    padding: 0.4em;
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    background: #f5f5f5;
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-div.rendered_html th {
-  font-weight: bold;
-}
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-</style>
-<div class="section" id="Examples">
-<h1>Examples<a class="headerlink" href="#Examples" title="Permalink to this headline">¶</a></h1>
-<p>Below we illustrate some basic usage of <code class="docutils literal notranslate"><span class="pre">probnum</span></code>. We begin by creating random variables, the main objects used as in- and outputs of probabilistic numerical methods.</p>
-<div class="section" id="Random-Variables-and-Linear-Operators">
-<h2>Random Variables and Linear Operators<a class="headerlink" href="#Random-Variables-and-Linear-Operators" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>See the notebooks below to learn more about how to use ProbNum and its functionality. They describe random variables,
+the main in- and outputs of probabilistic numerical methods; linear operators; linear systems and their application to
+solving (discretized) differential equations.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Jupyter Notebooks:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="random_variables.html">Random Variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="random_variables.html#Univariate-Random-Variables">Univariate Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="random_variables.html#Arithmetic-Operations">Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="random_variables.html#Matrix-variate-Random-Variables">Matrix-variate Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="random_variables.html#Linear-Operators-as-Random-Variables">Linear Operators as Random Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linear_operators.html">Linear Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_operators.html#Sparse-Arrays">Sparse Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_operators.html#Basic-Arithmetic">Basic Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_operators.html#The-Kronecker-Product">The Kronecker Product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_operators.html#Linear-Operators-and-Linear-Solvers">Linear Operators and Linear Solvers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_systems.html#Prior-Information">Prior Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_systems.html#Probabilistic-Linear-Solvers">Probabilistic Linear Solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_systems.html#Solution-with-Uncertainty">Solution with Uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="discretized_diff_eq.html">Discretized Differential Equations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Linear-System-via-Discretization">Linear System via Discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Propagation-of-Uncertainty">Propagation of Uncertainty</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Instantiate and manipulate random variables and linear operators.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span><span class="p">,</span> <span class="n">Normal</span>
-
-<span class="c1"># Seed</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Gaussian random variable</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="c1"># Arithmetic operations between scalars and random variables</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">X</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-
-<span class="c1"># Samples / realizations</span>
-<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;() RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-array([[ 0.99342831, -0.2765286 ,  1.29537708],
-       [ 3.04605971, -0.46830675, -0.46827391]])
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Arithmetic operations between matrices and random variables</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                                                                            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])))</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;(2,) RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-array([[-3.12837959, -1.8451091 ],
-       [ 6.37960911, 10.39528139],
-       [ 7.70884096,  9.35659646]])
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">aslinop</span>
-
-<span class="c1"># Linear operators applied to random variables</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">aslinop</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-                      <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]))</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;(2,) RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-array([[[ 7.01707441, 14.19400815],
-        [ 5.5404421 , 12.69569096]],
-
-       [[-3.88312865, -7.62349784],
-        [ 3.83845463,  8.43283096]],
-
-       [[13.95757001, 29.98245179],
-        [ 3.43087185, 11.01075812]]])
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Matrix-variate normal distribution</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Linear operators _as_ random variables</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="Linear-Systems">
-<h2>Linear Systems<a class="headerlink" href="#Linear-Systems" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Create and solve linear systems using a probabilistic linear solver.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">problinsolve</span>
-
-<span class="c1"># Linear system</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Symmetrize and make diagonally dominant</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Prior distribution on A</span>
-<span class="n">covA</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
-                   <span class="n">dtype</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
-                   <span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">covA</span><span class="p">))</span>
-
-<span class="c1"># Probabilistic linear solver</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">problinsolve</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
-
-<span class="c1"># Plot resulting distribution on x, A and Ainv</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-5-8e3174b6dc92&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     13</span> A = RandomVariable(shape=A.shape,
-<span class="ansi-green-intense-fg ansi-bold">     14</span>                    dtype<span class="ansi-blue-fg">=</span>A<span class="ansi-blue-fg">.</span>dtype<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">                    distribution=Normal(mean=A, cov=covA))
-</span><span class="ansi-green-intense-fg ansi-bold">     16</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span> <span class="ansi-red-fg"># Probabilistic linear solver</span>
-
-<span class="ansi-green-fg">~/Documents/research/probabilistic_numerics/code/probnum/src/probnum/probability.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, mean, cov, random_state)</span>
-<span class="ansi-green-intense-fg ansi-bold">    992</span>             raise ValueError(
-<span class="ansi-green-intense-fg ansi-bold">    993</span>                 &#34;Cannot instantiate normal distribution with mean of type {} and covariance of type {}.&#34;.format(
-<span class="ansi-green-fg">--&gt; 994</span><span class="ansi-red-fg">                     mean.__class__.__name__, cov.__class__.__name__))
-</span><span class="ansi-green-intense-fg ansi-bold">    995</span>
-<span class="ansi-green-intense-fg ansi-bold">    996</span>     <span class="ansi-red-fg"># TODO: implement (more efficient) versions of these functions (for linear operators)</span>
-
-<span class="ansi-red-fg">ValueError</span>: Cannot instantiate normal distribution with mean of type ndarray and covariance of type NoneType.
-</pre></div></div>
-</div>
-</div>
-<div class="section" id="Discretized-Differential-Equations">
-<h2>Discretized Differential Equations<a class="headerlink" href="#Discretized-Differential-Equations" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Specify a discretized differential equation as a linear operator and solve it.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Solve multiple systems with previous posterior as a prior.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>If you want to try out the examples for yourself you can download the notebooks
+<a class="reference external" href="https://github.com/probabilistic-numerics/probnum/tree/master/docs/source/notebooks">here</a>.</p>
 </div>
 
 
@@ -585,7 +198,7 @@ array([[[ 7.01707441, 14.19400815],
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/notebooks/examples.ipynb"
+  <a href="../_sources/notebooks/examples.rst"
      rel="nofollow">Source</a>
 </div>
       
