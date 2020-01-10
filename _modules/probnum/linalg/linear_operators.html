@@ -82,7 +82,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../../../index.html">Site <b class="caret"></b></a>
+     href="../../../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -156,13 +156,12 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse.linalg</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg.interface</span> <span class="kn">import</span> <span class="n">MatrixLinearOperator</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LinearOperator&quot;</span><span class="p">,</span> <span class="s2">&quot;Identity&quot;</span><span class="p">,</span> <span class="s2">&quot;Matrix&quot;</span><span class="p">,</span> <span class="s2">&quot;Kronecker&quot;</span><span class="p">,</span> <span class="s2">&quot;SymmetricKronecker&quot;</span><span class="p">,</span> <span class="s2">&quot;aslinearoperator&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LinearOperator&quot;</span><span class="p">,</span> <span class="s2">&quot;MatrixMult&quot;</span><span class="p">,</span> <span class="s2">&quot;Identity&quot;</span><span class="p">,</span> <span class="s2">&quot;Kronecker&quot;</span><span class="p">,</span> <span class="s2">&quot;SymmetricKronecker&quot;</span><span class="p">,</span> <span class="s2">&quot;aslinop&quot;</span><span class="p">]</span>
 
 
-<span class="c1"># TODO: multiple inheritance with RandomVariable</span>
 <div class="viewcode-block" id="LinearOperator"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator">[docs]</a><span class="k">class</span> <span class="nc">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Finite dimensional linear operators.</span>
@@ -189,7 +188,7 @@
 <span class="sd">    compatibility.</span>
 
 <span class="sd">    This class wraps :class:`scipy.sparse.linalg.LinearOperator` to provide support for</span>
-<span class="sd">    :class:`~probnum.RandomVariable`.</span>
+<span class="sd">    :class:`~probnum.RandomVariable` arguments to linear operators.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -208,7 +207,7 @@
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">    aslinearoperator : Transform into a LinearOperator.</span>
+<span class="sd">    aslinop : Transform into a LinearOperator.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -227,140 +226,78 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="n">LinearOperator</span><span class="p">:</span>
-            <span class="c1"># Operate as _CustomLinearOperator factory.</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">_CustomLinearOperator</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">obj</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="n">_matvec</span> <span class="o">==</span> <span class="n">LinearOperator</span><span class="o">.</span><span class="n">_matvec</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="n">_matmat</span> <span class="o">==</span> <span class="n">LinearOperator</span><span class="o">.</span><span class="n">_matmat</span><span class="p">:</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;LinearOperator subclass should implement&quot;</span>
-                              <span class="s2">&quot; at least one of _matvec and _matmat.&quot;</span><span class="p">,</span>
-                              <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">obj</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
-        <span class="c1"># todo: how should this constructor work and is it necessary to have our own?</span>
-        <span class="c1"># todo: should we only allow subclassing of LinearOperator?</span>
-
-    <span class="c1"># self.explicit = explicit</span>
-    <span class="c1"># if Op is not None:</span>
-    <span class="c1">#     self.Op = Op</span>
-    <span class="c1">#     self.shape = self.Op.shape</span>
-    <span class="c1">#     self.dtype = self.Op.dtype</span>
-    <span class="c1">#</span>
-    <span class="c1"># def _matvec(self, x):</span>
-    <span class="c1">#     if callable(self.Op._matvec):</span>
-    <span class="c1">#         return self.Op._matvec(x)</span>
-    <span class="c1">#</span>
-    <span class="c1"># def _rmatvec(self, x):</span>
-    <span class="c1">#     if callable(self.Op._rmatvec):</span>
-    <span class="c1">#         return self.Op._rmatvec(x)</span>
-    <span class="c1">#</span>
-    <span class="c1"># def _matmat(self, X):</span>
-    <span class="c1">#     &quot;&quot;&quot;Matrix-matrix multiplication handler.</span>
-    <span class="c1">#     Modified version of scipy _matmat to avoid having trailing dimension</span>
-    <span class="c1">#     in col when provided to matvec.</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
-    <span class="c1">#     # TODO: do we need this?</span>
-    <span class="c1">#     return np.vstack([self.matvec(col.reshape(-1)) for col in X.T]).T</span>
-    <span class="c1">#</span>
-    <span class="c1"># def __mul__(self, x):</span>
-    <span class="c1">#     y = super().__mul__(x)</span>
-    <span class="c1">#     if isinstance(y, scipy.sparse.linalg.LinearOperator):</span>
-    <span class="c1">#         y = LinearOperator(y)</span>
-    <span class="c1">#     return y</span>
-    <span class="c1">#</span>
-    <span class="c1"># def __rmul__(self, x):</span>
-    <span class="c1">#     return LinearOperator(super().__rmul__(x))</span>
-    <span class="c1">#</span>
-    <span class="c1"># def __pow__(self, p):</span>
-    <span class="c1">#     return LinearOperator(super().__pow__(p))</span>
-    <span class="c1">#</span>
-    <span class="c1"># def __add__(self, x):</span>
-    <span class="c1">#     return LinearOperator(super().__add__(x))</span>
-    <span class="c1">#</span>
-    <span class="c1"># def __neg__(self):</span>
-    <span class="c1">#     return LinearOperator(super().__neg__())</span>
-    <span class="c1">#</span>
-    <span class="c1"># def __sub__(self, x):</span>
-    <span class="c1">#     return LinearOperator(super().__sub__(x))</span>
-    <span class="c1">#</span>
-    <span class="c1"># def _adjoint(self):</span>
-    <span class="c1">#     return LinearOperator(super()._adjoint())</span>
-    <span class="c1">#</span>
-    <span class="c1"># def _transpose(self):</span>
-    <span class="c1">#     return LinearOperator(super()._transpose())</span>
-    <span class="c1"># TODO: override arithmetic operations to make sure that arithmetic operations with random variables work as intended</span>
-
-<div class="viewcode-block" id="LinearOperator.todense"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.todense">[docs]</a>    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Dense matrix representation of the linear operator.</span>
-
-<span class="sd">        This operation can be computationally costly depending on the size of the operator.</span>
-
+    <span class="c1"># The below methods are overloaded to allow dot products with random variables</span>
+<div class="viewcode-block" id="LinearOperator.dot"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.dot">[docs]</a>    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Matrix-matrix or matrix-vector multiplication.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : array_like</span>
+<span class="sd">            1-d or 2-d array, representing a vector or matrix.</span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        matrix : ndarray</span>
-<span class="sd">            Dense matrix representation.</span>
-
+<span class="sd">        Ax : array</span>
+<span class="sd">            1-d or 2-d array (depending on the shape of x) that represents</span>
+<span class="sd">            the result of applying this linear operator on x.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># needed if self is a _SumLinearOperator or _ProductLinearOperator</span>
-        <span class="n">linop</span> <span class="o">=</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">identity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">linop</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">identity</span><span class="p">)</span></div></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ProductLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ScaledLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Expected 1-d or 2-d array, matrix or random variable, got </span><span class="si">%r</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LinearOperator.matvec"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.matvec">[docs]</a>    <span class="k">def</span> <span class="nf">matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Matrix-vector multiplication.</span>
+<span class="sd">        Performs the operation y=A*x where A is an MxN linear</span>
+<span class="sd">        operator and x is a 1-d array or random variable.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : {matrix, ndarray, RandomVariable}</span>
+<span class="sd">            An array or RandomVariable with shape (N,) or (N,1).</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        y : {matrix, ndarray}</span>
+<span class="sd">            A matrix or ndarray or RandomVariable with shape (M,) or (M,1) depending</span>
+<span class="sd">            on the type and shape of the x argument.</span>
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        This matvec wraps the user-specified matvec routine or overridden</span>
+<span class="sd">        _matvec method to ensure that y has the correct shape and type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">M</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">N</span><span class="p">,)</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Dimension mismatch.&#39;</span><span class="p">)</span>
+
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matvec</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">sputils</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid shape returned by user-defined matvec().&#39;</span><span class="p">)</span>
+        <span class="c1"># TODO: can be shortened once RandomVariable implements a reshape method</span>
+        <span class="k">elif</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">M</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid shape returned by user-defined matvec().&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y</span></div></div>
 
     <span class="c1"># TODO: implement operations (eigs, cond, det, logabsdet, trace, ...)</span>
-
-
-<span class="c1"># todo avoid code duplication and use scipy implementation instead</span>
-<span class="k">class</span> <span class="nc">_CustomLinearOperator</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Linear operator defined in terms of user-specified operations.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">matvec</span><span class="p">,</span> <span class="n">rmatvec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">matmat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rmatmat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_CustomLinearOperator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">__matvec_impl</span> <span class="o">=</span> <span class="n">matvec</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__rmatvec_impl</span> <span class="o">=</span> <span class="n">rmatvec</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__rmatmat_impl</span> <span class="o">=</span> <span class="n">rmatmat</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__matmat_impl</span> <span class="o">=</span> <span class="n">matmat</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_init_dtype</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">_matmat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__matmat_impl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__matmat_impl</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">_CustomLinearOperator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_matmat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__matvec_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_rmatvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rmatvec_impl</span>
-        <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;rmatvec is not defined&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rmatvec_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_rmatmat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rmatmat_impl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rmatmat_impl</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">_CustomLinearOperator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_rmatmat</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_adjoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_CustomLinearOperator</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-                                     <span class="n">matvec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__rmatvec_impl</span><span class="p">,</span>
-                                     <span class="n">rmatvec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__matvec_impl</span><span class="p">,</span>
-                                     <span class="n">matmat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__rmatmat_impl</span><span class="p">,</span>
-                                     <span class="n">rmatmat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__matmat_impl</span><span class="p">,</span>
-                                     <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Identity"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity">[docs]</a><span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
@@ -392,8 +329,7 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">M</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div></div>
 
 
-<span class="c1"># TODO: replace this with own implementation?</span>
-<div class="viewcode-block" id="Matrix"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix">[docs]</a><span class="k">class</span> <span class="nc">Matrix</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">MatrixLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+<div class="viewcode-block" id="MatrixMult"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult">[docs]</a><span class="k">class</span> <span class="nc">MatrixMult</span><span class="p">(</span><span class="n">MatrixLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A linear operator defined via a matrix.</span>
 
@@ -404,7 +340,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span>  <span class="c1"># Needed to call __matmul__ instead of np.dot or np.matmul</span>
+
+    <span class="k">def</span> <span class="nf">_matmat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">X</span></div>
 
 
 <div class="viewcode-block" id="Kronecker"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker">[docs]</a><span class="k">class</span> <span class="nc">Kronecker</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
@@ -455,13 +397,13 @@
 <span class="sd">        Efficient multiplication via (A x B)vec(X) = vec(AXB^T) where vec is the row-wise vectorization operator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_rmatvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span></div>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SymmetricKronecker"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker">[docs]</a><span class="k">class</span> <span class="nc">SymmetricKronecker</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
@@ -494,7 +436,7 @@
     <span class="c1"># TODO: Make sure definition matches the one in &quot;Hennig, P. and Osborne M. A., Probabilistic Numerics, 2020&quot;</span>
 
 
-<div class="viewcode-block" id="aslinearoperator"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.aslinearoperator.html#probnum.linalg.linear_operators.aslinearoperator">[docs]</a><span class="k">def</span> <span class="nf">aslinearoperator</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<div class="viewcode-block" id="aslinop"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.aslinop.html#probnum.linalg.linear_operators.aslinop">[docs]</a><span class="k">def</span> <span class="nf">aslinop</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return `A` as a :class:`LinearOperator`.</span>
 
@@ -516,9 +458,9 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from probnum.linalg import aslinearoperator</span>
+<span class="sd">    &gt;&gt;&gt; from probnum.linalg import aslinop</span>
 <span class="sd">    &gt;&gt;&gt; M = np.array([[1,2,3],[4,5,6]], dtype=np.int32)</span>
-<span class="sd">    &gt;&gt;&gt; aslinearoperator(M)</span>
+<span class="sd">    &gt;&gt;&gt; aslinop(M)</span>
 <span class="sd">    &lt;2x3 MatrixLinearOperator with dtype=int32&gt;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
@@ -526,7 +468,7 @@
         <span class="c1">#  not needed if LinearOperator inherits from RandomVariable</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">)):</span>
-        <span class="k">return</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">MatrixMult</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span><span class="p">))</span></div>
 </pre></div>

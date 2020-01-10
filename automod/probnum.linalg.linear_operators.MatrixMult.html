@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Matrix &#8212; probnum  documentation</title>
+    <title>MatrixMult &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -20,8 +20,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kronecker" href="probnum.linalg.linear_operators.Kronecker.html" />
-    <link rel="prev" title="Identity" href="probnum.linalg.linear_operators.Identity.html" />
+    <link rel="next" title="Identity" href="probnum.linalg.linear_operators.Identity.html" />
+    <link rel="prev" title="LinearOperator" href="probnum.linalg.linear_operators.LinearOperator.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -145,11 +145,11 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="matrix">
-<h1>Matrix<a class="headerlink" href="#matrix" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="matrixmult">
+<h1>MatrixMult<a class="headerlink" href="#matrixmult" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="probnum.linalg.linear_operators.Matrix">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">Matrix</code><span class="sig-paren">(</span><em class="sig-param">A</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#Matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">MatrixMult</code><span class="sig-paren">(</span><em class="sig-param">A</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#MatrixMult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.sparse.linalg.interface.MatrixLinearOperator</span></code>, <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linalg.linear_operators.LinearOperator</span></code></a></p>
 <p>A linear operator defined via a matrix.</p>
 <dl class="field-list simple">
@@ -164,10 +164,10 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.H" title="probnum.linalg.linear_operators.Matrix.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.H" title="probnum.linalg.linear_operators.MatrixMult.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
 <td><p>Hermitian adjoint.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.T" title="probnum.linalg.linear_operators.Matrix.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.T" title="probnum.linalg.linear_operators.MatrixMult.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
@@ -179,39 +179,36 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.__call__" title="probnum.linalg.linear_operators.Matrix.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.__call__" title="probnum.linalg.linear_operators.MatrixMult.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x)</p></td>
 <td><p>Call self as a function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.adjoint" title="probnum.linalg.linear_operators.Matrix.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.adjoint" title="probnum.linalg.linear_operators.MatrixMult.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
 <td><p>Hermitian adjoint.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.dot" title="probnum.linalg.linear_operators.Matrix.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.dot" title="probnum.linalg.linear_operators.MatrixMult.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
 <td><p>Matrix-matrix or matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.matmat" title="probnum.linalg.linear_operators.Matrix.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.matmat" title="probnum.linalg.linear_operators.MatrixMult.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
 <td><p>Matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.matvec" title="probnum.linalg.linear_operators.Matrix.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.matvec" title="probnum.linalg.linear_operators.MatrixMult.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
 <td><p>Matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.rmatmat" title="probnum.linalg.linear_operators.Matrix.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.rmatmat" title="probnum.linalg.linear_operators.MatrixMult.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
 <td><p>Adjoint matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.rmatvec" title="probnum.linalg.linear_operators.Matrix.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.rmatvec" title="probnum.linalg.linear_operators.MatrixMult.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.todense" title="probnum.linalg.linear_operators.Matrix.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
-<td><p>Dense matrix representation of the linear operator.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Matrix.transpose" title="probnum.linalg.linear_operators.Matrix.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.MatrixMult.transpose" title="probnum.linalg.linear_operators.MatrixMult.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes Documentation</p>
 <dl class="attribute">
-<dt id="probnum.linalg.linear_operators.Matrix.H">
-<code class="sig-name descname">H</code><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.H" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.H" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hermitian adjoint.</p>
 <p>Returns the Hermitian adjoint of self, aka the Hermitian
 conjugate or Hermitian transpose. For a complex matrix, the
@@ -228,8 +225,8 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="probnum.linalg.linear_operators.Matrix.T">
-<code class="sig-name descname">T</code><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.T" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.T">
+<code class="sig-name descname">T</code><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.T" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transpose this linear operator.</p>
 <p>Returns a LinearOperator that represents the transpose of this one.
 Can be abbreviated self.T instead of self.transpose().</p>
@@ -237,14 +234,14 @@ Can be abbreviated self.T instead of self.transpose().</p>
 
 <p class="rubric">Methods Documentation</p>
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.__call__" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call self as a function.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.adjoint">
-<code class="sig-name descname">adjoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.adjoint" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.adjoint">
+<code class="sig-name descname">adjoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.adjoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hermitian adjoint.</p>
 <p>Returns the Hermitian adjoint of self, aka the Hermitian
 conjugate or Hermitian transpose. For a complex matrix, the
@@ -261,26 +258,25 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.dot">
-<code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.dot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix-matrix or matrix-vector multiplication.</p>
+<dt id="probnum.linalg.linear_operators.MatrixMult.dot">
+<code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-matrix or matrix-vector multiplication.
+:param x: 1-d or 2-d array, representing a vector or matrix.
+:type x: array_like</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>array_like</em>) – 1-d or 2-d array, representing a vector or matrix.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>Ax</strong> – 1-d or 2-d array (depending on the shape of x) that represents
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>Ax</strong> – 1-d or 2-d array (depending on the shape of x) that represents
 the result of applying this linear operator on x.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.matmat">
-<code class="sig-name descname">matmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.matmat" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.matmat">
+<code class="sig-name descname">matmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.matmat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-matrix multiplication.</p>
 <p>Performs the operation y=A*X where A is an MxN linear
 operator and X dense N*K matrix or ndarray.</p>
@@ -302,17 +298,17 @@ _matmat method to ensure that y has the correct type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.matvec">
-<code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix-vector multiplication.</p>
-<p>Performs the operation y=A*x where A is an MxN linear
-operator and x is a column vector or 1-d array.</p>
+<dt id="probnum.linalg.linear_operators.MatrixMult.matvec">
+<code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-vector multiplication.
+Performs the operation y=A*x where A is an MxN linear
+operator and x is a 1-d array or random variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (N,) or (N,1).</p>
+<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray</em><em>, </em><em>RandomVariable}</em>) – An array or RandomVariable with shape (N,) or (N,1).</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray with shape (M,) or (M,1) depending
+<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray or RandomVariable with shape (M,) or (M,1) depending
 on the type and shape of the x argument.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
@@ -325,8 +321,8 @@ _matvec method to ensure that y has the correct shape and type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.rmatmat">
-<code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.rmatmat" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.rmatmat">
+<code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.rmatmat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adjoint matrix-matrix multiplication.</p>
 <p>Performs the operation y = A^H * x where A is an MxN linear
 operator and x is a column vector or 1-d array, or 2-d array.
@@ -347,8 +343,8 @@ The default implementation defers to the adjoint.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.rmatvec">
-<code class="sig-name descname">rmatvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.rmatvec" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.rmatvec">
+<code class="sig-name descname">rmatvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.rmatvec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adjoint matrix-vector multiplication.</p>
 <p>Performs the operation y = A^H * x where A is an MxN linear
 operator and x is a column vector or 1-d array.</p>
@@ -370,23 +366,8 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.todense">
-<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.todense" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dense matrix representation of the linear operator.</p>
-<p>This operation can be computationally costly depending on the size of the operator.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>matrix</strong> – Dense matrix representation.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="probnum.linalg.linear_operators.Matrix.transpose">
-<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Matrix.transpose" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.MatrixMult.transpose">
+<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.MatrixMult.transpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transpose this linear operator.</p>
 <p>Returns a LinearOperator that represents the transpose of this one.
 Can be abbreviated self.T instead of self.transpose().</p>
@@ -409,7 +390,7 @@ Can be abbreviated self.T instead of self.transpose().</p>
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/automod/probnum.linalg.linear_operators.Matrix.rst"
+  <a href="../_sources/automod/probnum.linalg.linear_operators.MatrixMult.rst"
      rel="nofollow">Source</a>
 </div>
       

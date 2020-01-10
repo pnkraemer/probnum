@@ -1,7 +1,7 @@
-<map id="inheritance4c9c28c3dd" name="inheritance4c9c28c3dd">
+<map id="inheritancea863a5be64" name="inheritancea863a5be64">
 <area shape="rect" id="node1" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" target="_top" title="The identity operator." alt="" coords="215,5,287,31"/>
-<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,105,124,131"/>
+<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,104,124,129"/>
 <area shape="rect" id="node3" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" target="_top" title="Kronecker product of two linear operators." alt="" coords="207,55,294,80"/>
-<area shape="rect" id="node4" href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,131,449,156"/>
+<area shape="rect" id="node5" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,129,465,155"/>
 <area shape="rect" id="node6" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" target="_top" title="Symmetric Kronecker product of two linear operators." alt="" coords="173,205,329,231"/>
 </map>

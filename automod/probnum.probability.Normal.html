@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -162,6 +162,11 @@ distribution is also attractive from a numerical point of view as it is maintain
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mean</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – Mean of the normal distribution.</p></li>
 <li><p><strong>cov</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – (Co-)variance of the normal distribution.</p></li>
+<li><p><strong>random_state</strong> (None or int or <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomState</span></code> instance, optional) – This parameter defines the RandomState object to use for drawing
+realizations from this distribution.
+If None (or np.random), the global np.random state is used.
+If integer, it is used to seed the local <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomState</span></code> instance.
+Default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -187,10 +192,13 @@ distribution is also attractive from a numerical point of view as it is maintain
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.parameters" title="probnum.probability.Normal.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.dtype" title="probnum.probability.Normal.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
+<td><p><cite>Dtype</cite> of elements of samples from this distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.parameters" title="probnum.probability.Normal.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
 <td><p>Parameters of the probability distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.random_state" title="probnum.probability.Normal.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.random_state" title="probnum.probability.Normal.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
 <td><p>Random state of the distribution.</p></td>
 </tr>
 </tbody>
@@ -232,6 +240,12 @@ distribution is also attractive from a numerical point of view as it is maintain
 </tbody>
 </table>
 <p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.probability.Normal.dtype">
+<code class="sig-name descname">dtype</code><a class="headerlink" href="#probnum.probability.Normal.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>Dtype</cite> of elements of samples from this distribution.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="probnum.probability.Normal.parameters">
 <code class="sig-name descname">parameters</code><a class="headerlink" href="#probnum.probability.Normal.parameters" title="Permalink to this definition">¶</a></dt>

@@ -20,7 +20,7 @@
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="aslinearoperator" href="automod/probnum.linalg.linear_operators.aslinearoperator.html" />
+    <link rel="next" title="aslinop" href="automod/probnum.linalg.linear_operators.aslinop.html" />
     <link rel="prev" title="Normal" href="automod/probnum.probability.Normal.html" />
 
 <meta charset='utf-8'>
@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="index.html">Site <b class="caret"></b></a>
+     href="index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -161,7 +161,7 @@ one would expect from matrix algebra.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.aslinearoperator.html#probnum.linalg.linear_operators.aslinearoperator" title="probnum.linalg.linear_operators.aslinearoperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aslinearoperator</span></code></a>(A)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.aslinop.html#probnum.linalg.linear_operators.aslinop" title="probnum.linalg.linear_operators.aslinop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">aslinop</span></code></a>(A)</p></td>
 <td><p>Return <cite>A</cite> as a <a class="reference internal" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearOperator</span></code></a>.</p></td>
 </tr>
 </tbody>
@@ -178,11 +178,11 @@ one would expect from matrix algebra.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearOperator</span></code></a>(dtype, shape)</p></td>
 <td><p>Finite dimensional linear operators.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" title="probnum.linalg.linear_operators.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>(shape[, dtype])</p></td>
-<td><p>The identity operator.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix" title="probnum.linalg.linear_operators.Matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Matrix</span></code></a>(A)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" title="probnum.linalg.linear_operators.MatrixMult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixMult</span></code></a>(A)</p></td>
 <td><p>A linear operator defined via a matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" title="probnum.linalg.linear_operators.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>(shape[, dtype])</p></td>
+<td><p>The identity operator.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" title="probnum.linalg.linear_operators.Kronecker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kronecker</span></code></a>(A, B[, dtype])</p></td>
 <td><p>Kronecker product of two linear operators.</p></td>
@@ -195,12 +195,12 @@ one would expect from matrix algebra.</p>
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h2>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h2>
-<div class="graphviz"><img src="_images/inheritance-13f718d90f0bba9bc53e28c669ec4a5a026f3158.png" alt="Inheritance diagram of probnum.linalg.linear_operators.LinearOperator, probnum.linalg.linear_operators.Identity, probnum.linalg.linear_operators.Matrix, probnum.linalg.linear_operators.Kronecker, probnum.linalg.linear_operators.SymmetricKronecker" usemap="#inheritance4c9c28c3dd" class="inheritance graphviz" /></div>
-<map id="inheritance4c9c28c3dd" name="inheritance4c9c28c3dd">
+<div class="graphviz"><img src="_images/inheritance-8b1bac6d22b486a826313ce34f83b76e19066fdf.png" alt="Inheritance diagram of probnum.linalg.linear_operators.LinearOperator, probnum.linalg.linear_operators.MatrixMult, probnum.linalg.linear_operators.Identity, probnum.linalg.linear_operators.Kronecker, probnum.linalg.linear_operators.SymmetricKronecker" usemap="#inheritancea863a5be64" class="inheritance graphviz" /></div>
+<map id="inheritancea863a5be64" name="inheritancea863a5be64">
 <area shape="rect" id="node1" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" target="_top" title="The identity operator." alt="" coords="215,5,287,31"/>
-<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,105,124,131"/>
+<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,104,124,129"/>
 <area shape="rect" id="node3" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" target="_top" title="Kronecker product of two linear operators." alt="" coords="207,55,294,80"/>
-<area shape="rect" id="node4" href="automod/probnum.linalg.linear_operators.Matrix.html#probnum.linalg.linear_operators.Matrix" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,131,449,156"/>
+<area shape="rect" id="node5" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,129,465,155"/>
 <area shape="rect" id="node6" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" target="_top" title="Symmetric Kronecker product of two linear operators." alt="" coords="173,205,329,231"/>
 </map></div>
 </div>

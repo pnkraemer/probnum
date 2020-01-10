@@ -1,31 +1,30 @@
-Matrix
-======
+MatrixMult
+==========
 
 .. currentmodule:: probnum.linalg.linear_operators
 
-.. autoclass:: Matrix
+.. autoclass:: MatrixMult
    :show-inheritance:
 
    .. rubric:: Attributes Summary
 
    .. autosummary::
 
-      ~Matrix.H
-      ~Matrix.T
+      ~MatrixMult.H
+      ~MatrixMult.T
 
    .. rubric:: Methods Summary
 
    .. autosummary::
 
-      ~Matrix.__call__
-      ~Matrix.adjoint
-      ~Matrix.dot
-      ~Matrix.matmat
-      ~Matrix.matvec
-      ~Matrix.rmatmat
-      ~Matrix.rmatvec
-      ~Matrix.todense
-      ~Matrix.transpose
+      ~MatrixMult.__call__
+      ~MatrixMult.adjoint
+      ~MatrixMult.dot
+      ~MatrixMult.matmat
+      ~MatrixMult.matvec
+      ~MatrixMult.rmatmat
+      ~MatrixMult.rmatvec
+      ~MatrixMult.transpose
 
    .. rubric:: Attributes Documentation
 
@@ -41,5 +40,4 @@ Matrix
    .. automethod:: matvec
    .. automethod:: rmatmat
    .. automethod:: rmatvec
-   .. automethod:: todense
    .. automethod:: transpose

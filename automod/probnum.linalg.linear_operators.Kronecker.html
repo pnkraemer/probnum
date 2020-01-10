@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="SymmetricKronecker" href="probnum.linalg.linear_operators.SymmetricKronecker.html" />
-    <link rel="prev" title="Matrix" href="probnum.linalg.linear_operators.Matrix.html" />
+    <link rel="prev" title="Identity" href="probnum.linalg.linear_operators.Identity.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -228,10 +228,7 @@ between matrix multiplication and (row-wise) vectorization.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Kronecker.rmatvec" title="probnum.linalg.linear_operators.Kronecker.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Kronecker.todense" title="probnum.linalg.linear_operators.Kronecker.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
-<td><p>Dense matrix representation of the linear operator.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Kronecker.transpose" title="probnum.linalg.linear_operators.Kronecker.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Kronecker.transpose" title="probnum.linalg.linear_operators.Kronecker.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
@@ -291,17 +288,16 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 <dl class="method">
 <dt id="probnum.linalg.linear_operators.Kronecker.dot">
 <code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Kronecker.dot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix-matrix or matrix-vector multiplication.</p>
+<dd><p>Matrix-matrix or matrix-vector multiplication.
+:param x: 1-d or 2-d array, representing a vector or matrix.
+:type x: array_like</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>array_like</em>) – 1-d or 2-d array, representing a vector or matrix.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>Ax</strong> – 1-d or 2-d array (depending on the shape of x) that represents
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>Ax</strong> – 1-d or 2-d array (depending on the shape of x) that represents
 the result of applying this linear operator on x.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>array</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -332,15 +328,15 @@ _matmat method to ensure that y has the correct type.</p>
 <dl class="method">
 <dt id="probnum.linalg.linear_operators.Kronecker.matvec">
 <code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Kronecker.matvec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix-vector multiplication.</p>
-<p>Performs the operation y=A*x where A is an MxN linear
-operator and x is a column vector or 1-d array.</p>
+<dd><p>Matrix-vector multiplication.
+Performs the operation y=A*x where A is an MxN linear
+operator and x is a 1-d array or random variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (N,) or (N,1).</p>
+<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray</em><em>, </em><em>RandomVariable}</em>) – An array or RandomVariable with shape (N,) or (N,1).</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray with shape (M,) or (M,1) depending
+<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray or RandomVariable with shape (M,) or (M,1) depending
 on the type and shape of the x argument.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
@@ -395,21 +391,6 @@ on the type and shape of the x argument.</p>
 <p class="rubric">Notes</p>
 <p>This rmatvec wraps the user-specified rmatvec routine or overridden
 _rmatvec method to ensure that y has the correct shape and type.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="probnum.linalg.linear_operators.Kronecker.todense">
-<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Kronecker.todense" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dense matrix representation of the linear operator.</p>
-<p>This operation can be computationally costly depending on the size of the operator.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>matrix</strong> – Dense matrix representation.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>ndarray</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="method">

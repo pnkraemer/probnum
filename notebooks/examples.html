@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -351,7 +351,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Random-Variables-and-Linear-Operators">
 <h2>Random Variables and Linear Operators<a class="headerlink" href="#Random-Variables-and-Linear-Operators" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -372,7 +372,7 @@ div.rendered_html tbody tr:hover {
 <span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="c1"># Samples / realizations</span>
-<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -381,11 +381,11 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;() RandomVariable with dtype=float64&gt;
+&lt;() RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -400,8 +400,10 @@ array([[ 0.99342831, -0.2765286 ,  1.29537708],
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Arithmetic operations between matrices and random variables</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])))</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                                                            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])))</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
@@ -409,86 +411,77 @@ array([[ 0.99342831, -0.2765286 ,  1.29537708],
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-2-3c507f3d4abc&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Arithmetic operations between matrices and random variables</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> A <span class="ansi-blue-fg">=</span> np<span class="ansi-blue-fg">.</span>array<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>X <span class="ansi-blue-fg">=</span> RandomVariable<span class="ansi-blue-fg">(</span>distribution<span class="ansi-blue-fg">=</span>Normal<span class="ansi-blue-fg">(</span>mean<span class="ansi-blue-fg">=</span>np<span class="ansi-blue-fg">.</span>array<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> cov<span class="ansi-blue-fg">=</span>np<span class="ansi-blue-fg">.</span>array<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> Y <span class="ansi-blue-fg">=</span> A <span class="ansi-blue-fg">@</span> X
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-
-<span class="ansi-green-fg">~/Documents/research/probabilistic_numerics/code/probnum/src/probnum/probability.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, shape, dtype, distribution)</span>
-<span class="ansi-green-intense-fg ansi-bold">     65</span>                     self<span class="ansi-blue-fg">.</span>_shape <span class="ansi-blue-fg">=</span> shape_mean
-<span class="ansi-green-intense-fg ansi-bold">     66</span>                 <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 67</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Shape of distribution mean and given shape do not match.&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     68</span>                 self<span class="ansi-blue-fg">.</span>_dtype <span class="ansi-blue-fg">=</span> dtype_mean
-<span class="ansi-green-intense-fg ansi-bold">     69</span>
-
-<span class="ansi-red-fg">ValueError</span>: Shape of distribution mean and given shape do not match.
+&lt;(2,) RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[-3.12837959, -1.8451091 ],
+       [ 6.37960911, 10.39528139],
+       [ 7.70884096,  9.35659646]])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">aslinearoperator</span>
+<span></span><span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">aslinop</span>
 
 <span class="c1"># Linear operators applied to random variables</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">aslinearoperator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]))</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">aslinop</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]))</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Y</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-3-ad4a594ea9d7&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg"># Linear operators applied to random variables</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> A <span class="ansi-blue-fg">=</span> aslinearoperator<span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>array<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>Y <span class="ansi-blue-fg">=</span> A <span class="ansi-blue-fg">@</span> X
-<span class="ansi-green-intense-fg ansi-bold">      6</span>
-<span class="ansi-green-intense-fg ansi-bold">      7</span> print<span class="ansi-blue-fg">(</span>Y<span class="ansi-blue-fg">)</span>
+&lt;(2,) RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[[ 7.01707441, 14.19400815],
+        [ 5.5404421 , 12.69569096]],
 
-<span class="ansi-green-fg">~/.virtualenvs/probnum/lib/python3.6/site-packages/scipy/sparse/linalg/interface.py</span> in <span class="ansi-cyan-fg">__matmul__</span><span class="ansi-blue-fg">(self, other)</span>
-<span class="ansi-green-intense-fg ansi-bold">    379</span>             raise ValueError(&#34;Scalar operands are not allowed, &#34;
-<span class="ansi-green-intense-fg ansi-bold">    380</span>                              &#34;use &#39;*&#39; instead&#34;)
-<span class="ansi-green-fg">--&gt; 381</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>__mul__<span class="ansi-blue-fg">(</span>other<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    382</span>
-<span class="ansi-green-intense-fg ansi-bold">    383</span>     <span class="ansi-green-fg">def</span> __rmatmul__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> other<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+       [[-3.88312865, -7.62349784],
+        [ 3.83845463,  8.43283096]],
 
-<span class="ansi-green-fg">~/.virtualenvs/probnum/lib/python3.6/site-packages/scipy/sparse/linalg/interface.py</span> in <span class="ansi-cyan-fg">__mul__</span><span class="ansi-blue-fg">(self, x)</span>
-<span class="ansi-green-intense-fg ansi-bold">    343</span>
-<span class="ansi-green-intense-fg ansi-bold">    344</span>     <span class="ansi-green-fg">def</span> __mul__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> x<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 345</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>dot<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    346</span>
-<span class="ansi-green-intense-fg ansi-bold">    347</span>     <span class="ansi-green-fg">def</span> dot<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> x<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/.virtualenvs/probnum/lib/python3.6/site-packages/scipy/sparse/linalg/interface.py</span> in <span class="ansi-cyan-fg">dot</span><span class="ansi-blue-fg">(self, x)</span>
-<span class="ansi-green-intense-fg ansi-bold">    373</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>                 raise ValueError(&#39;expected 1-d or 2-d array or matrix, got %r&#39;
-<span class="ansi-green-fg">--&gt; 375</span><span class="ansi-red-fg">                                  % x)
-</span><span class="ansi-green-intense-fg ansi-bold">    376</span>
-<span class="ansi-green-intense-fg ansi-bold">    377</span>     <span class="ansi-green-fg">def</span> __matmul__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> other<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">ValueError</span>: expected 1-d or 2-d array or matrix, got array(&lt;() RandomVariable with dtype=float64&gt;, dtype=object)
+       [[13.95757001, 29.98245179],
+        [ 3.43087185, 11.01075812]]])
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Matrix-variate normal distribution</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -499,8 +492,8 @@ array([[ 0.99342831, -0.2765286 ,  1.29537708],
 </div>
 <div class="section" id="Linear-Systems">
 <h2>Linear Systems<a class="headerlink" href="#Linear-Systems" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -510,7 +503,6 @@ array([[ 0.99342831, -0.2765286 ,  1.29537708],
 <span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">problinsolve</span>
 
 <span class="c1"># Linear system</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Symmetrize and make diagonally dominant</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -527,6 +519,30 @@ array([[ 0.99342831, -0.2765286 ,  1.29537708],
 <span class="c1"># Plot resulting distribution on x, A and Ainv</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-5-8e3174b6dc92&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     13</span> A = RandomVariable(shape=A.shape,
+<span class="ansi-green-intense-fg ansi-bold">     14</span>                    dtype<span class="ansi-blue-fg">=</span>A<span class="ansi-blue-fg">.</span>dtype<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">                    distribution=Normal(mean=A, cov=covA))
+</span><span class="ansi-green-intense-fg ansi-bold">     16</span>
+<span class="ansi-green-intense-fg ansi-bold">     17</span> <span class="ansi-red-fg"># Probabilistic linear solver</span>
+
+<span class="ansi-green-fg">~/Documents/research/probabilistic_numerics/code/probnum/src/probnum/probability.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, mean, cov, random_state)</span>
+<span class="ansi-green-intense-fg ansi-bold">    992</span>             raise ValueError(
+<span class="ansi-green-intense-fg ansi-bold">    993</span>                 &#34;Cannot instantiate normal distribution with mean of type {} and covariance of type {}.&#34;.format(
+<span class="ansi-green-fg">--&gt; 994</span><span class="ansi-red-fg">                     mean.__class__.__name__, cov.__class__.__name__))
+</span><span class="ansi-green-intense-fg ansi-bold">    995</span>
+<span class="ansi-green-intense-fg ansi-bold">    996</span>     <span class="ansi-red-fg"># TODO: implement (more efficient) versions of these functions (for linear operators)</span>
+
+<span class="ansi-red-fg">ValueError</span>: Cannot instantiate normal distribution with mean of type ndarray and covariance of type NoneType.
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Discretized-Differential-Equations">

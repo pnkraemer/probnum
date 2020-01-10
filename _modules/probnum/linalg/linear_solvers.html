@@ -82,7 +82,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../../../index.html">Site <b class="caret"></b></a>
+     href="../../../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -492,11 +492,11 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H_mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">H_cov_kronfac</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># todo: refactor as dimension of linear operator is not known at this point</span>
         <span class="k">if</span> <span class="n">H_mean</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">H_mean</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinop</span><span class="p">(</span><span class="n">H_mean</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">H_mean</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">H_cov_kronfac</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">H_cov_kronfac</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinop</span><span class="p">(</span><span class="n">H_cov_kronfac</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">H_cov_kronfac</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -617,7 +617,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># make linear system</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">aslinop</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
         <span class="c1"># check linear system dimensionality</span>

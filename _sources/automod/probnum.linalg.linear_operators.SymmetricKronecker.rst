@@ -24,7 +24,6 @@ SymmetricKronecker
       ~SymmetricKronecker.matvec
       ~SymmetricKronecker.rmatmat
       ~SymmetricKronecker.rmatvec
-      ~SymmetricKronecker.todense
       ~SymmetricKronecker.transpose
 
    .. rubric:: Attributes Documentation
@@ -41,5 +40,4 @@ SymmetricKronecker
    .. automethod:: matvec
    .. automethod:: rmatmat
    .. automethod:: rmatvec
-   .. automethod:: todense
    .. automethod:: transpose

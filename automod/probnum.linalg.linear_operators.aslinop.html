@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>asdistribution &#8212; probnum  documentation</title>
+    <title>aslinop &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -20,8 +20,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="RandomVariable" href="probnum.probability.RandomVariable.html" />
-    <link rel="prev" title="asrandomvariable" href="probnum.probability.asrandomvariable.html" />
+    <link rel="next" title="LinearOperator" href="probnum.linalg.linear_operators.LinearOperator.html" />
+    <link rel="prev" title="probnum.linalg.linear_operators Module" href="../linalg.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -97,8 +97,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html">probnum.utils Module</a></li>
 </ul>
@@ -145,39 +145,34 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="asdistribution">
-<h1>asdistribution<a class="headerlink" href="#asdistribution" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="aslinop">
+<h1>aslinop<a class="headerlink" href="#aslinop" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="probnum.probability.asdistribution">
-<code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">asdistribution</code><span class="sig-paren">(</span><em class="sig-param">obj</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#asdistribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.asdistribution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return <code class="docutils literal notranslate"><span class="pre">obj</span></code> as a <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a>.</p>
-<p>Converts scalars, (sparse) arrays or distribution classes to a <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a>.</p>
+<dt id="probnum.linalg.linear_operators.aslinop">
+<code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">aslinop</code><span class="sig-paren">(</span><em class="sig-param">A</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#aslinop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.aslinop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>A</cite> as a <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearOperator</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>obj</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – Argument to be represented as a <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a>.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>dist</strong> – The object <cite>obj</cite> as a <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a>.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution">Distribution</a></p>
+<dd class="field-odd"><p><strong>A</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – Argument to be represented as a linear operator. When <cite>A</cite> is an object it needs to have the attributes <cite>.shape</cite>
+and <cite>.matvec</cite>.</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>If <cite>A</cite> has no <cite>.dtype</cite> attribute, the data type is determined by calling
+<a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.matvec" title="probnum.linalg.linear_operators.LinearOperator.matvec"><code class="xref py py-func docutils literal notranslate"><span class="pre">LinearOperator.matvec()</span></code></a> - set the <cite>.dtype</cite> attribute to prevent this
+call upon the linear operator creation.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-func docutils literal notranslate"><span class="pre">Distribution()</span></code></a></dt><dd><p>Class representing probability distributions.</p>
+<dt><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-func docutils literal notranslate"><span class="pre">LinearOperator()</span></code></a></dt><dd><p>Class representing linear operators.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">bernoulli</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">asdistribution</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bern</span> <span class="o">=</span> <span class="n">bernoulli</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bern</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span>  <span class="c1"># Seed for reproducibility</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">asdistribution</span><span class="p">(</span><span class="n">bern</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">array([0, 1, 1, 1, 0])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">aslinop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aslinop</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="go">&lt;2x3 MatrixLinearOperator with dtype=int32&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -197,7 +192,7 @@
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/automod/probnum.probability.asdistribution.rst"
+  <a href="../_sources/automod/probnum.linalg.linear_operators.aslinop.rst"
      rel="nofollow">Source</a>
 </div>
       

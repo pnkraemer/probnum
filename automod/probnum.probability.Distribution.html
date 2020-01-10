@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -149,7 +149,7 @@
 <h1>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="probnum.probability.Distribution">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Distribution</code><span class="sig-paren">(</span><em class="sig-param">parameters=None</em>, <em class="sig-param">pdf=None</em>, <em class="sig-param">logpdf=None</em>, <em class="sig-param">cdf=None</em>, <em class="sig-param">logcdf=None</em>, <em class="sig-param">sample=None</em>, <em class="sig-param">mean=None</em>, <em class="sig-param">var=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Distribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Distribution" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Distribution</code><span class="sig-paren">(</span><em class="sig-param">parameters=None</em>, <em class="sig-param">pdf=None</em>, <em class="sig-param">logpdf=None</em>, <em class="sig-param">cdf=None</em>, <em class="sig-param">logcdf=None</em>, <em class="sig-param">sample=None</em>, <em class="sig-param">mean=None</em>, <em class="sig-param">var=None</em>, <em class="sig-param">dtype=None</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Distribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Distribution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A class representing probability distributions.</p>
 <p>This class is primarily intended to be subclassed to provide distribution-specific implementations of the various
@@ -168,6 +168,7 @@ This allows arithmetic operations on instances of <a class="reference internal" 
 <li><p><strong>sample</strong> (<em>function</em>) – Function implementing sampling. Must have signature <code class="docutils literal notranslate"><span class="pre">sample(size=())</span></code>.</p></li>
 <li><p><strong>mean</strong> (<em>function</em>) – Function returning the mean of the distribution.</p></li>
 <li><p><strong>var</strong> (<em>function</em>) – Function returning the variance of the distribution.</p></li>
+<li><p><strong>dtype</strong> (<em>numpy.dtype</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – Data type of realizations of a random variable with this distribution. If <code class="docutils literal notranslate"><span class="pre">object</span></code> will be converted to <code class="docutils literal notranslate"><span class="pre">numpy.dtype</span></code>.</p></li>
 <li><p><strong>random_state</strong> (None or int or <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomState</span></code> instance, optional) – This parameter defines the RandomState object to use for drawing
 realizations from this distribution.
 If None (or np.random), the global np.random state is used.
@@ -179,7 +180,7 @@ Default is None.</p></li>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="probnum.probability.asdistribution.html#probnum.probability.asdistribution" title="probnum.probability.asdistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">asdistribution</span></code></a></dt><dd><p>Transform object into a <a class="reference internal" href="#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a>.</p>
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">asdistribution</span></code></dt><dd><p>Transform object into a <a class="reference internal" href="#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">Distribution</span></code></a>.</p>
 </dd>
 <dt><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a></dt><dd><p>Random variables are the main objects used by probabilistic numerical methods.</p>
 </dd>
@@ -193,10 +194,13 @@ Default is None.</p></li>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Distribution.parameters" title="probnum.probability.Distribution.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Distribution.dtype" title="probnum.probability.Distribution.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
+<td><p><cite>Dtype</cite> of elements of samples from this distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Distribution.parameters" title="probnum.probability.Distribution.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
 <td><p>Parameters of the probability distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Distribution.random_state" title="probnum.probability.Distribution.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Distribution.random_state" title="probnum.probability.Distribution.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
 <td><p>Random state of the distribution.</p></td>
 </tr>
 </tbody>
@@ -238,6 +242,12 @@ Default is None.</p></li>
 </tbody>
 </table>
 <p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.probability.Distribution.dtype">
+<code class="sig-name descname">dtype</code><a class="headerlink" href="#probnum.probability.Distribution.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>Dtype</cite> of elements of samples from this distribution.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="probnum.probability.Distribution.parameters">
 <code class="sig-name descname">parameters</code><a class="headerlink" href="#probnum.probability.Distribution.parameters" title="Permalink to this definition">¶</a></dt>

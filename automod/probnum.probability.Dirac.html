@@ -84,7 +84,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
+     href="../index.html">Sitemap <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
@@ -151,10 +151,10 @@
 <dt id="probnum.probability.Dirac">
 <em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Dirac</code><span class="sig-paren">(</span><em class="sig-param">support</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Dirac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Dirac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.probability.Distribution</span></code></a></p>
-<p>The Dirac delta function.</p>
+<p>The Dirac delta distribution.</p>
 <p>This distribution models a point mass and can be useful to represent numbers as random variables with Dirac measure.
-It has the useful property that algebraic operations between a <a class="reference internal" href="#probnum.probability.Dirac" title="probnum.probability.Dirac"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dirac</span></code></a> random variable and an arbitrary
-<a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a> acts in the same way as the algebraic operation with a constant.</p>
+It has the useful property that arithmetic operations between a <a class="reference internal" href="#probnum.probability.Dirac" title="probnum.probability.Dirac"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dirac</span></code></a> random variable and an arbitrary
+<a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a> acts in the same way as the arithmetic operation with a constant.</p>
 <p>Note, that a Dirac measure does not admit a probability density function but can be viewed as a distribution
 (generalized function).</p>
 <dl class="field-list simple">
@@ -185,10 +185,13 @@ It has the useful property that algebraic operations between a <a class="referen
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.parameters" title="probnum.probability.Dirac.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.dtype" title="probnum.probability.Dirac.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
+<td><p><cite>Dtype</cite> of elements of samples from this distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Dirac.parameters" title="probnum.probability.Dirac.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></p></td>
 <td><p>Parameters of the probability distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Dirac.random_state" title="probnum.probability.Dirac.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.random_state" title="probnum.probability.Dirac.random_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_state</span></code></a></p></td>
 <td><p>Random state of the distribution.</p></td>
 </tr>
 </tbody>
@@ -230,6 +233,12 @@ It has the useful property that algebraic operations between a <a class="referen
 </tbody>
 </table>
 <p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.probability.Dirac.dtype">
+<code class="sig-name descname">dtype</code><a class="headerlink" href="#probnum.probability.Dirac.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>Dtype</cite> of elements of samples from this distribution.</p>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="probnum.probability.Dirac.parameters">
 <code class="sig-name descname">parameters</code><a class="headerlink" href="#probnum.probability.Dirac.parameters" title="Permalink to this definition">¶</a></dt>

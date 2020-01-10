@@ -1,5 +1,5 @@
 <map id="inheritance9799733f36" name="inheritance9799733f36">
-<area shape="rect" id="node1" href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac" target="_top" title="The Dirac delta function." alt="" coords="180,29,252,55"/>
+<area shape="rect" id="node1" href="automod/probnum.probability.Dirac.html#probnum.probability.Dirac" target="_top" title="The Dirac delta distribution." alt="" coords="180,29,252,55"/>
 <area shape="rect" id="node2" href="automod/probnum.probability.Distribution.html#probnum.probability.Distribution" target="_top" title="A class representing probability distributions." alt="" coords="21,55,116,80"/>
 <area shape="rect" id="node3" href="automod/probnum.probability.Normal.html#probnum.probability.Normal" target="_top" title="The (multi&#45;variate) normal distribution." alt="" coords="180,79,252,104"/>
 <area shape="rect" id="node4" href="automod/probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" target="_top" title="Random variables are the main objects used by probabilistic numerical methods." alt="" coords="5,5,132,31"/>
