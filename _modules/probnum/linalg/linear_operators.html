@@ -227,6 +227,28 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Overload arithmetic operators to give access to implemented functions (e.g. todense())</span>
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_ScaledLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_PowerLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_SumLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_ScaledLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
     <span class="c1"># The below methods are overloaded to allow dot products with random variables</span>
 <div class="viewcode-block" id="LinearOperator.dot"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.dot">[docs]</a>    <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Matrix-matrix or matrix-vector multiplication.</span>
@@ -241,9 +263,9 @@
 <span class="sd">            the result of applying this linear operator on x.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ProductLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">_ProductLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ScaledLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">_ScaledLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -298,6 +320,20 @@
 
         <span class="k">return</span> <span class="n">y</span></div>
 
+<div class="viewcode-block" id="LinearOperator.transpose"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transpose this linear operator.</span>
+
+<span class="sd">        Can be abbreviated self.T instead of self.transpose().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transpose</span><span class="p">()</span></div>
+
+    <span class="n">T</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">transpose</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Default implementation of _transpose; defers to rmatvec + conj&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">_TransposedLinearOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
 <div class="viewcode-block" id="LinearOperator.todense"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator.todense">[docs]</a>    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Dense matrix representation of the linear operator.</span>
@@ -312,6 +348,57 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span></div></div>
 
     <span class="c1"># TODO: implement operations (eigs, cond, det, logabsdet, trace, ...)</span>
+
+
+<span class="k">class</span> <span class="nc">_TransposedLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_TransposedLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Transposition of a linear operator.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+
+
+<span class="k">class</span> <span class="nc">_SumLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_SumLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sum of two linear operators.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="n">B</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">+</span> <span class="n">B</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">_ProductLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ProductLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Product of two linear operators.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="n">B</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">*</span> <span class="n">B</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">_ScaledLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ScaledLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Linear operator scaled with a scalar.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
+        <span class="k">return</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">_PowerLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_PowerLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Linear operator raised to a non-negative integer power.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Identity"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity">[docs]</a><span class="k">class</span> <span class="nc">Identity</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
@@ -375,6 +462,75 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span></div></div>
 
 
+<span class="k">class</span> <span class="nc">Vec</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Vectorization operator.</span>
+
+<span class="sd">    The column- or row-wise vectorization operator stacking the columns or rows of a matrix representation of a</span>
+<span class="sd">    linear operator into a vector.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    order : str</span>
+<span class="sd">        Stacking order to apply. One of ``row`` or ``col``. Defaults to column-wise stacking.</span>
+<span class="sd">    dim : int</span>
+<span class="sd">        Either number of rows or columns, depending on the vectorization ``order``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;col&quot;</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;col&quot;</span><span class="p">,</span> <span class="s2">&quot;row&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a valid stacking order. Choose one of &#39;col&#39; or &#39;row&#39;.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Vectorization of a vector is the identity.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">_matmat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stacking of matrix rows or columns.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;row&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Svec</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Symmetric vectorization operator.</span>
+
+<span class="sd">    The column- or row-wise symmetric normalized vectorization operator :math:`\\operatorname{svec}` [1]_ stacking the</span>
+<span class="sd">    (normalized) lower/upper triangular components of a symmetric matrix representation of a linear operator into a</span>
+<span class="sd">    vector. It is defined by</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \\operatorname{svec}(S) = \\begin{bmatrix}</span>
+<span class="sd">                                    S_{11} \\\\</span>
+<span class="sd">                                    \\sqrt{2} S_{21} \\\\</span>
+<span class="sd">                                    \\vdots \\\\</span>
+<span class="sd">                                    \\sqrt{2} S_{n1} \\\\</span>
+<span class="sd">                                    S_{22} \\\\</span>
+<span class="sd">                                    \\sqrt{2} S_{32} \\\\</span>
+<span class="sd">                                    \\vdots \\\\</span>
+<span class="sd">                                    \\sqrt{2} S_{n2} \\\\</span>
+<span class="sd">                                    \\vdots \\\\</span>
+<span class="sd">                                    S_{nn}</span>
+<span class="sd">                                  \\end{bmatrix}</span>
+
+<span class="sd">    where :math:`S` is a symmetric linear operator defined on :math:`\\mathbb{R}^n`.</span>
+
+<span class="sd">    .. [1] De Klerk, E., Aspects of Semidefinite Programming, *Kluwer Academic Publishers*, 2002</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    It holds that :math:`Q\\operatorname{svec}(S) = \\operatorname{vec}(S)`, where :math:`Q` is a unique matrix with</span>
+<span class="sd">    orthonormal rows.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
 <div class="viewcode-block" id="Kronecker"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker">[docs]</a><span class="k">class</span> <span class="nc">Kronecker</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Kronecker product of two linear operators.</span>
@@ -420,16 +576,73 @@
 
     <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Efficient multiplication via (A x B)vec(X) = vec(AXB^T) where vec is the row-wise vectorization operator.</span>
+<span class="sd">        Efficient multiplication via (A (x) B)vec(X) = vec(AXB^T) where vec is the row-wise vectorization operator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_rmatvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Based on (A (x) B)^T = A^T (x) B^T.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="n">matmat</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span></div>
+
+
+<span class="k">def</span> <span class="nf">_vec2svec</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Linear map from :math:`\\operatorname{vec}(S)` to :math:`\\operatorname{svec}(S)`</span>
+
+<span class="sd">    Defines the unique matrix :math:`Q` with orthonormal rows such that</span>
+<span class="sd">    :math:`\\operatorname{svec}(S) = Q\\operatorname{vec}(S)` [1]_ used to efficiently compute the symmetric Kronecker</span>
+<span class="sd">    product.</span>
+
+<span class="sd">    .. [1] De Klerk, E., Aspects of Semidefinite Programming, *Kluwer Academic Publishers*, 2002</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Dimension of the symmetric matrix :math:`S`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Q : scipy.spmatrix</span>
+<span class="sd">        Sparse array representing :math:`Q`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: these pairwise comparisons are extremely inefficient, find a better implementation without building Q by</span>
+    <span class="c1">#   directly implementing the vectorwise definition. By making this function into a linear operator we can still</span>
+    <span class="c1">#   obtain a dense representation if necessary.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dimension of the input matrix S must be a positive integer.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get svec and vec indices</span>
+    <span class="n">cind</span><span class="p">,</span> <span class="n">rind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">rind_full</span><span class="p">,</span> <span class="n">cind_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span>
+        <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">rind_full</span> <span class="o">=</span> <span class="n">rind_full</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">cind_full</span> <span class="o">=</span> <span class="n">cind_full</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="c1"># Define entries with 1</span>
+    <span class="n">rows1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">rind</span> <span class="o">==</span> <span class="n">cind</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cols1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">rind_full</span> <span class="o">==</span> <span class="n">cind_full</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">entries1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">rows1</span><span class="p">)</span>
+
+    <span class="c1"># Define entries with sqrt(2)/2</span>
+    <span class="c1"># see also: Schaecke, K., On the Kronecker product. Master&#39;s thesis, University of Waterloo, 2004</span>
+    <span class="n">boolmask1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">rind</span><span class="p">,</span> <span class="n">rind_full</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">cind</span><span class="p">,</span> <span class="n">cind_full</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">not_equal</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">cind</span><span class="p">,</span> <span class="n">rind_full</span><span class="p">)</span>
+    <span class="n">boolmask2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">rind</span><span class="p">,</span> <span class="n">cind_full</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">cind</span><span class="p">,</span> <span class="n">rind_full</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">not_equal</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">cind</span><span class="p">,</span> <span class="n">cind_full</span><span class="p">)</span>
+    <span class="n">boolmask</span> <span class="o">=</span> <span class="n">boolmask1</span> <span class="o">|</span> <span class="n">boolmask2</span>
+    <span class="n">rowsS2</span><span class="p">,</span> <span class="n">colsS2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">boolmask</span><span class="p">)</span>
+    <span class="n">entriesS2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">rowsS2</span><span class="p">)</span>
+
+    <span class="c1"># Build sparse matrix from row and column indices</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">entries1</span><span class="p">,</span> <span class="n">entriesS2</span><span class="p">])</span>
+    <span class="n">row_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">rows1</span><span class="p">,</span> <span class="n">rowsS2</span><span class="p">])</span>
+    <span class="n">col_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cols1</span><span class="p">,</span> <span class="n">colsS2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">row_ind</span><span class="p">,</span> <span class="n">col_ind</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">n</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="SymmetricKronecker"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker">[docs]</a><span class="k">class</span> <span class="nc">SymmetricKronecker</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
@@ -443,10 +656,13 @@
 <span class="sd">        (A \\otimes_{s} B)\\operatorname{svec}(X) = \\frac{1}{2} \\operatorname{svec}(AXB^{\\top} + BXA^{\\top})</span>
 
 <span class="sd">    where :math:`\\operatorname{svec}(X) = (X_{11}, \\sqrt{2} X_{12}, \\dots, X_{1n}, X_{22}, \\sqrt{2} X_{23},</span>
-<span class="sd">    \\dots, \\sqrt{2}X_{2n}, \\dots X_{nn})^{\\top}` is the (row-wise, normalized) symmetric stacking operator.</span>
+<span class="sd">    \\dots, \\sqrt{2}X_{2n}, \\dots X_{nn})^{\\top}` is the (row-wise, normalized) symmetric stacking operator. The</span>
+<span class="sd">    implementation is based on the relationship :math:`Q^\\top \\operatorname{svec}(X) = \\operatorname{vec}(X)` with a</span>
+<span class="sd">    orthonormal matrix :math:`Q` [2]_.</span>
 
 <span class="sd">    .. [1] Van Loan, C. F., The ubiquitous Kronecker product, *Journal of Computational and Applied Mathematics*, 2000,</span>
 <span class="sd">            123, 85-100</span>
+<span class="sd">    .. [2] De Klerk, E., Aspects of Semidefinite Programming, *Kluwer Academic Publishers*, 2002</span>
 
 <span class="sd">    Note</span>
 <span class="sd">    ----</span>
@@ -457,9 +673,46 @@
 <span class="sd">    Kronecker : The Kronecker product of two linear operators.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
     <span class="c1"># TODO: Make sure definition matches the one in &quot;Hennig, P. and Osborne M. A., Probabilistic Numerics, 2020&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Set parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">aslinop</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">aslinop</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Linear operators A and B must be square and have the same dimensions.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Orthonormal Q: svec to vec mapping</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Q</span> <span class="o">=</span> <span class="n">_vec2svec</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span>
+
+        <span class="c1"># Initiator of superclass</span>
+        <span class="n">n_symkron</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_symkron</span><span class="p">,</span> <span class="n">n_symkron</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Efficient multiplication via (A (x)_s B)svec(X) = 1/2 svec(BXA^T + AXB^T) where svec is the column-wise normalized</span>
+<span class="sd">        symmetric stacking operator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Q^T svec(x) = vec(x)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_Q</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span>
+
+        <span class="c1"># (A (x)_s B)svec(X) = 1/2 Q vec(BXA^T + AXB^T)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">+</span> <span class="n">Y</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q</span> <span class="o">@</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_rmatvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Based on (A (x)_s B)^T = A^T (x)_s B^T.&quot;&quot;&quot;</span>
+        <span class="c1"># Q^T svec(x) = vec(x)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_Q</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span>
+
+        <span class="c1"># (A^T (x)_s B^T)svec(X) = 1/2 Q vec(B^T XA + A^T XB)</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">+</span> <span class="n">Y</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Q</span> <span class="o">@</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span></div>
+
+    <span class="c1"># TODO: add efficient implementation of _matmat based on (Symmetric) Kronecker properties</span>
 
 
 <div class="viewcode-block" id="aslinop"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.aslinop.html#probnum.linalg.linear_operators.aslinop">[docs]</a><span class="k">def</span> <span class="nf">aslinop</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
