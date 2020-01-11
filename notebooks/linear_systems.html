@@ -368,11 +368,13 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Prior-Information">
 <h2>Prior Information<a class="headerlink" href="#Prior-Information" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Prior distribution on A</span>
+<span></span><span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span><span class="p">,</span> <span class="n">Normal</span>
+
+<span class="c1"># Prior distribution on A</span>
 <span class="n">covA</span> <span class="o">=</span> <span class="n">SymmetricKronecker</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
                    <span class="n">dtype</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
@@ -380,37 +382,26 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/home/j/.virtualenvs/probnum/lib/python3.6/site-packages/ipykernel_launcher.py:2: RuntimeWarning: LinearOperator subclass should implement at least one of _matvec and _matmat.
-
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-2-5946500da220&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Prior distribution on A</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>covA <span class="ansi-blue-fg">=</span> SymmetricKronecker<span class="ansi-blue-fg">(</span>A<span class="ansi-blue-fg">=</span>np<span class="ansi-blue-fg">.</span>eye<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> B<span class="ansi-blue-fg">=</span>np<span class="ansi-blue-fg">.</span>eye<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> A = RandomVariable(shape=A.shape,
-<span class="ansi-green-intense-fg ansi-bold">      4</span>                    dtype<span class="ansi-blue-fg">=</span>A<span class="ansi-blue-fg">.</span>dtype<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>                    distribution=Normal(mean=A, cov=covA))
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-d3957f55c5b3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> A = RandomVariable(shape=A.shape,
+<span class="ansi-green-intense-fg ansi-bold">      6</span>                    dtype<span class="ansi-blue-fg">=</span>A<span class="ansi-blue-fg">.</span>dtype<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">                    distribution=Normal(mean=A, cov=covA))
+</span>
+<span class="ansi-green-fg">~/.virtualenvs/probnum/lib/python3.7/site-packages/probnum/probability.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, mean, cov, random_state)</span>
+<span class="ansi-green-intense-fg ansi-bold">    988</span>                 super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>parameters<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#34;mean&#34;</span><span class="ansi-blue-fg">:</span> mean<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;cov&#34;</span><span class="ansi-blue-fg">:</span> cov<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> dtype<span class="ansi-blue-fg">=</span>_dtype<span class="ansi-blue-fg">,</span> random_state<span class="ansi-blue-fg">=</span>random_state<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    989</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 990</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Shape mismatch of mean and covariance.&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    991</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    992</span>             raise ValueError(
 
-<span class="ansi-green-fg">~/Documents/research/probabilistic_numerics/code/probnum/src/probnum/linalg/linear_operators.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, A, B, dtype)</span>
-<span class="ansi-green-intense-fg ansi-bold">    312</span>
-<span class="ansi-green-intense-fg ansi-bold">    313</span>     <span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> A<span class="ansi-blue-fg">,</span> B<span class="ansi-blue-fg">,</span> dtype<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 314</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> NotImplementedError
-<span class="ansi-green-intense-fg ansi-bold">    315</span>     <span class="ansi-red-fg"># TODO: Make sure definition matches the one in &#34;Hennig, P. and Osborne M. A., Probabilistic Numerics, 2020&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">    316</span>
-
-<span class="ansi-red-fg">NotImplementedError</span>:
+<span class="ansi-red-fg">ValueError</span>: Shape mismatch of mean and covariance.
 </pre></div></div>
 </div>
 </div>
