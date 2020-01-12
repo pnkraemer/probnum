@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with matplotlib (https://matplotlib.org/) -->
+<svg height="169.26396pt" version="1.1" viewBox="0 0 407.52 169.26396" width="407.52pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 169.26396 
+L 407.52 169.26396 
+L 407.52 0 
+L 0 0 
+z
+" style="fill:none;"/>
+  </g>
+  <g id="axes_1">
+   <g clip-path="url(#p25dd8d0e20)">
+    <image height="67" id="image6dd293fbc6" transform="scale(1 -1)translate(0 -67)" width="101" x="7.2" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAGUAAABDCAYAAACFicvkAAAABHNCSVQICAgIfAhkiAAAAOtJREFUeJzt0zGNAlAURNEHwQANCckqoMXBVnjBIw4wQkO7oQAErIB/i3MUTHIzm8vx+pmA92G/esJsH8/VE2ZmZrt6AP+JEiRKkChBogSJEiRKkChBogSJEiRKkChBogSJEiRKkChBogSJEiRKkChBogSJEiRKkChBogSJEiRKkChBogSJEiRKkChBogTt/k4/qzfMzMzudl89YV6/59UTZsZTkkQJEiVIlCBRgkQJEiVIlCBRgkQJEiVIlCBRgkQJEiVIlCBRgkQJEiVIlCBRgkQJEiVIlCBRgkQJEiVIlCBRgkQJEiVIlKAv4WoJj9CV3sMAAAAASUVORK5CYII=" y="-61.58396"/>
+   </g>
+   <g id="text_1">
+    <!-- $A$ -->
+    <defs>
+     <path d="M 17 10.796875 
+C 13.5 4.90625 10.09375 2.90625 5.296875 2.90625 
+C 4.203125 2.8125 3.40625 2.8125 3.40625 0.90625 
+C 3.40625 0.375 3.90625 0 4.59375 0 
+C 6.40625 0 10.90625 0 12.703125 0 
+C 15.59375 0 18.796875 0 21.59375 0 
+C 22.203125 0 23.40625 0 23.40625 1.90625 
+C 23.40625 2.8125 22.59375 2.90625 22 2.90625 
+C 19.703125 2.90625 17.796875 3.6875 17.796875 6.0625 
+C 17.796875 7.4375 18.40625 8.53125 19.703125 10.703125 
+L 27.296875 23.109375 
+L 52.796875 23.109375 
+C 52.90625 22.234375 52.90625 21.453125 53 20.5625 
+C 53.296875 18 54.5 7.734375 54.5 5.875 
+C 54.5 2.90625 49.40625 2.90625 47.796875 2.90625 
+C 46.703125 2.90625 45.59375 2.90625 45.59375 1.09375 
+C 45.59375 0 46.5 0 47.09375 0 
+C 48.796875 0 50.796875 0 52.5 0 
+L 58.203125 0 
+C 64.296875 0 68.703125 0 68.796875 0 
+C 69.5 0 70.59375 0 70.59375 1.90625 
+C 70.59375 2.90625 69.703125 2.90625 68.203125 2.90625 
+C 62.703125 2.90625 62.59375 3.8125 62.296875 6.78125 
+L 56.203125 68.8125 
+C 56 70.796875 55.59375 71 54.5 71 
+C 53.5 71 52.90625 70.796875 52 69.296875 
+z
+M 29 26 
+L 49.09375 59.671875 
+L 52.5 26 
+z
+" id="CMMI12-65"/>
+    </defs>
+    <g transform="translate(49.522188 55.62396)scale(0.216 -0.216)">
+     <use transform="scale(0.996264)" xlink:href="#CMMI12-65"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g clip-path="url(#pe3263ae68c)">
+    <image height="67" id="image3b0cf3e42c" transform="scale(1 -1)translate(0 -67)" width="34" x="127.08" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAACIAAABDCAYAAAD579c9AAAABHNCSVQICAgIfAhkiAAAAGlJREFUaIHt0DENgEAAwMCHIIwEcbjCAZpgYjkD/NAquHTZj/MZE7T+DfgKYkEsiAWxIBbEglgQC2JBLIgFsSAWxIJYENu26/7bMMaY6EgQC2JBLIgFsSAWxIJYEAtiQSyIBbEgFsSmgbwkzAQgc0kG5AAAAABJRU5ErkJggg==" y="-61.58396"/>
+   </g>
+   <g id="text_2">
+    <!-- $B$ -->
+    <defs>
+     <path d="M 36.59375 61.265625 
+C 37.5 65 37.90625 65 41.796875 65 
+L 54.796875 65 
+C 66.09375 65 66.09375 55.375 66.09375 54.453125 
+C 66.09375 46.34375 58 36 44.796875 36 
+L 30.40625 36 
+z
+M 53.5 35.546875 
+C 64.40625 37.53125 74.296875 45.09375 74.296875 54.265625 
+C 74.296875 62.03125 67.40625 68 56.09375 68 
+L 24 68 
+C 22.09375 68 21.203125 68 21.203125 66.03125 
+C 21.203125 65 22.09375 65 23.59375 65 
+C 29.703125 65 29.703125 64.25 29.703125 63.1875 
+C 29.703125 63 29.703125 62.390625 29.296875 60.890625 
+L 15.796875 7.375 
+C 14.90625 3.890625 14.703125 2.890625 7.703125 2.890625 
+C 5.796875 2.890625 4.796875 2.890625 4.796875 1.09375 
+C 4.796875 0 5.40625 0 7.40625 0 
+L 41.703125 0 
+C 57 0 68.796875 11.546875 68.796875 21.609375 
+C 68.796875 29.78125 61.59375 34.75 53.5 35.546875 
+z
+M 39.296875 2.890625 
+L 25.796875 2.890625 
+C 24.40625 2.890625 24.203125 2.890625 23.59375 3 
+C 22.5 3.09375 22.40625 3.296875 22.40625 4.078125 
+C 22.40625 4.765625 22.59375 5.359375 22.796875 6.234375 
+L 29.796875 34 
+L 48.59375 34 
+C 60.40625 34 60.40625 23.171875 60.40625 22.390625 
+C 60.40625 12.9375 51.703125 2.890625 39.296875 2.890625 
+z
+" id="CMMI12-66"/>
+    </defs>
+    <g transform="translate(135.816338 55.62396)scale(0.216 -0.216)">
+     <use transform="scale(0.996264)" xlink:href="#CMMI12-66"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g clip-path="url(#pfca24accfa)">
+    <image height="134" id="image4d0424f7f8" transform="scale(1 -1)translate(0 -134)" width="101" x="180" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAGUAAACGCAYAAADErETjAAAABHNCSVQICAgIfAhkiAAAAbBJREFUeJzt270tBmAUhuHziQU0EjVRS9QSoTGETmkQGiPorEGjlqgtINFYwN8ABniv4r4meJI7pzyb/du73wEcnbytnjCvz4erJ8zMzNbqAfmvKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgpoc7F3TXxy/ezurJ4wWx+fqyfMTJdCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigDbf7wfE09D55dXqCfP4cL96wsx0KaSigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKDN6fkN8cm1/fSyesJ8nR2vnjAzXQqpKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoCKgqoKKCigIoC+gOKeRYbf9QTJQAAAABJRU5ErkJggg==" y="-28.06396"/>
+   </g>
+   <g id="text_3">
+    <!-- $A \otimes B$ -->
+    <defs>
+     <path d="M 72.21875 25 
+C 72.21875 43.3125 57.21875 58.140625 38.90625 58.140625 
+C 20.3125 58.140625 5.5 43.125 5.5 25 
+C 5.5 6.6875 20.5 -8.140625 38.8125 -8.140625 
+C 57.421875 -8.140625 72.21875 6.875 72.21875 25 
+z
+M 19.015625 46.390625 
+C 18.8125 46.59375 18.109375 47.296875 18.109375 47.484375 
+C 18.109375 47.875 26.203125 55.640625 38.8125 55.640625 
+C 42.3125 55.640625 51.515625 55.140625 59.71875 47.484375 
+L 38.90625 26.6875 
+z
+M 16.109375 4.09375 
+C 10 10.90625 8 18.59375 8 25 
+C 8 32.65625 10.90625 39.921875 16.109375 45.796875 
+L 37.015625 25 
+z
+M 61.515625 45.90625 
+C 66.328125 40.796875 69.71875 33.203125 69.71875 25 
+C 69.71875 17.34375 66.828125 10.09375 61.625 4.21875 
+L 40.71875 25 
+z
+M 58.703125 3.609375 
+C 58.90625 3.40625 59.609375 2.703125 59.609375 2.515625 
+C 59.609375 2.125 51.515625 -5.640625 38.90625 -5.640625 
+C 35.40625 -5.640625 26.203125 -5.140625 18 2.515625 
+L 38.8125 23.3125 
+z
+" id="CMSY10-10"/>
+    </defs>
+    <g transform="translate(201.16782 22.14396)scale(0.216 -0.216)">
+     <use transform="scale(0.996264)" xlink:href="#CMMI12-65"/>
+     <use transform="translate(95.267092 0)scale(0.996264)" xlink:href="#CMSY10-10"/>
+     <use transform="translate(194.893767 0)scale(0.996264)" xlink:href="#CMMI12-66"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_4">
+   <g clip-path="url(#p95e1009a1d)">
+    <image height="134" id="image68a2ff2b04" transform="scale(1 -1)translate(0 -134)" width="101" x="299.88" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAGUAAACGCAYAAADErETjAAAABHNCSVQICAgIfAhkiAAAAbVJREFUeJzt27EtNmAUhuHziQU0EomOKFQStYbGEDqlRTRG0Fnj16glagtINFqR+BnAAO9V3NcET3LnlGdzcHv3M4CTs9fVE+bl6Wj1hJmZ2Vo9IH8VBVQUUFFARQEVBVQUUFFARQEVBVQUUFFARQEVBVQUUFFARQEVBVQUUFFARQEVBVQUUFFARQEVBVQUUFFARQEVBVQUUFFARQFtvt8OiU+ui6vr1RPm38P96gkz06WQigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooM3l3g3xNPR/d2f1hNl6/1g9YWa6FFJRQEUBFQVUFFBRQEUBFQVUFFBRQEUBFQVUFFBRQEUBFQVUFFBRQEUBFQVUFFBRQEUBFQVUFFBRQEUBFQVUFFBRQEUBFQVUFND25/H+6g0zM7P9+Lx6wnydn66eMDNdCqkooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigIqCqgooKKAigL6BdI9FVFdNmNCAAAAAElFTkSuQmCC" y="-28.06396"/>
+   </g>
+   <g id="text_4">
+    <!-- $B \otimes A$ -->
+    <g transform="translate(320.504851 22.14396)scale(0.216 -0.216)">
+     <use transform="scale(0.996264)" xlink:href="#CMMI12-66"/>
+     <use transform="translate(101.27473 0)scale(0.996264)" xlink:href="#CMSY10-10"/>
+     <use transform="translate(200.901405 0)scale(0.996264)" xlink:href="#CMMI12-65"/>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p25dd8d0e20">
+   <rect height="66.96" width="100.44" x="7.2" y="61.62396"/>
+  </clipPath>
+  <clipPath id="pe3263ae68c">
+   <rect height="66.96" width="33.48" x="127.08" y="61.62396"/>
+  </clipPath>
+  <clipPath id="pfca24accfa">
+   <rect height="133.92" width="100.44" x="180" y="28.14396"/>
+  </clipPath>
+  <clipPath id="p95e1009a1d">
+   <rect height="133.92" width="100.44" x="299.88" y="28.14396"/>
+  </clipPath>
+ </defs>
+</svg>
