@@ -353,6 +353,7 @@
 <span class="c1"># TODO: inheritance from _TransposedLinearOperator causes dependency on scipy&gt;=1.4, maybe implement our own instead?</span>
 <span class="k">class</span> <span class="nc">_TransposedLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_TransposedLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transposition of a linear operator.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
 
@@ -454,6 +455,8 @@
 
     <span class="k">def</span> <span class="nf">_matmat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">X</span>
+
+    <span class="c1"># TODO: overload arithmetic operators to prevent lazy arithmetic. Use numpy/scipy matrix arithmetic instead.</span>
 
 <div class="viewcode-block" id="MatrixMult.todense"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult.todense">[docs]</a>    <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">):</span>
@@ -740,8 +743,10 @@
 <span class="sd">    &gt;&gt;&gt; from probnum.linalg import aslinop</span>
 <span class="sd">    &gt;&gt;&gt; M = np.array([[1,2,3],[4,5,6]], dtype=np.int32)</span>
 <span class="sd">    &gt;&gt;&gt; aslinop(M)</span>
-<span class="sd">    &lt;2x3 MatrixLinearOperator with dtype=int32&gt;</span>
+<span class="sd">    &lt;2x3 MatrixMult with dtype=int32&gt;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">A</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
         <span class="c1"># TODO: aslinearoperator also for random variables; change docstring example;</span>
         <span class="c1">#  not needed if LinearOperator inherits from RandomVariable</span>
@@ -749,7 +754,8 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">)):</span>
         <span class="k">return</span> <span class="n">MatrixMult</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span><span class="p">))</span></div>
+        <span class="n">op</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">aslinearoperator</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
