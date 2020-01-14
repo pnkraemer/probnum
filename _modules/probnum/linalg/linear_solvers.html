@@ -154,11 +154,13 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse</span>
-<span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span>
-<span class="kn">from</span> <span class="nn">probnum.linalg.linear_operators</span> <span class="kn">import</span> <span class="n">LinearOperator</span>
-<span class="kn">from</span> <span class="nn">probnum.utils</span> <span class="kn">import</span> <span class="n">atleast_1d</span><span class="p">,</span> <span class="n">atleast_2d</span>
+
+<span class="kn">import</span> <span class="nn">probnum.probability</span>
+<span class="kn">import</span> <span class="nn">probnum.linalg.linear_operators</span>
+<span class="kn">import</span> <span class="nn">probnum.utils</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;problinsolve&quot;</span><span class="p">,</span> <span class="s2">&quot;bayescg&quot;</span><span class="p">]</span>
 
@@ -252,16 +254,16 @@
     <span class="c1"># Select solver</span>
     <span class="c1"># TODO: include also random variable covariance type in this selection? (symmkron =&gt; sympos)</span>
     <span class="k">if</span> <span class="n">assume_A</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;sym&#39;</span><span class="p">,</span> <span class="s1">&#39;sympos&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
             <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_problinsolve_symm_iter</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
             <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_bayescg_iter</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No prior information specified on Ainv or x.&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">assume_A</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;gen&#39;</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
             <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_problinsolve_gen_iter</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
             <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_bayescg_iter</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No prior information specified on Ainv or x.&quot;</span><span class="p">)</span>
@@ -343,14 +345,17 @@
 <span class="sd">        If type or size mismatches detected or inputs ``A`` and ``Ainv`` are not square.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Check types</span>
-    <span class="n">linop_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">)</span>
-    <span class="n">vector_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">RandomVariable</span><span class="p">)</span>
+    <span class="n">linop_types</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span>
+    <span class="n">vector_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">linop_types</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;A must be either an array, a linear operator or a RandomVariable of either.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;A must be either an array, a linear operator or a RandomVariable of either.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">vector_types</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The right hand side must be a (sparse) array.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">Ainv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">linop_types</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The inverse of A must be either an array, a linear operator or a RandomVariable of either.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;The inverse of A must be either an array, a linear operator or a RandomVariable of either.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">vector_types</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The initial guess for the solution must be a (sparse) array.&quot;</span><span class="p">)</span>
 
@@ -413,15 +418,15 @@
     <span class="c1"># Todo Automatic prior selection based on data scale, etc.?</span>
 
     <span class="c1"># Transform linear system to correct dimensions</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">):</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="n">atleast_2d</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">atleast_1d</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">Ainv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
-        <span class="n">Ainv</span> <span class="o">=</span> <span class="n">atleast_2d</span><span class="p">(</span><span class="n">Ainv</span><span class="p">)</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">probnum</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">probnum</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">Ainv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">):</span>
+        <span class="n">Ainv</span> <span class="o">=</span> <span class="n">probnum</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">Ainv</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">atleast_1d</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">probnum</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
 
     <span class="c1"># TODO create random variables and linear operators</span>
 
@@ -470,7 +475,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    update : LinearOperator</span>
+<span class="sd">    update : probnum.linalg.linear_operators.LinearOperator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -479,7 +484,7 @@
     <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="o">@</span> <span class="n">M</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span>
+    <span class="k">return</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
         <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
         <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
         <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
@@ -512,7 +517,7 @@
     <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span> <span class="o">@</span> <span class="n">Wy</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">LinearOperator</span><span class="p">(</span>
+    <span class="k">return</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
         <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
         <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
         <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>

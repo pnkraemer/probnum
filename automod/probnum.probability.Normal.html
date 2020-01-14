@@ -179,11 +179,11 @@ Default is None.</p></li>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum</span> <span class="kn">import</span> <span class="n">Normal</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">Normal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span><span class="o">.</span><span class="n">parameters</span>
-<span class="go">{&#39;mean&#39;: 0.0, &#39;cov&#39;: 4}</span>
+<span class="go">{&#39;mean&#39;: 0.0, &#39;cov&#39;: 4.0}</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes Summary</p>
@@ -229,13 +229,16 @@ Default is None.</p></li>
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.pdf" title="probnum.probability.Normal.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
 <td><p>Probability density or mass function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.reshape" title="probnum.probability.Normal.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(shape)</p></td>
+<td><p>Give a new shape to (realizations of) this distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
 <td><p>Returns realizations from the associated random variable.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.std" title="probnum.probability.Normal.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.std" title="probnum.probability.Normal.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
 <td><p>Standard deviation of the distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.var" title="probnum.probability.Normal.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.var" title="probnum.probability.Normal.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
 <td><p>Variance <span class="math notranslate nohighlight">\(\operatorname{Var}(X) = \mathbb{E}((X-\mathbb{E}(X))^2)\)</span> of the distribution.</p></td>
 </tr>
 </tbody>
@@ -357,6 +360,24 @@ If integer, it is used to seed the local <code class="xref py py-class docutils 
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Normal.reshape">
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param">shape</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give a new shape to (realizations of) this distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><em>tuple of ints</em>) – New shape for the realizations and parameters of this distribution. It must be compatible with the original
+shape.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reshaped_rv</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">self</span></code> with the new dimensions of <code class="docutils literal notranslate"><span class="pre">shape</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>

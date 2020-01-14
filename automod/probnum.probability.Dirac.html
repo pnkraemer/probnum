@@ -222,13 +222,16 @@ It has the useful property that arithmetic operations between a <a class="refere
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Dirac.pdf" title="probnum.probability.Dirac.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
 <td><p>Probability density or mass function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.sample" title="probnum.probability.Dirac.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size, seed])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.reshape" title="probnum.probability.Dirac.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(shape)</p></td>
+<td><p>Give a new shape to (realizations of) this distribution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Dirac.sample" title="probnum.probability.Dirac.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size, seed])</p></td>
 <td><p>Returns realizations from the associated random variable.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Dirac.std" title="probnum.probability.Dirac.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.std" title="probnum.probability.Dirac.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
 <td><p>Standard deviation of the distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Dirac.var" title="probnum.probability.Dirac.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Dirac.var" title="probnum.probability.Dirac.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
 <td><p>Variance <span class="math notranslate nohighlight">\(\operatorname{Var}(X) = \mathbb{E}((X-\mathbb{E}(X))^2)\)</span> of the distribution.</p></td>
 </tr>
 </tbody>
@@ -350,6 +353,24 @@ If integer, it is used to seed the local <code class="xref py py-class docutils 
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.probability.Dirac.reshape">
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Dirac.reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Dirac.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Give a new shape to (realizations of) this distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><em>tuple of ints</em>) – New shape for the realizations and parameters of this distribution. It must be compatible with the original
+shape.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>reshaped_rv</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">self</span></code> with the new dimensions of <code class="docutils literal notranslate"><span class="pre">shape</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>

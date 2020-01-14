@@ -169,8 +169,7 @@ a naive algorithm) and vice-versa.</p>
 transpose). As with <code class="docutils literal notranslate"><span class="pre">_matvec</span></code> and <code class="docutils literal notranslate"><span class="pre">_matmat</span></code>, implementing either <code class="docutils literal notranslate"><span class="pre">_rmatvec</span></code> or <code class="docutils literal notranslate"><span class="pre">_adjoint</span></code> implements the
 other automatically. Implementing <code class="docutils literal notranslate"><span class="pre">_adjoint</span></code> is preferable; <code class="docutils literal notranslate"><span class="pre">_rmatvec</span></code> is mostly there for backwards
 compatibility.</p>
-<p>This class wraps <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.sparse.linalg.LinearOperator</span></code> to provide support for
-<code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code> arguments to linear operators.</p>
+<p>This class inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.sparse.linalg.LinearOperator</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -192,7 +191,7 @@ compatibility.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.linalg.linear_operators</span> <span class="kn">import</span> <span class="n">LinearOperator</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 <span class="gp">...</span>
