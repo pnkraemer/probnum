@@ -154,12 +154,13 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">abc</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.sparse</span>
 
-<span class="kn">import</span> <span class="nn">probnum.probability</span>
-<span class="kn">import</span> <span class="nn">probnum.linalg.linear_operators</span>
+<span class="kn">from</span> <span class="nn">probnum</span> <span class="kn">import</span> <span class="n">probability</span>
+<span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">linear_operators</span>
 <span class="kn">import</span> <span class="nn">probnum.utils</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;problinsolve&quot;</span><span class="p">,</span> <span class="s2">&quot;bayescg&quot;</span><span class="p">]</span>
@@ -177,16 +178,18 @@
 <span class="sd">    which quantifies uncertainty in the output arising from finite computational resources.</span>
 
 <span class="sd">    This solver can take prior information either on the linear operator :math:`A` or its inverse :math:`H=A^{-1}` and</span>
-<span class="sd">    outputs a posterior belief over :math:`A` or :math:`H`. For a specific class of priors this recovers the iterates of</span>
-<span class="sd">    the conjugate gradient method [1]_ as the posterior mean. This code implements the method described in [2]_, [3]_</span>
-<span class="sd">    and [4]_.</span>
+<span class="sd">    outputs a posterior belief over :math:`A` or :math:`H`. This code implements the method described in [1]_, [2]_</span>
+<span class="sd">    and [3]_.</span>
 
-<span class="sd">    .. [1] Hestenes, M. R. and Stiefel E., Methods of Conjugate Gradients for Solving Linear Systems,</span>
-<span class="sd">            *Journal of Research of the National Bureau of Standards*, 1952, 49 (6): 409</span>
-<span class="sd">    .. [2] Wenger, J. and Hennig, P., Probabilistic Linear Solvers for Machine Learning, 2020</span>
-<span class="sd">    .. [3] Hennig, P., Probabilistic Interpretation of Linear Solvers, *SIAM Journal on Optimization*, 2015, 25, 234-260</span>
-<span class="sd">    .. [4] Hennig, P. and Osborne M. A., *Probabilistic Numerics. Computation as Machine Learning*, 2020, Cambridge</span>
+<span class="sd">    .. [1] Wenger, J. and Hennig, P., Probabilistic Linear Solvers for Machine Learning, 2020</span>
+<span class="sd">    .. [2] Hennig, P., Probabilistic Interpretation of Linear Solvers, *SIAM Journal on Optimization*, 2015, 25, 234-260</span>
+<span class="sd">    .. [3] Hennig, P. and Osborne M. A., *Probabilistic Numerics. Computation as Machine Learning*, 2020, Cambridge</span>
 <span class="sd">           University Press</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    For a specific class of priors this recovers the iterates of the conjugate gradient method as the posterior mean of</span>
+<span class="sd">    the induced distribution on :math:`x=Hb`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -210,6 +213,9 @@
 <span class="sd">         positive definite    ``pos``</span>
 <span class="sd">         symmetric pos. def.  ``sympos``</span>
 <span class="sd">        ====================  =========</span>
+
+<span class="sd">        If ``A`` or ``Ainv`` are random variables, then the encoded assumptions in the distribution are used</span>
+<span class="sd">        automatically.</span>
 <span class="sd">    maxiter : int</span>
 <span class="sd">        Maximum number of iterations. Defaults to :math:`10n`, where :math:`n` is the dimension of :math:`A`.</span>
 <span class="sd">    resid_tol : float</span>
@@ -252,35 +258,15 @@
     <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_preprocess_linear_system</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
 
     <span class="c1"># Select solver</span>
-    <span class="c1"># TODO: include also random variable covariance type in this selection? (symmkron =&gt; sympos)</span>
-    <span class="k">if</span> <span class="n">assume_A</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;sym&#39;</span><span class="p">,</span> <span class="s1">&#39;sympos&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
-            <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_problinsolve_symm_iter</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
-            <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_bayescg_iter</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No prior information specified on Ainv or x.&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">assume_A</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;gen&#39;</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
-            <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_problinsolve_gen_iter</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
-            <span class="n">solve_iter</span> <span class="o">=</span> <span class="n">_bayescg_iter</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No prior information specified on Ainv or x.&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a recognized linear operator assumption.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">assume_A</span><span class="p">))</span>
+    <span class="n">linear_solver</span> <span class="o">=</span> <span class="n">_select_solver</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">assume_A</span><span class="o">=</span><span class="n">assume_A</span><span class="p">)</span>
 
-    <span class="c1"># TODO: make kronecker structure explicit in solver selection and implement via Kronecker linear operator</span>
-
-    <span class="c1"># Set default parameters</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Set default convergence parameters</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">maxiter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">maxiter</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">10</span>
 
     <span class="c1"># Solve linear system</span>
-    <span class="c1"># TODO: refactor into returning random variables and unify signatures of solve_iter</span>
-    <span class="n">A</span><span class="p">,</span> <span class="n">Ainv_mean</span><span class="p">,</span> <span class="n">Ainv_cov_kronfac</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">solve_iter</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">Ainv_mean</span><span class="o">=</span><span class="n">Ainv</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">Ainv_cov_kronfac</span><span class="o">=</span><span class="n">Ainv</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
-                                                         <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="n">resid_tol</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">linear_solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="n">resid_tol</span><span class="p">)</span>
 
     <span class="c1"># Check solution and issue warnings (e.g. singular or ill-conditioned matrix)</span>
     <span class="n">_check_solution</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
@@ -288,7 +274,7 @@
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">info</span></div>
 
 
-<div class="viewcode-block" id="bayescg"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg">[docs]</a><span class="k">def</span> <span class="nf">bayescg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="bayescg"><a class="viewcode-back" href="../../../automod/probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg">[docs]</a><span class="k">def</span> <span class="nf">bayescg</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Conjugate Gradients using prior information on the solution of the linear system.</span>
 
@@ -310,6 +296,11 @@
 <span class="sd">        Right-hand side vector or matrix in :math:`A x = b`.</span>
 <span class="sd">    x0 : array-like or RandomVariable, shape=(n,) or or (n, nrhs)</span>
 <span class="sd">        Prior belief over the solution of the linear system.</span>
+<span class="sd">    maxiter : int</span>
+<span class="sd">        Maximum number of iterations. Defaults to :math:`10n`, where :math:`n` is the dimension of :math:`A`.</span>
+<span class="sd">    resid_tol : float</span>
+<span class="sd">        Residual tolerance. If :math:`\\lVert r_i \\rVert = \\lVert Ax_i - b \\rVert &lt; \\text{tol}`, the iteration</span>
+<span class="sd">        terminates.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
@@ -318,7 +309,22 @@
     <span class="c1"># Check linear system for type and dimension mismatch</span>
     <span class="n">_check_linear_system</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
 
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+    <span class="c1"># Transform linear system types to random variables and linear operators</span>
+    <span class="c1"># and set a default prior if not specified</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_preprocess_linear_system</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
+
+    <span class="c1"># Set default convergence parameters</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">maxiter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">maxiter</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">10</span>
+
+    <span class="c1"># Solve linear system</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">_BayesCG</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="n">resid_tol</span><span class="p">)</span>
+
+    <span class="c1"># Check solution and issue warnings (e.g. singular or ill-conditioned matrix)</span>
+    <span class="n">_check_solution</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">info</span></div>
 
 
 <span class="k">def</span> <span class="nf">_check_linear_system</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -346,11 +352,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Check types</span>
     <span class="n">linop_types</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span>
-    <span class="n">vector_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span>
+    <span class="n">vector_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">spmatrix</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">linop_types</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;A must be either an array, a linear operator or a RandomVariable of either.&quot;</span><span class="p">)</span>
+            <span class="s2">&quot;A must be either an array, a linear operator or a RandomVariable.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">vector_types</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The right hand side must be a (sparse) array.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">Ainv</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">linop_types</span><span class="p">):</span>
@@ -358,6 +364,11 @@
             <span class="s2">&quot;The inverse of A must be either an array, a linear operator or a RandomVariable of either.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">vector_types</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The initial guess for the solution must be a (sparse) array.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Prior distribution mismatch</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">))</span> <span class="ow">and</span>
+            <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot specify distribution on the linear operator and the solution simultaneously.&quot;</span><span class="p">)</span>
 
     <span class="c1"># Dimension mismatch</span>
     <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
@@ -374,34 +385,44 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The inverse of A must be square.&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_preprocess_linear_system</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_preprocess_linear_system</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">assume_A</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transform the linear system to linear operator and random variable form.</span>
-
-<span class="sd">    .</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    A : array-like or LinearOperator or RandomVariable</span>
-<span class="sd">        Linear operator.</span>
+<span class="sd">        A square matrix, linear operator or random variable representing the prior belief over :math:`A`.</span>
 <span class="sd">    b : array_like, shape=(n,) or (n, nrhs)</span>
 <span class="sd">        Right-hand side vector or matrix in :math:`A x = b`.</span>
 <span class="sd">    Ainv : array-like or LinearOperator or RandomVariable, shape=(n,n)</span>
 <span class="sd">        Optional. A square matrix, linear operator or random variable representing the prior belief over the inverse</span>
 <span class="sd">        :math:`H=A^{-1}`.</span>
-<span class="sd">    x0 : array-like, shape=(n,) or (n, nrhs)</span>
-<span class="sd">        Optional. Initial guess for the solution of the linear system. Will be ignored if ``Ainv`` is given.</span>
+<span class="sd">    x0 : array-like, or RandomVariable, shape=(n,) or (n, nrhs)</span>
+<span class="sd">        Optional. Prior belief for the solution of the linear system. Will be ignored if ``Ainv`` is given.</span>
+<span class="sd">    assume_A : str, default=&quot;sympos&quot;</span>
+<span class="sd">        Assumptions on the matrix, which can influence solver choice or behavior. The available options are</span>
+
+<span class="sd">        ====================  =========</span>
+<span class="sd">         generic matrix       ``gen``</span>
+<span class="sd">         symmetric            ``sym``</span>
+<span class="sd">         positive definite    ``pos``</span>
+<span class="sd">         symmetric pos. def.  ``sympos``</span>
+<span class="sd">        ====================  =========</span>
+
+<span class="sd">        If ``A`` or ``Ainv`` are random variables, then the encoded assumptions in the distribution are used</span>
+<span class="sd">        automatically.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    A : RandomVariable, shape=(n,n)</span>
-<span class="sd">        Posterior belief over the linear operator.</span>
+<span class="sd">        Prior belief over the linear operator :math:`A`.</span>
 <span class="sd">    b : array-like, shape=(n,) or (n, nrhs)</span>
 <span class="sd">        Right-hand-side of the linear system.</span>
 <span class="sd">    Ainv : RandomVariable, shape=(n,n)</span>
-<span class="sd">        Posterior belief over the linear operator inverse :math:`H=A^{-1}`.</span>
+<span class="sd">        Prior belief over the linear operator inverse :math:`H=A^{-1}`.</span>
 <span class="sd">    x : array-like or RandomVariable, shape=(n,) or (n, nrhs)</span>
-<span class="sd">        Approximate solution :math:`x` to the linear system.</span>
+<span class="sd">        Prior belief over the solution :math:`x` to the linear system.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -415,11 +436,16 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
 
+    <span class="c1"># Check matrix assumptions</span>
+    <span class="k">if</span> <span class="n">assume_A</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;gen&quot;</span><span class="p">,</span> <span class="s2">&quot;sym&quot;</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="s2">&quot;sympos&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="si">{}</span><span class="se">\&#39;</span><span class="s1"> is not a recognized linear operator assumption.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">assume_A</span><span class="p">))</span>
+
+    <span class="c1"># Choose prior if none specified, based on matrix assumptions in &quot;assume_A&quot;</span>
     <span class="c1"># Todo Automatic prior selection based on data scale, etc.?</span>
 
     <span class="c1"># Transform linear system to correct dimensions</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">):</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        <span class="k">pass</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">probnum</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">probnum</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -435,162 +461,53 @@
     <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">x</span>
 
 
-<span class="k">def</span> <span class="nf">_check_solution</span><span class="p">(</span><span class="n">info</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_select_solver</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Selects a probabilistic linear solver based on the prior information given.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    info : dict</span>
-<span class="sd">        Convergence information output by a probabilistic linear solver.</span>
-
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-<span class="sd">    LinAlgError</span>
-<span class="sd">        If the matrix is singular.</span>
-<span class="sd">    LinAlgWarning</span>
-<span class="sd">        If an ill-conditioned input a is detected.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-    <span class="c1"># Singular matrix</span>
-
-    <span class="c1"># Ill-conditioned matrix A</span>
-
-
-<span class="k">def</span> <span class="nf">_problinsolve_gen_iter</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
-
-<span class="k">def</span> <span class="nf">_mean_update_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implements the rank 2 update term for the posterior mean of :math:`H`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    u : array-like</span>
-<span class="sd">        Update vector :math:`u_i=\\frac{W_iy_i}{y_i^{\\top}W_iy_i}`</span>
-<span class="sd">    v : array-like</span>
-<span class="sd">        Update vector :math:`v_i=\\Delta - \\frac{1}{2} u_iy_i^{\\top}\\Delta`</span>
-<span class="sd">    shape : tuple</span>
-<span class="sd">        Shape of the resulting update operator.</span>
+<span class="sd">    A : RandomVariable, shape=(n,n)</span>
+<span class="sd">        Random variable representing the prior belief over the linear operator :math:`A`.</span>
+<span class="sd">    Ainv : RandomVariable, shape=(n,n)</span>
+<span class="sd">        Optional. Random variable representing the prior belief over the inverse :math:`H=A^{-1}`.</span>
+<span class="sd">    x0 : array-like, shape=(n,) or (n, nrhs)</span>
+<span class="sd">        Optional. Prior belief for the solution of the linear system. Will be ignored if ``Ainv`` is given.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    update : probnum.linalg.linear_operators.LinearOperator</span>
+<span class="sd">    linear_solver : object</span>
+<span class="sd">        Object of class :class:`_ProbabilisticLinearSolver` implementing the solve method for linear systems.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Select solution-based or matrix-based view</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Ainv</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
+        <span class="n">prior_info_view</span> <span class="o">=</span> <span class="s2">&quot;matrix&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
+        <span class="n">prior_info_view</span> <span class="o">=</span> <span class="s2">&quot;solution&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No prior information on A, Ainv or x specified.&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span>
-
-    <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="o">@</span> <span class="n">M</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
-        <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
-        <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
-        <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
-        <span class="n">matmat</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dtype</span>
-    <span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_cov_kron_fac_update_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">Wy</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implements the rank 1 update term for the posterior covariance Kronecker factor :math:`W`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    u : array-like</span>
-<span class="sd">        Update vector :math:`u_i=\\frac{W_iy_i}{y_i^{\\top}W_iy_i}`</span>
-<span class="sd">    Wy : array-like</span>
-<span class="sd">        Update vector :math:`W_iy_i`</span>
-<span class="sd">    shape : tuple</span>
-<span class="sd">        Shape of the resulting update operator.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    update : LinearOperator</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Wy</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
-
-    <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span> <span class="o">@</span> <span class="n">Wy</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
-        <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
-        <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
-        <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
-        <span class="n">matmat</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dtype</span>
-    <span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_problinsolve_symm_iter</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Ainv_mean</span><span class="p">,</span> <span class="n">Ainv_cov_kronfac</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="p">):</span>
-    <span class="c1"># initialization</span>
-    <span class="n">iter_</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">Ainv_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">Ainv_mean</span> <span class="o">@</span> <span class="n">b</span>
-    <span class="n">resid</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="n">b</span>
-
-    <span class="c1"># iteration with stopping criteria</span>
-    <span class="c1"># todo: extract iteration and make into iterator</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="c1"># check convergence</span>
-        <span class="n">_has_converged</span><span class="p">,</span> <span class="n">_conv_crit</span> <span class="o">=</span> <span class="n">_check_convergence</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="n">iter_</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">resid</span><span class="o">=</span><span class="n">resid</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="n">resid_tol</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">_has_converged</span><span class="p">:</span>
-            <span class="k">break</span>
-
-        <span class="c1"># compute search direction (with implicit reorthogonalization)</span>
-        <span class="n">search_dir</span> <span class="o">=</span> <span class="o">-</span> <span class="n">Ainv_mean</span> <span class="o">@</span> <span class="n">resid</span>
-
-        <span class="c1"># perform action and observe</span>
-        <span class="n">obs</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">search_dir</span>
-
-        <span class="c1"># compute step size</span>
-        <span class="n">step_size</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">resid</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
-
-        <span class="c1"># todo: scale search_dir and obs by step-size to fulfill theory on conjugate directions?</span>
-
-        <span class="c1"># step and residual update</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">search_dir</span>
-        <span class="n">resid</span> <span class="o">=</span> <span class="n">resid</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">obs</span>
-
-        <span class="c1"># (symmetric) mean and covariance updates</span>
-        <span class="n">Wy</span> <span class="o">=</span> <span class="n">Ainv_cov_kronfac</span> <span class="o">@</span> <span class="n">obs</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="n">search_dir</span> <span class="o">-</span> <span class="n">Ainv_mean</span> <span class="o">@</span> <span class="n">obs</span>
-        <span class="n">u</span> <span class="o">=</span> <span class="n">Wy</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">Wy</span><span class="p">)</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
-
-        <span class="c1"># rank 2 mean update (+= uv&#39; + vu&#39;)</span>
-        <span class="c1"># todo: only use linear operators if necessary (only create update operators if H is a LinearOperator)</span>
-        <span class="n">Ainv_mean</span> <span class="o">=</span> <span class="n">Ainv_mean</span> <span class="o">+</span> <span class="n">_mean_update_operator</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-
-        <span class="c1"># rank 1 covariance kronecker factor update (-= u(Wy)&#39;)</span>
-        <span class="n">Ainv_cov_kronfac</span> <span class="o">=</span> <span class="n">Ainv_cov_kronfac</span> <span class="o">-</span> <span class="n">_cov_kron_fac_update_operator</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">Wy</span><span class="o">=</span><span class="n">Wy</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-
-        <span class="c1"># iteration increment</span>
-        <span class="n">iter_</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="c1"># Log information on solution</span>
-    <span class="c1"># TODO: matrix condition from solver (see scipy solvers)</span>
-    <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;iter&quot;</span><span class="p">:</span> <span class="n">iter_</span><span class="p">,</span>
-        <span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">maxiter</span><span class="p">,</span>
-        <span class="s2">&quot;resid&quot;</span><span class="p">:</span> <span class="n">resid</span><span class="p">,</span>
-        <span class="s2">&quot;conv_crit&quot;</span><span class="p">:</span> <span class="n">_conv_crit</span><span class="p">,</span>
-        <span class="s2">&quot;matrix_cond&quot;</span><span class="p">:</span> <span class="kc">None</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">Ainv_mean</span><span class="p">,</span> <span class="n">Ainv_cov_kronfac</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">info</span>
-
-
-<span class="k">def</span> <span class="nf">_bayescg_iter</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="c1"># Combine assumptions on A with distribution assumptions</span>
+    <span class="k">if</span> <span class="n">prior_info_view</span> <span class="o">==</span> <span class="s2">&quot;matrix&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">cov</span><span class="p">(),</span> <span class="n">linear_operators</span><span class="o">.</span><span class="n">SymmetricKronecker</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_SymmetricMatrixSolver</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">A_mean</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">A_covfactor</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">.</span><span class="n">A</span><span class="p">,</span>
+                                                   <span class="n">Ainv_mean</span><span class="o">=</span><span class="n">Ainv</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">Ainv_covfactor</span><span class="o">=</span><span class="n">Ainv</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">cov</span><span class="p">(),</span> <span class="n">linear_operators</span><span class="o">.</span><span class="n">Kronecker</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_GeneralMatrixSolver</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">elif</span> <span class="n">prior_info_view</span> <span class="o">==</span> <span class="s2">&quot;solution&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_BayesCG</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 
 <span class="k">def</span> <span class="nf">_check_convergence</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">resid</span><span class="p">,</span> <span class="n">resid_tol</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check convergence of a linear solver.</span>
+
+<span class="sd">    Evaluates a set of convergence criteria based on its input arguments to decide whether the iteration has converged.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -621,6 +538,280 @@
     <span class="c1"># todo: based on posterior contraction</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_check_solution</span><span class="p">(</span><span class="n">info</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check the solution of the linear system.</span>
+
+<span class="sd">    Raises exceptions or warnings based on the properties of the linear system and the solver iteration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    info : dict</span>
+<span class="sd">        Convergence information output by a probabilistic linear solver.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    LinAlgError</span>
+<span class="sd">        If the matrix is singular.</span>
+<span class="sd">    LinAlgWarning</span>
+<span class="sd">        If an ill-conditioned input a is detected.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="c1"># Singular matrix</span>
+
+    <span class="c1"># Ill-conditioned matrix A</span>
+
+
+<span class="k">class</span> <span class="nc">_ProbabilisticLinearSolver</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An abstract base class for probabilistic linear solvers.</span>
+
+<span class="sd">    This class is designed to be subclassed with new (probabilistic) linear solvers, which implement a ``.solve()``</span>
+<span class="sd">    method. Objects of this type are instantiated in wrapper functions such as :meth:``problinsolve``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    A : array-like or LinearOperator or RandomVariable, shape=(n,n)</span>
+<span class="sd">        A square matrix or linear operator. A prior distribution can be provided as a</span>
+<span class="sd">        :class:`~probnum.probability.RandomVariable`. If an array or linear operator is given, a prior distribution is</span>
+<span class="sd">        chosen automatically.</span>
+<span class="sd">    b : array_like, shape=(n,) or (n, nrhs)</span>
+<span class="sd">        Right-hand side vector or matrix in :math:`A x = b`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">convergence_args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solve the linear system :math:`Ax=b`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        convergence_args</span>
+<span class="sd">            Arguments specifying when the solver has converged to a solution.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        x : RandomVariable, shape=(n,) or (n, nrhs)</span>
+<span class="sd">            Approximate solution :math:`x` to the linear system. Shape of the return matches the shape of ``b``.</span>
+<span class="sd">        A : RandomVariable, shape=(n,n)</span>
+<span class="sd">            Posterior belief over the linear operator.</span>
+<span class="sd">        Ainv : RandomVariable, shape=(n,n)</span>
+<span class="sd">            Posterior belief over the linear operator inverse :math:`H=A^{-1}`.</span>
+<span class="sd">        info : dict</span>
+<span class="sd">            Information on convergence of the solver.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+<span class="k">class</span> <span class="nc">_GeneralMatrixSolver</span><span class="p">(</span><span class="n">_ProbabilisticLinearSolver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solver iteration of the (general) probabilistic linear solver.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="c1"># super().__init__(A=A, b=b)</span>
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+<span class="k">class</span> <span class="nc">_SymmetricMatrixSolver</span><span class="p">(</span><span class="n">_ProbabilisticLinearSolver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solver iteration of the symmetric probabilistic linear solver.</span>
+
+<span class="sd">    Implements the solve iteration of the symmetric matrix-based probabilistic linear solver [1]_ [2]_ [3]_.</span>
+
+<span class="sd">    .. [1] Wenger, J. and Hennig, P., Probabilistic Linear Solvers for Machine Learning, 2020</span>
+<span class="sd">    .. [2] Hennig, P., Probabilistic Interpretation of Linear Solvers, *SIAM Journal on Optimization*, 2015, 25, 234-260</span>
+<span class="sd">    .. [3] Hennig, P. and Osborne M. A., *Probabilistic Numerics. Computation as Machine Learning*, 2020, Cambridge</span>
+<span class="sd">           University Press</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    A : array-like or LinearOperator or RandomVariable, shape=(n,n)</span>
+<span class="sd">        The square matrix or linear operator of the linear system.</span>
+<span class="sd">    b : array_like, shape=(n,) or (n, nrhs)</span>
+<span class="sd">        Right-hand side vector or matrix in :math:`A x = b`.</span>
+<span class="sd">    A_mean : array-like or LinearOperator</span>
+<span class="sd">        Mean of the prior distribution on the linear operator :math:`A`.</span>
+<span class="sd">    A_covfactor : array-like or LinearOperator</span>
+<span class="sd">        The Kronecker factor :math:`W_A` of the covariance :math:`\\operatorname{Cov}(A) = W_A \\otimes_s W_A` of</span>
+<span class="sd">        :math:`A`.</span>
+<span class="sd">    Ainv_mean : array-like or LinearOperator</span>
+<span class="sd">        Mean of the prior distribution on the linear operator :math:`A`.</span>
+<span class="sd">    Ainv_covfactor : array-like or LinearOperator</span>
+<span class="sd">        The Kronecker factor :math:`W_H` of the covariance :math:`\\operatorname{Cov}(H) = W_H \\otimes_s W_H` of</span>
+<span class="sd">        :math:`H = A^{-1}`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">A_mean</span><span class="p">,</span> <span class="n">A_covfactor</span><span class="p">,</span> <span class="n">Ainv_mean</span><span class="p">,</span> <span class="n">Ainv_covfactor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A_mean</span> <span class="o">=</span> <span class="n">A_mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A_covfactor</span> <span class="o">=</span> <span class="n">A_covfactor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span> <span class="o">=</span> <span class="n">Ainv_mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_covfactor</span> <span class="o">=</span> <span class="n">Ainv_covfactor</span>
+        <span class="c1"># TODO: call class function here which derives missing prior mean and covariance via posterior correspondence</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_mean_update_operator</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the rank 2 update term for the posterior mean of :math:`H`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        u : array-like</span>
+<span class="sd">            Update vector :math:`u_i=\\frac{W_iy_i}{y_i^{\\top}W_iy_i}`</span>
+<span class="sd">        v : array-like</span>
+<span class="sd">            Update vector :math:`v_i=\\Delta - \\frac{1}{2} u_iy_i^{\\top}\\Delta`</span>
+<span class="sd">        shape : tuple</span>
+<span class="sd">            Shape of the resulting update operator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        update : probnum.linalg.linear_operators.LinearOperator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span>
+
+        <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="o">@</span> <span class="n">M</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+            <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">matmat</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_cov_kron_fac_update_operator</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">Wy</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the rank 1 update term for the posterior covariance Kronecker factor :math:`W`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        u : array-like</span>
+<span class="sd">            Update vector :math:`u_i=\\frac{W_iy_i}{y_i^{\\top}W_iy_i}`</span>
+<span class="sd">        Wy : array-like</span>
+<span class="sd">            Update vector :math:`W_iy_i`</span>
+<span class="sd">        shape : tuple</span>
+<span class="sd">            Shape of the resulting update operator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        update : LinearOperator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Wy</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
+
+        <span class="k">def</span> <span class="nf">mm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">M</span> <span class="o">@</span> <span class="n">Wy</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">probnum</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+            <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">rmatvec</span><span class="o">=</span><span class="n">mv</span><span class="p">,</span>
+            <span class="n">matmat</span><span class="o">=</span><span class="n">mm</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="p">):</span>
+        <span class="c1"># initialization</span>
+        <span class="n">iter_</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+        <span class="n">resid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+
+        <span class="c1"># iteration with stopping criteria</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># check convergence</span>
+            <span class="n">_has_converged</span><span class="p">,</span> <span class="n">_conv_crit</span> <span class="o">=</span> <span class="n">_check_convergence</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="n">iter_</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span>
+                                                            <span class="n">resid</span><span class="o">=</span><span class="n">resid</span><span class="p">,</span> <span class="n">resid_tol</span><span class="o">=</span><span class="n">resid_tol</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">_has_converged</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># compute search direction (with implicit reorthogonalization)</span>
+            <span class="n">search_dir</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span> <span class="o">@</span> <span class="n">resid</span>
+
+            <span class="c1"># perform action and observe</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="n">search_dir</span>
+
+            <span class="c1"># compute step size</span>
+            <span class="n">step_size</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">resid</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">search_dir</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span>
+            <span class="c1"># todo: scale search_dir and obs by step-size to fulfill theory on conjugate directions?</span>
+
+            <span class="c1"># step and residual update</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">search_dir</span>
+            <span class="n">resid</span> <span class="o">=</span> <span class="n">resid</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">obs</span>
+
+            <span class="c1"># (symmetric) mean and covariance updates</span>
+            <span class="n">Wy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_covfactor</span> <span class="o">@</span> <span class="n">obs</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">search_dir</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span> <span class="o">@</span> <span class="n">obs</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">Wy</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">Wy</span><span class="p">)</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span>
+
+            <span class="c1"># rank 2 mean update (+= uv&#39; + vu&#39;)</span>
+            <span class="c1"># todo: only use linear operators if necessary (only create update operators if H is a LinearOperator)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean_update_operator</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+            <span class="c1"># rank 1 covariance kronecker factor update (-= u(Wy)&#39;)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_covfactor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ainv_covfactor</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cov_kron_fac_update_operator</span><span class="p">(</span><span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">Wy</span><span class="o">=</span><span class="n">Wy</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+            <span class="c1"># iteration increment</span>
+            <span class="n">iter_</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Create output random variables</span>
+        <span class="n">_A</span> <span class="o">=</span> <span class="n">probability</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">A_mean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">A_covfactor</span><span class="p">)</span>
+        <span class="n">_Ainv</span> <span class="o">=</span> <span class="n">probability</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Ainv_mean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Ainv_covfactor</span><span class="p">)</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">_Ainv</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>  <span class="c1"># induced distribution on x via Ainv</span>
+
+        <span class="c1"># Log information on solution</span>
+        <span class="c1"># TODO: matrix condition from solver (see scipy solvers)</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;iter&quot;</span><span class="p">:</span> <span class="n">iter_</span><span class="p">,</span>
+            <span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">maxiter</span><span class="p">,</span>
+            <span class="s2">&quot;resid&quot;</span><span class="p">:</span> <span class="n">resid</span><span class="p">,</span>
+            <span class="s2">&quot;conv_crit&quot;</span><span class="p">:</span> <span class="n">_conv_crit</span><span class="p">,</span>
+            <span class="s2">&quot;matrix_cond&quot;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">_A</span><span class="p">,</span> <span class="n">_Ainv</span><span class="p">,</span> <span class="n">_x</span><span class="p">,</span> <span class="n">info</span>
+
+
+<span class="k">class</span> <span class="nc">_BayesCG</span><span class="p">(</span><span class="n">_ProbabilisticLinearSolver</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solver iteration of BayesCG.</span>
+
+<span class="sd">    Implements the solve iteration of BayesCG [1]_ [2]_.</span>
+
+<span class="sd">    .. [1] Cockayne, J. et al., A Bayesian Conjugate Gradient Method, *Bayesian Analysis*, 2019, 14, 937-1012</span>
+<span class="sd">    .. [2] Bartels, S. et al., Probabilistic Linear Solvers: A Unifying View, *Statistics and Computing*, 2019</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">resid_tol</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 </pre></div>
 
     </div>

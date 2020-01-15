@@ -158,25 +158,23 @@
 <p>where <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{n}\)</span>. They return a probability measure
 which quantifies uncertainty in the output arising from finite computational resources.</p>
 <p>This solver can take prior information either on the linear operator <span class="math notranslate nohighlight">\(A\)</span> or its inverse <span class="math notranslate nohighlight">\(H=A^{-1}\)</span> and
-outputs a posterior belief over <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(H\)</span>. For a specific class of priors this recovers the iterates of
-the conjugate gradient method <a class="footnote-reference brackets" href="#id5" id="id1">1</a> as the posterior mean. This code implements the method described in <a class="footnote-reference brackets" href="#id6" id="id2">2</a>, <a class="footnote-reference brackets" href="#id7" id="id3">3</a>
-and <a class="footnote-reference brackets" href="#id8" id="id4">4</a>.</p>
+outputs a posterior belief over <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(H\)</span>. This code implements the method described in <a class="footnote-reference brackets" href="#id4" id="id1">1</a>, <a class="footnote-reference brackets" href="#id5" id="id2">2</a>
+and <a class="footnote-reference brackets" href="#id6" id="id3">3</a>.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Hestenes, M. R. and Stiefel E., Methods of Conjugate Gradients for Solving Linear Systems,
-<em>Journal of Research of the National Bureau of Standards</em>, 1952, 49 (6): 409</p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Wenger, J. and Hennig, P., Probabilistic Linear Solvers for Machine Learning, 2020</p>
 </dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Hennig, P., Probabilistic Interpretation of Linear Solvers, <em>SIAM Journal on Optimization</em>, 2015, 25, 234-260</p>
 </dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p>Hennig, P. and Osborne M. A., <em>Probabilistic Numerics. Computation as Machine Learning</em>, 2020, Cambridge
 University Press</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>For a specific class of priors this recovers the iterates of the conjugate gradient method as the posterior mean of
+the induced distribution on <span class="math notranslate nohighlight">\(x=Hb\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -208,6 +206,8 @@ chosen automatically.</p></li>
 </tr>
 </tbody>
 </table>
+<p>If <code class="docutils literal notranslate"><span class="pre">A</span></code> or <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> are random variables, then the encoded assumptions in the distribution are used
+automatically.</p>
 </p></li>
 <li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of iterations. Defaults to <span class="math notranslate nohighlight">\(10n\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
 <li><p><strong>resid_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Residual tolerance. If <span class="math notranslate nohighlight">\(\lVert r_i \rVert = \lVert Ax_i - b \rVert &lt; \text{tol}\)</span>, the iteration

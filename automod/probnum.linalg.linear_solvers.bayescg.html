@@ -150,7 +150,7 @@
 <h1>bayescg<a class="headerlink" href="#bayescg" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="probnum.linalg.linear_solvers.bayescg">
-<code class="sig-prename descclassname">probnum.linalg.linear_solvers.</code><code class="sig-name descname">bayescg</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">x0=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#bayescg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.bayescg" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">probnum.linalg.linear_solvers.</code><code class="sig-name descname">bayescg</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">x0=None</em>, <em class="sig-param">maxiter=None</em>, <em class="sig-param">resid_tol=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#bayescg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.bayescg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Conjugate Gradients using prior information on the solution of the linear system.</p>
 <p>In the setting where <span class="math notranslate nohighlight">\(A\)</span> is a symmetric positive-definite matrix, this solver takes prior information
 on the solution and outputs a posterior belief over <span class="math notranslate nohighlight">\(x\)</span>. This code implements the
@@ -172,6 +172,9 @@ method described in <a class="footnote-reference brackets" href="#id3" id="id1">
 chosen automatically.</p></li>
 <li><p><strong>b</strong> (<em>array_like</em><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>(</em><em>n</em><em>, </em><em>nrhs</em><em>)</em>) – Right-hand side vector or matrix in <span class="math notranslate nohighlight">\(A x = b\)</span>.</p></li>
 <li><p><strong>x0</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>or</em><em> (</em><em>n</em><em>, </em><em>nrhs</em><em>)</em>) – Prior belief over the solution of the linear system.</p></li>
+<li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of iterations. Defaults to <span class="math notranslate nohighlight">\(10n\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><strong>resid_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Residual tolerance. If <span class="math notranslate nohighlight">\(\lVert r_i \rVert = \lVert Ax_i - b \rVert &lt; \text{tol}\)</span>, the iteration
+terminates.</p></li>
 </ul>
 </dd>
 </dl>
