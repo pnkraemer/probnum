@@ -151,7 +151,7 @@
 <span class="kn">import</span> <span class="nn">scipy.sparse</span>
 <span class="kn">import</span> <span class="nn">probnum.probability</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;atleast_1d&quot;</span><span class="p">,</span> <span class="s2">&quot;atleast_2d&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;atleast_1d&quot;</span><span class="p">,</span> <span class="s2">&quot;atleast_2d&quot;</span><span class="p">,</span> <span class="s2">&quot;as_colvec&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="atleast_1d"><a class="viewcode-back" href="../../automod/probnum.utils.atleast_1d.html#probnum.utils.atleast_1d">[docs]</a><span class="k">def</span> <span class="nf">atleast_1d</span><span class="p">(</span><span class="o">*</span><span class="n">rvs</span><span class="p">):</span>
@@ -183,7 +183,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">atleast_1d</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">rv</span>
         <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -200,7 +200,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    arys1, arys2, ... : array-like or RandomVariable</span>
-<span class="sd">        One or more random variables or array-like sequences.  Non-array inputs are converted</span>
+<span class="sd">        One or more random variables or array-like sequences. Non-array inputs are converted</span>
 <span class="sd">        to arrays or random variables. Arrays or random variables that already have two or more dimensions are</span>
 <span class="sd">        preserved.</span>
 
@@ -220,7 +220,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">probnum</span><span class="o">.</span><span class="n">probability</span><span class="o">.</span><span class="n">RandomVariable</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">atleast_2d</span><span class="p">(</span><span class="n">rv</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">rv</span>
         <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -228,6 +228,28 @@
         <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">res</span></div>
+
+
+<div class="viewcode-block" id="as_colvec"><a class="viewcode-back" href="../../automod/probnum.utils.as_colvec.html#probnum.utils.as_colvec">[docs]</a><span class="k">def</span> <span class="nf">as_colvec</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transform the given array to a row vector.</span>
+
+<span class="sd">    Given a vector of dimension (n,) return an array with dimensions (n, 1) instead. Higher-dimensional arrays are not</span>
+<span class="sd">    changed.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arr : np.ndarray</span>
+<span class="sd">        Vector or array to be viewed as a column vector.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    arr2d : np.ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">arr</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">arr</span></div>
 </pre></div>
 
     </div>

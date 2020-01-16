@@ -150,16 +150,17 @@
 <h1>problinsolve<a class="headerlink" href="#problinsolve" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="probnum.linalg.linear_solvers.problinsolve">
-<code class="sig-prename descclassname">probnum.linalg.linear_solvers.</code><code class="sig-name descname">problinsolve</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">Ainv=None</em>, <em class="sig-param">x0=None</em>, <em class="sig-param">assume_A='sympos'</em>, <em class="sig-param">maxiter=None</em>, <em class="sig-param">resid_tol=1e-06</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#problinsolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.problinsolve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">probnum.linalg.linear_solvers.</code><code class="sig-name descname">problinsolve</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">b</em>, <em class="sig-param">A0=None</em>, <em class="sig-param">Ainv0=None</em>, <em class="sig-param">x0=None</em>, <em class="sig-param">assume_A='sympos'</em>, <em class="sig-param">maxiter=None</em>, <em class="sig-param">resid_tol=1e-06</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_solvers.html#problinsolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_solvers.problinsolve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Infer a solution to the linear system <span class="math notranslate nohighlight">\(A x = b\)</span> in a Bayesian framework.</p>
 <p>Probabilistic linear solvers infer solutions to problems of the form</p>
 <div class="math notranslate nohighlight">
 \[Ax=b,\]</div>
 <p>where <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{n}\)</span>. They return a probability measure
-which quantifies uncertainty in the output arising from finite computational resources.</p>
-<p>This solver can take prior information either on the linear operator <span class="math notranslate nohighlight">\(A\)</span> or its inverse <span class="math notranslate nohighlight">\(H=A^{-1}\)</span> and
-outputs a posterior belief over <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(H\)</span>. This code implements the method described in <a class="footnote-reference brackets" href="#id4" id="id1">1</a>, <a class="footnote-reference brackets" href="#id5" id="id2">2</a>
-and <a class="footnote-reference brackets" href="#id6" id="id3">3</a>.</p>
+which quantifies uncertainty in the output arising from finite computational resources. This solver can take prior
+information either on the linear operator <span class="math notranslate nohighlight">\(A\)</span> or its inverse <span class="math notranslate nohighlight">\(H=A^{-1}\)</span> in
+the form of a random variable <code class="docutils literal notranslate"><span class="pre">A0</span></code> or <code class="docutils literal notranslate"><span class="pre">Ainv0</span></code> and outputs a posterior belief over <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(H\)</span>. This
+code implements the method described in <a class="footnote-reference brackets" href="#id4" id="id1">1</a>, <a class="footnote-reference brackets" href="#id5" id="id2">2</a> and <a class="footnote-reference brackets" href="#id6" id="id3">3</a>.</p>
+<p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Wenger, J. and Hennig, P., Probabilistic Linear Solvers for Machine Learning, 2020</p>
@@ -173,18 +174,18 @@ University Press</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>For a specific class of priors this recovers the iterates of the conjugate gradient method as the posterior mean of
-the induced distribution on <span class="math notranslate nohighlight">\(x=Hb\)</span>.</p>
+<p>For a specific class of priors the probabilistic linear solver recovers the iterates of the conjugate gradient
+method as the posterior mean of the induced distribution on <span class="math notranslate nohighlight">\(x=Hb\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em>) – A square matrix or linear operator. A prior distribution can be provided as a
-<a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a>. If an array or linear operator is given, a prior distribution is
-chosen automatically.</p></li>
+<li><p><strong>A</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em>) – A square matrix or linear operator.</p></li>
 <li><p><strong>b</strong> (<em>array_like</em><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>(</em><em>n</em><em>, </em><em>nrhs</em><em>)</em>) – Right-hand side vector or matrix in <span class="math notranslate nohighlight">\(A x = b\)</span>.</p></li>
-<li><p><strong>Ainv</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em>) – Optional. A square matrix, linear operator or random variable representing the prior belief over the inverse
-<span class="math notranslate nohighlight">\(H=A^{-1}\)</span>.</p></li>
-<li><p><strong>x0</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>(</em><em>n</em><em>, </em><em>nrhs</em><em>)</em>) – Optional. Initial guess for the solution of the linear system. Will be ignored if <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> is given.</p></li>
+<li><p><strong>A0</strong> (<a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em><em>, </em><em>optional</em>) – Prior belief over the linear operator <span class="math notranslate nohighlight">\(A\)</span> provided as a <a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">RandomVariable</span></code></a>.</p></li>
+<li><p><strong>Ainv0</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a><em> or </em><a class="reference internal" href="probnum.probability.RandomVariable.html#probnum.probability.RandomVariable" title="probnum.probability.RandomVariable"><em>RandomVariable</em></a><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>n</em><em>)</em><em>, </em><em>optional</em>) – A square matrix, linear operator or random variable representing the prior belief over the inverse
+<span class="math notranslate nohighlight">\(H=A^{-1}\)</span>. This can be viewed as taking the form of a pre-conditioner. If an array or linear operator is
+given, a prior distribution is chosen automatically.</p></li>
+<li><p><strong>x0</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>(</em><em>n</em><em>,</em><em>) or </em><em>(</em><em>n</em><em>, </em><em>nrhs</em><em>)</em><em>, </em><em>optional</em>) – Initial guess for the solution of the linear system. Will be ignored if <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> is given.</p></li>
 <li><p><strong>assume_A</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>default=&quot;sympos&quot;</em>) – <p>Assumptions on the matrix, which can influence solver choice or behavior. The available options are</p>
 <table class="docutils align-default">
 <colgroup>
@@ -209,8 +210,8 @@ chosen automatically.</p></li>
 <p>If <code class="docutils literal notranslate"><span class="pre">A</span></code> or <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> are random variables, then the encoded assumptions in the distribution are used
 automatically.</p>
 </p></li>
-<li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Maximum number of iterations. Defaults to <span class="math notranslate nohighlight">\(10n\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
-<li><p><strong>resid_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Residual tolerance. If <span class="math notranslate nohighlight">\(\lVert r_i \rVert = \lVert Ax_i - b \rVert &lt; \text{tol}\)</span>, the iteration
+<li><p><strong>maxiter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of iterations. Defaults to <span class="math notranslate nohighlight">\(10n\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the dimension of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><strong>resid_tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – Residual tolerance. If <span class="math notranslate nohighlight">\(\lVert r_i \rVert = \lVert Ax_i - b \rVert &lt; \text{tol}\)</span>, the iteration
 terminates.</p></li>
 </ul>
 </dd>
@@ -225,9 +226,9 @@ terminates.</p></li>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – If size mismatches detected or input <code class="docutils literal notranslate"><span class="pre">A</span></code> is not square.</p></li>
-<li><p><strong>LinAlgError</strong> – If the matrix is singular.</p></li>
-<li><p><strong>LinAlgWarning</strong> – If an ill-conditioned input a is detected.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.8)"><strong>ValueError</strong></a> – If size mismatches detected or input matrices are not square.</p></li>
+<li><p><strong>LinAlgError</strong> – If the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> is singular.</p></li>
+<li><p><strong>LinAlgWarning</strong> – If an ill-conditioned input <code class="docutils literal notranslate"><span class="pre">A</span></code> is detected.</p></li>
 </ul>
 </dd>
 </dl>
@@ -239,6 +240,17 @@ terminates.</p></li>
 </dl>
 </div>
 <p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">problinsolve</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;iter&quot;</span><span class="p">])</span>
+<span class="go">10</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

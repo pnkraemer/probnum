@@ -193,15 +193,15 @@ compatibility.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.linalg.linear_operators</span> <span class="kn">import</span> <span class="n">LinearOperator</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">mv</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 <span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">LinearOperator</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">LinearOperator</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">matvec</span><span class="o">=</span><span class="n">mv</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
 <span class="go">&lt;2x2 _CustomLinearOperator with dtype=float64&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">array([ 2.,  3.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">array([ 2.,  3.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]))</span>
+<span class="go">array([0., 6.])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">array([1., 3.])</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes Summary</p>
@@ -232,8 +232,20 @@ compatibility.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.adjoint" title="probnum.linalg.linear_operators.LinearOperator.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
 <td><p>Hermitian adjoint.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.cond" title="probnum.linalg.linear_operators.LinearOperator.cond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cond</span></code></a>([p])</p></td>
+<td><p>Compute the condition number of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.det" title="probnum.linalg.linear_operators.LinearOperator.det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">det</span></code></a>()</p></td>
+<td><p>Determinant of the linear operator.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.dot" title="probnum.linalg.linear_operators.LinearOperator.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
 <td><p>Matrix-matrix or matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.eigvals" title="probnum.linalg.linear_operators.LinearOperator.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
+<td><p>Eigenvalue spectrum of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.logabsdet" title="probnum.linalg.linear_operators.LinearOperator.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
+<td><p>Log absolute determinant of the linear operator.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.matmat" title="probnum.linalg.linear_operators.LinearOperator.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
 <td><p>Matrix-matrix multiplication.</p></td>
@@ -241,14 +253,20 @@ compatibility.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.matvec" title="probnum.linalg.linear_operators.LinearOperator.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
 <td><p>Matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatmat" title="probnum.linalg.linear_operators.LinearOperator.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rank" title="probnum.linalg.linear_operators.LinearOperator.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
+<td><p>Rank of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatmat" title="probnum.linalg.linear_operators.LinearOperator.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
 <td><p>Adjoint matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatvec" title="probnum.linalg.linear_operators.LinearOperator.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatvec" title="probnum.linalg.linear_operators.LinearOperator.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.todense" title="probnum.linalg.linear_operators.LinearOperator.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.todense" title="probnum.linalg.linear_operators.LinearOperator.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
 <td><p>Dense matrix representation of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.trace" title="probnum.linalg.linear_operators.LinearOperator.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
+<td><p>Trace of the linear operator.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.transpose" title="probnum.linalg.linear_operators.LinearOperator.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
@@ -307,6 +325,60 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.cond">
+<code class="sig-name descname">cond</code><span class="sig-paren">(</span><em class="sig-param">p=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.cond"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.cond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the condition number of the linear operator.</p>
+<p>The condition number of the linear operator with respect to the <code class="docutils literal notranslate"><span class="pre">p</span></code> norm. It measures how much the solution
+<span class="math notranslate nohighlight">\(x\)</span> of the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> changes with respect to small changes in <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>{None</em><em>, </em><em>1</em><em>, </em><em>, </em><em>2</em><em>, </em><em>, </em><em>inf</em><em>, </em><em>'fro'}</em><em>, </em><em>optional</em>) – <p>Order of the norm:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>p</p></th>
+<th class="head"><p>norm for matrices</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>2-norm, computed directly via singular value decomposition</p></td>
+</tr>
+<tr class="row-odd"><td><p>’fro’</p></td>
+<td><p>Frobenius norm</p></td>
+</tr>
+<tr class="row-even"><td><p>np.inf</p></td>
+<td><p>max(sum(abs(x), axis=1))</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>max(sum(abs(x), axis=0))</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>2-norm (largest sing. value)</p></td>
+</tr>
+</tbody>
+</table>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cond</strong> – The condition number of the linear operator. May be infinite.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{float, inf}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.det">
+<code class="sig-name descname">det</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.det"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.det" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determinant of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="probnum.linalg.linear_operators.LinearOperator.dot">
 <code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.dot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-matrix or matrix-vector multiplication.
@@ -321,6 +393,18 @@ the result of applying this linear operator on x.</p>
 <dd class="field-even"><p>array</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.eigvals">
+<code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.eigvals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.eigvals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Eigenvalue spectrum of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.logabsdet">
+<code class="sig-name descname">logabsdet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.logabsdet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.logabsdet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log absolute determinant of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
@@ -367,6 +451,12 @@ on the type and shape of the x argument.</p>
 <p class="rubric">Notes</p>
 <p>This matvec wraps the user-specified matvec routine or overridden
 _matvec method to ensure that y has the correct shape and type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rank of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
@@ -427,6 +517,12 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
 <dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.trace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trace of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">

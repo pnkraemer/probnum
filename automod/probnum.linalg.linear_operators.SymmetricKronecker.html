@@ -161,6 +161,7 @@
 \dots, \sqrt{2}X_{2n}, \dots X_{nn})^{\top}\)</span> is the (row-wise, normalized) symmetric stacking operator. The
 implementation is based on the relationship <span class="math notranslate nohighlight">\(Q^\top \operatorname{svec}(X) = \operatorname{vec}(X)\)</span> with an
 orthonormal matrix <span class="math notranslate nohighlight">\(Q\)</span> <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+<p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Van Loan, C. F., The ubiquitous Kronecker product, <em>Journal of Computational and Applied Mathematics</em>, 2000,
@@ -209,8 +210,20 @@ orthonormal matrix <span class="math notranslate nohighlight">\(Q\)</span> <a cl
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.adjoint" title="probnum.linalg.linear_operators.SymmetricKronecker.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
 <td><p>Hermitian adjoint.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.cond" title="probnum.linalg.linear_operators.SymmetricKronecker.cond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cond</span></code></a>([p])</p></td>
+<td><p>Compute the condition number of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.det" title="probnum.linalg.linear_operators.SymmetricKronecker.det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">det</span></code></a>()</p></td>
+<td><p>Determinant of the linear operator.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.dot" title="probnum.linalg.linear_operators.SymmetricKronecker.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
 <td><p>Matrix-matrix or matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.eigvals" title="probnum.linalg.linear_operators.SymmetricKronecker.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
+<td><p>Eigenvalue spectrum of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.logabsdet" title="probnum.linalg.linear_operators.SymmetricKronecker.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
+<td><p>Log absolute determinant of the linear operator.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.matmat" title="probnum.linalg.linear_operators.SymmetricKronecker.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
 <td><p>Matrix-matrix multiplication.</p></td>
@@ -218,14 +231,20 @@ orthonormal matrix <span class="math notranslate nohighlight">\(Q\)</span> <a cl
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.matvec" title="probnum.linalg.linear_operators.SymmetricKronecker.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
 <td><p>Matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatmat" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rank" title="probnum.linalg.linear_operators.SymmetricKronecker.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
+<td><p>Rank of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatmat" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
 <td><p>Adjoint matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatvec" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatvec" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.todense" title="probnum.linalg.linear_operators.SymmetricKronecker.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
-<td><p>Dense matrix representation of the linear operator.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.todense" title="probnum.linalg.linear_operators.SymmetricKronecker.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<td><p>Dense representation of the symmetric Kronecker product</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.trace" title="probnum.linalg.linear_operators.SymmetricKronecker.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
+<td><p>Trace of the linear operator.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.transpose" title="probnum.linalg.linear_operators.SymmetricKronecker.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
@@ -284,6 +303,60 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.cond">
+<code class="sig-name descname">cond</code><span class="sig-paren">(</span><em class="sig-param">p=None</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.cond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the condition number of the linear operator.</p>
+<p>The condition number of the linear operator with respect to the <code class="docutils literal notranslate"><span class="pre">p</span></code> norm. It measures how much the solution
+<span class="math notranslate nohighlight">\(x\)</span> of the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> changes with respect to small changes in <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>{None</em><em>, </em><em>1</em><em>, </em><em>, </em><em>2</em><em>, </em><em>, </em><em>inf</em><em>, </em><em>'fro'}</em><em>, </em><em>optional</em>) – <p>Order of the norm:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>p</p></th>
+<th class="head"><p>norm for matrices</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>2-norm, computed directly via singular value decomposition</p></td>
+</tr>
+<tr class="row-odd"><td><p>’fro’</p></td>
+<td><p>Frobenius norm</p></td>
+</tr>
+<tr class="row-even"><td><p>np.inf</p></td>
+<td><p>max(sum(abs(x), axis=1))</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>max(sum(abs(x), axis=0))</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>2-norm (largest sing. value)</p></td>
+</tr>
+</tbody>
+</table>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cond</strong> – The condition number of the linear operator. May be infinite.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{float, inf}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.det">
+<code class="sig-name descname">det</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.det" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determinant of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="probnum.linalg.linear_operators.SymmetricKronecker.dot">
 <code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-matrix or matrix-vector multiplication.
@@ -298,6 +371,18 @@ the result of applying this linear operator on x.</p>
 <dd class="field-even"><p>array</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.eigvals">
+<code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.eigvals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Eigenvalue spectrum of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.logabsdet">
+<code class="sig-name descname">logabsdet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.logabsdet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log absolute determinant of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
@@ -347,6 +432,12 @@ _matvec method to ensure that y has the correct shape and type.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rank of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="probnum.linalg.linear_operators.SymmetricKronecker.rmatmat">
 <code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatmat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adjoint matrix-matrix multiplication.</p>
@@ -393,17 +484,14 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
 
 <dl class="method">
 <dt id="probnum.linalg.linear_operators.SymmetricKronecker.todense">
-<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.todense" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dense matrix representation of the linear operator.</p>
-<p>This method can be computationally very costly depending on the shape of the linear operator. Use with caution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>matrix</strong> – Matrix representation of the linear operator.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
+<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#SymmetricKronecker.todense"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.todense" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dense representation of the symmetric Kronecker product</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trace of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">

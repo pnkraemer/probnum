@@ -350,7 +350,7 @@ div.rendered_html tbody tr:hover {
 <h1>Linear Systems<a class="headerlink" href="#Linear-Systems" title="Permalink to this headline">¶</a></h1>
 <p>Solving linear systems is arguably one of the most fundamental computation in numerics and statistics. Many problems can be reduced to the solution of one or many (potentially huge) linear systems.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -364,11 +364,13 @@ div.rendered_html tbody tr:hover {
 <span class="c1">#plt.rcParams[&#39;figure.figsize&#39;] = [9.5, 6]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.usetex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.latex.preamble&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{amsfonts}</span><span class="s1">&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<p>We begin by creating a random linear system with a symmetric positive definite matrix.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -376,28 +378,14 @@ div.rendered_html tbody tr:hover {
 <span class="kn">from</span> <span class="nn">probnum.linalg</span> <span class="kn">import</span> <span class="n">problinsolve</span>
 <span class="kn">from</span> <span class="nn">probnum.linalg.linear_operators</span> <span class="kn">import</span> <span class="n">SymmetricKronecker</span>
 
-<span class="c1"># Linear system</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Symmetrize and make diagonally dominant</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="Prior-Information">
-<h2>Prior Information<a class="headerlink" href="#Prior-Information" title="Permalink to this headline">¶</a></h2>
-<p>Prior information is encoded in a random variable. If the prior distribution has a certain covariance structure, this is exploited by the solver by using the matrix-vector product defined by the <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code>.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span><span class="p">,</span> <span class="n">Normal</span>
+<span class="c1"># Random linear system</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># Symmetrize and make diagonally dominant</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Prior distribution on A</span>
-<span class="n">covA</span> <span class="o">=</span> <span class="n">SymmetricKronecker</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
-                   <span class="n">dtype</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
-                   <span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">covA</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix condition: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -406,45 +394,114 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-7-d3957f55c5b3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> A = RandomVariable(shape=A.shape,
-<span class="ansi-green-intense-fg ansi-bold">      6</span>                    dtype<span class="ansi-blue-fg">=</span>A<span class="ansi-blue-fg">.</span>dtype<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">                    distribution=Normal(mean=A, cov=covA))
-</span>
-<span class="ansi-green-fg">~/.virtualenvs/probnum/lib/python3.7/site-packages/probnum/probability.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, mean, cov, random_state)</span>
-<span class="ansi-green-intense-fg ansi-bold">    988</span>                 super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>parameters<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#34;mean&#34;</span><span class="ansi-blue-fg">:</span> mean<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;cov&#34;</span><span class="ansi-blue-fg">:</span> cov<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> dtype<span class="ansi-blue-fg">=</span>_dtype<span class="ansi-blue-fg">,</span> random_state<span class="ansi-blue-fg">=</span>random_state<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    989</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 990</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Shape mismatch of mean and covariance.&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    991</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    992</span>             raise ValueError(
-
-<span class="ansi-red-fg">ValueError</span>: Shape mismatch of mean and covariance.
+Matrix condition: 441.12
 </pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Plot</span>
+<span class="n">matdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$A$&quot;</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="s2">&quot;$b$&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">}</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">matdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">matdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">mat</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">matdict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_linear_systems_4_0.svg" src="../_images/notebooks_linear_systems_4_0.svg" /></div>
+</div>
+<div class="section" id="Prior-Information">
+<h2>Prior Information<a class="headerlink" href="#Prior-Information" title="Permalink to this headline">¶</a></h2>
+<p>Prior information is encoded in a random variable. If the prior distribution has a certain covariance structure, this is exploited by the solver by using the matrix-vector product defined by the <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span><span class="p">,</span> <span class="n">Normal</span>
+
+<span class="c1"># Prior distribution on A</span>
+<span class="n">covA</span> <span class="o">=</span> <span class="n">SymmetricKronecker</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">Ainv0</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                       <span class="n">dtype</span><span class="o">=</span><span class="n">A</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                       <span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">covA</span><span class="p">))</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="Probabilistic-Linear-Solvers">
 <h2>Probabilistic Linear Solvers<a class="headerlink" href="#Probabilistic-Linear-Solvers" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Probabilistic linear solver</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">problinsolve</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">Ahat</span><span class="p">,</span> <span class="n">Ainv</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">problinsolve</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">Ainv0</span><span class="o">=</span><span class="n">Ainv0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
 </div>
-<div class="section" id="Solution-with-Uncertainty">
-<h2>Solution with Uncertainty<a class="headerlink" href="#Solution-with-Uncertainty" title="Permalink to this headline">¶</a></h2>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;iter&#39;: 22, &#39;maxiter&#39;: 250, &#39;resid_l2norm&#39;: 3.842874523928107e-07, &#39;conv_crit&#39;: &#39;resid&#39;, &#39;matrix_cond&#39;: None}
+</pre></div></div>
+</div>
+<p>We plot means and a few samples from the resulting distributions on <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(H=A^{-1}\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Draw samples</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">Ahat_samples</span> <span class="o">=</span> <span class="n">Ahat</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Ainv_samples</span> <span class="o">=</span> <span class="n">Ainv</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="c1"># Plot</span>
+<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(A^{-1})A$&quot;</span> <span class="p">:</span> <span class="n">Ainv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">@</span> <span class="n">A</span><span class="p">,</span>
+          <span class="s2">&quot;$A^{-1}_1A$&quot;</span> <span class="p">:</span> <span class="n">Ainv_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">@</span> <span class="n">A</span><span class="p">,</span> <span class="s2">&quot;$A^{-1}_2A$&quot;</span> <span class="p">:</span> <span class="n">Ainv_samples</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">A</span><span class="p">,</span>
+          <span class="s2">&quot;$A^{-1}_3A$&quot;</span> <span class="p">:</span> <span class="n">Ainv_samples</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">@</span> <span class="n">A</span><span class="p">}</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">rv</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_linear_systems_10_0.svg" src="../_images/notebooks_linear_systems_10_0.svg" /></div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Plot resulting distribution on x, A and Ainv</span>
+<span></span>
 </pre></div>
 </div>
 </div>
