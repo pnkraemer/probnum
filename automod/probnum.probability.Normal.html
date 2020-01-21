@@ -150,7 +150,7 @@
 <h1>Normal<a class="headerlink" href="#normal" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="probnum.probability.Normal">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Normal</code><span class="sig-paren">(</span><em class="sig-param">mean=0</em>, <em class="sig-param">cov=1</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">probnum.probability.</code><code class="sig-name descname">Normal</code><span class="sig-paren">(</span><em class="sig-param">mean=0.0</em>, <em class="sig-param">cov=1.0</em>, <em class="sig-param">random_state=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="probnum.probability.Distribution.html#probnum.probability.Distribution" title="probnum.probability.Distribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.probability.Distribution</span></code></a></p>
 <p>The (multi-variate) normal distribution.</p>
 <p>The Gaussian distribution is ubiquitous in probability theory, since it is the final and stable or equilibrium
@@ -161,8 +161,8 @@ distribution is also attractive from a numerical point of view as it is maintain
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mean</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – Mean of the normal distribution.</p></li>
-<li><p><strong>cov</strong> (<em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – (Co-)variance of the normal distribution.</p></li>
+<li><p><strong>mean</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – Mean of the normal distribution.</p></li>
+<li><p><strong>cov</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array-like</em><em> or </em><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – (Co-)variance of the normal distribution.</p></li>
 <li><p><strong>random_state</strong> (None or int or <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomState</span></code> instance, optional) – This parameter defines the RandomState object to use for drawing
 realizations from this distribution.
 If None (or np.random), the global np.random state is used.
@@ -180,8 +180,8 @@ Default is None.</p></li>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">Normal</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span><span class="o">.</span><span class="n">parameters</span>
 <span class="go">{&#39;mean&#39;: 0.0, &#39;cov&#39;: 4.0}</span>
 </pre></div>
@@ -214,31 +214,34 @@ Default is None.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.cdf" title="probnum.probability.Normal.cdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cdf</span></code></a>(x)</p></td>
 <td><p>Cumulative distribution function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.logcdf" title="probnum.probability.Normal.logcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logcdf</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.cov" title="probnum.probability.Normal.cov"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cov</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.logcdf" title="probnum.probability.Normal.logcdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logcdf</span></code></a>(x)</p></td>
 <td><p>Log-cumulative distribution function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.logpdf" title="probnum.probability.Normal.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.logpdf" title="probnum.probability.Normal.logpdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logpdf</span></code></a>(x)</p></td>
 <td><p>Natural logarithm of the probability density function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.mean" title="probnum.probability.Normal.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.mean" title="probnum.probability.Normal.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code></a>()</p></td>
 <td><p>Mean <span class="math notranslate nohighlight">\(\mathbb{E}(X)\)</span> of the distribution.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.median" title="probnum.probability.Normal.median"><code class="xref py py-obj docutils literal notranslate"><span class="pre">median</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.median" title="probnum.probability.Normal.median"><code class="xref py py-obj docutils literal notranslate"><span class="pre">median</span></code></a>()</p></td>
 <td><p>Median of the distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.pdf" title="probnum.probability.Normal.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.pdf" title="probnum.probability.Normal.pdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pdf</span></code></a>(x)</p></td>
 <td><p>Probability density or mass function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.reshape" title="probnum.probability.Normal.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(shape)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.reshape" title="probnum.probability.Normal.reshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reshape</span></code></a>(shape)</p></td>
 <td><p>Give a new shape to (realizations of) this distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.sample" title="probnum.probability.Normal.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([size])</p></td>
 <td><p>Returns realizations from the associated random variable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.std" title="probnum.probability.Normal.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.std" title="probnum.probability.Normal.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>()</p></td>
 <td><p>Standard deviation of the distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.probability.Normal.var" title="probnum.probability.Normal.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.probability.Normal.var" title="probnum.probability.Normal.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>()</p></td>
 <td><p>Variance <span class="math notranslate nohighlight">\(\operatorname{Var}(X) = \mathbb{E}((X-\mathbb{E}(X))^2)\)</span> of the distribution.</p></td>
 </tr>
 </tbody>
@@ -270,7 +273,7 @@ If integer, it is used to seed the local <code class="xref py py-class docutils 
 <p class="rubric">Methods Documentation</p>
 <dl class="method">
 <dt id="probnum.probability.Normal.cdf">
-<code class="sig-name descname">cdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.cdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.cdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.cdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cumulative distribution function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -286,8 +289,13 @@ If integer, it is used to seed the local <code class="xref py py-class docutils 
 </dd></dl>
 
 <dl class="method">
+<dt id="probnum.probability.Normal.cov">
+<code class="sig-name descname">cov</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.cov"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="probnum.probability.Normal.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.logcdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log-cumulative distribution function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -304,7 +312,7 @@ If integer, it is used to seed the local <code class="xref py py-class docutils 
 
 <dl class="method">
 <dt id="probnum.probability.Normal.logpdf">
-<code class="sig-name descname">logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.logpdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.logpdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Natural logarithm of the probability density function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -349,7 +357,7 @@ If integer, it is used to seed the local <code class="xref py py-class docutils 
 
 <dl class="method">
 <dt id="probnum.probability.Normal.pdf">
-<code class="sig-name descname">pdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.pdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">pdf</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Probability density or mass function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -384,7 +392,7 @@ shape.</p>
 
 <dl class="method">
 <dt id="probnum.probability.Normal.sample">
-<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=()</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/probability.html#Normal.sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.probability.Normal.sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">size=()</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.probability.Normal.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns realizations from the associated random variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

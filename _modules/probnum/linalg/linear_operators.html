@@ -439,14 +439,14 @@
 
 
 <span class="k">class</span> <span class="nc">_ProductLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ProductLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Product of two linear operators.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;(Operator) Product of two linear operators.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="n">B</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">todense</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
-        <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">*</span> <span class="n">B</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">@</span> <span class="n">B</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
 
 
 <span class="k">class</span> <span class="nc">_ScaledLinearOperator</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">_ScaledLinearOperator</span><span class="p">,</span> <span class="n">LinearOperator</span><span class="p">):</span>
