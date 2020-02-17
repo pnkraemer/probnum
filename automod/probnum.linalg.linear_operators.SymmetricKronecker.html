@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="problinsolve" href="probnum.linalg.linear_solvers.problinsolve.html" />
+    <link rel="next" title="Vec" href="probnum.linalg.linear_operators.Vec.html" />
     <link rel="prev" title="Kronecker" href="probnum.linalg.linear_operators.Kronecker.html" />
 
 <meta charset='utf-8'>
@@ -150,7 +150,7 @@
 <h1>SymmetricKronecker<a class="headerlink" href="#symmetrickronecker" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="probnum.linalg.linear_operators.SymmetricKronecker">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">SymmetricKronecker</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">B</em>, <em class="sig-param">dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#SymmetricKronecker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">SymmetricKronecker</code><span class="sig-paren">(</span><em class="sig-param">A</em>, <em class="sig-param">B=None</em>, <em class="sig-param">dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#SymmetricKronecker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linalg.linear_operators.LinearOperator</span></code></a></p>
 <p>Symmetric Kronecker product of two linear operators.</p>
 <p>The symmetric Kronecker product <a class="footnote-reference brackets" href="#id3" id="id1">1</a> <span class="math notranslate nohighlight">\(A \otimes_{s} B\)</span> of two square linear operators <span class="math notranslate nohighlight">\(A\)</span> and
@@ -161,6 +161,10 @@
 \dots, \sqrt{2}X_{2n}, \dots X_{nn})^{\top}\)</span> is the (row-wise, normalized) symmetric stacking operator. The
 implementation is based on the relationship <span class="math notranslate nohighlight">\(Q^\top \operatorname{svec}(X) = \operatorname{vec}(X)\)</span> with an
 orthonormal matrix <span class="math notranslate nohighlight">\(Q\)</span> <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The symmetric Kronecker product has a symmetric matrix representation if both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are symmetric.</p>
+</div>
 <p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -171,10 +175,6 @@ orthonormal matrix <span class="math notranslate nohighlight">\(Q\)</span> <a cl
 <dd><p>De Klerk, E., Aspects of Semidefinite Programming, <em>Kluwer Academic Publishers</em>, 2002</p>
 </dd>
 </dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The symmetric Kronecker product has a symmetric matrix representation if both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are symmetric.</p>
-</div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
@@ -222,31 +222,34 @@ orthonormal matrix <span class="math notranslate nohighlight">\(Q\)</span> <a cl
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.eigvals" title="probnum.linalg.linear_operators.SymmetricKronecker.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
 <td><p>Eigenvalue spectrum of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.logabsdet" title="probnum.linalg.linear_operators.SymmetricKronecker.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.inv" title="probnum.linalg.linear_operators.SymmetricKronecker.inv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inv</span></code></a>()</p></td>
+<td><p>Inverse of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.logabsdet" title="probnum.linalg.linear_operators.SymmetricKronecker.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
 <td><p>Log absolute determinant of the linear operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.matmat" title="probnum.linalg.linear_operators.SymmetricKronecker.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.matmat" title="probnum.linalg.linear_operators.SymmetricKronecker.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
 <td><p>Matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.matvec" title="probnum.linalg.linear_operators.SymmetricKronecker.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.matvec" title="probnum.linalg.linear_operators.SymmetricKronecker.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
 <td><p>Matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rank" title="probnum.linalg.linear_operators.SymmetricKronecker.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rank" title="probnum.linalg.linear_operators.SymmetricKronecker.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
 <td><p>Rank of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatmat" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatmat" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
 <td><p>Adjoint matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatvec" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.rmatvec" title="probnum.linalg.linear_operators.SymmetricKronecker.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.todense" title="probnum.linalg.linear_operators.SymmetricKronecker.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.todense" title="probnum.linalg.linear_operators.SymmetricKronecker.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
 <td><p>Dense representation of the symmetric Kronecker product</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.trace" title="probnum.linalg.linear_operators.SymmetricKronecker.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.trace" title="probnum.linalg.linear_operators.SymmetricKronecker.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
 <td><p>Trace of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.transpose" title="probnum.linalg.linear_operators.SymmetricKronecker.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.SymmetricKronecker.transpose" title="probnum.linalg.linear_operators.SymmetricKronecker.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
@@ -377,6 +380,12 @@ the result of applying this linear operator on x.</p>
 <dt id="probnum.linalg.linear_operators.SymmetricKronecker.eigvals">
 <code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.eigvals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Eigenvalue spectrum of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.SymmetricKronecker.inv">
+<code class="sig-name descname">inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.SymmetricKronecker.inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
@@ -525,7 +534,7 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

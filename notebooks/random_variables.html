@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -212,9 +212,9 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    min-width: 5.5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -238,7 +238,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -312,6 +311,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -348,7 +368,11 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Random-Variables">
 <h1>Random Variables<a class="headerlink" href="#Random-Variables" title="Permalink to this headline">¶</a></h1>
-<p>In the following sections we illustrate some basic usage of random variables and linear operators in ProbNum. We begin by creating random variables, the primary in- and outputs of probabilistic numerical methods.</p>
+<p>In the following sections we illustrate some basic usage of <em>random variables</em> in ProbNum. Random variables are the primary in- and outputs of probabilistic numerical methods. A generic signature of such methods looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">randvar_out</span> <span class="o">=</span> <span class="n">probnum_method</span><span class="p">(</span><span class="n">randvar_in</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We begin by creating some random variables and performing basic arithmetic operations on them.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -534,8 +558,11 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Matrix-variate-Random-Variables">
 <h2>Matrix-variate Random Variables<a class="headerlink" href="#Matrix-variate-Random-Variables" title="Permalink to this headline">¶</a></h2>
+<p>Matrix-variate random variables are used to model matrices probabilistically. They often arise in the case of dependent data tabulated in the form of a matrix. In the probabilistic numerics context they arise when the inverse of a linear operator is inferred. Here, we sample from a matrix-variate normal distribution</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}  \mathsf{X} \sim \mathcal{N}(M, V \otimes W)\\with a Kronecker product covariance.\end{aligned}\end{align} \]</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -545,7 +572,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">N</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">increasing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="n">Kronecker</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="c1"># TODO: replace with symmetric Kronecker</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">Kronecker</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">cov</span><span class="p">))</span>
 
 <span class="c1"># Draw samples</span>
@@ -563,18 +590,19 @@ div.rendered_html tbody tr:hover {
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Plot of mean and samples</span>
-<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(X)$&quot;</span> <span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;$X_1$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;$X_2$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;$X_3$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
+<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(\mathsf</span><span class="si">{X}</span><span class="s2">)$&quot;</span> <span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">&quot;$\mathsf</span><span class="si">{X}</span><span class="s2">_1$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;$\mathsf</span><span class="si">{X}</span><span class="s2">_2$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+          <span class="s2">&quot;$\mathsf</span><span class="si">{X}</span><span class="s2">_3$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
 <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
 <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">rv</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rv</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
     <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -587,9 +615,9 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <img alt="../_images/notebooks_random_variables_13_0.svg" src="../_images/notebooks_random_variables_13_0.svg" /></div>
 </div>
-<p>We will now take a closer look at the parameters of the matrix-variate normal distribution, in particular its covariance. If it is Kronecker structured <span class="math notranslate nohighlight">\(V \otimes W\)</span>, then <span class="math notranslate nohighlight">\(V\)</span> denotes the covariance among rows of the matrix and <span class="math notranslate nohighlight">\(W\)</span> the covariance of the columns.</p>
+<p>We will now take a closer look at the covariance. If it has Kronecker structure <span class="math notranslate nohighlight">\(V \otimes W\)</span>, then <span class="math notranslate nohighlight">\(V\)</span> denotes the covariance among rows of the matrix and <span class="math notranslate nohighlight">\(W\)</span> the covariance of the columns.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -618,7 +646,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">cov</span> <span class="o">=</span> <span class="n">Kronecker</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
 
 <span class="c1"># Plot parameters</span>
-<span class="n">matdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(X)$&quot;</span> <span class="p">:</span> <span class="n">mean</span><span class="p">,</span> <span class="s2">&quot;$V$&quot;</span> <span class="p">:</span> <span class="n">V</span><span class="p">,</span> <span class="s2">&quot;$W$&quot;</span> <span class="p">:</span> <span class="n">W</span><span class="p">}</span>
+<span class="n">matdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(\mathsf</span><span class="si">{X}</span><span class="s2">)$&quot;</span> <span class="p">:</span> <span class="n">mean</span><span class="p">,</span> <span class="s2">&quot;$V$&quot;</span> <span class="p">:</span> <span class="n">V</span><span class="p">,</span> <span class="s2">&quot;$W$&quot;</span> <span class="p">:</span> <span class="n">W</span><span class="p">}</span>
 <span class="n">vmax</span> <span class="o">=</span> <span class="mf">1.5</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -637,7 +665,7 @@ div.rendered_html tbody tr:hover {
 <img alt="../_images/notebooks_random_variables_15_0.svg" src="../_images/notebooks_random_variables_15_0.svg" /></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -647,8 +675,8 @@ div.rendered_html tbody tr:hover {
 <span class="n">Xsamples</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
 <span class="c1"># Plot samples</span>
-<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">frac{{1}}{{N}} \sum_{i=1}^N X_i$&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Xsamples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
-          <span class="s2">&quot;$X_1$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;$X_2$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;$X_3$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
+<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">frac{{1}}{{N}} \sum_{i=1}^N \mathsf</span><span class="si">{X}</span><span class="s2">_i$&quot;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Xsamples</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+          <span class="s2">&quot;$\mathsf</span><span class="si">{X}</span><span class="s2">_1$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;$\mathsf</span><span class="si">{X}</span><span class="s2">_2$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;$\mathsf</span><span class="si">{X}</span><span class="s2">_3$&quot;</span> <span class="p">:</span> <span class="n">Xsamples</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">rv</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
@@ -665,7 +693,7 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <img alt="../_images/notebooks_random_variables_16_0.svg" src="../_images/notebooks_random_variables_16_0.svg" /></div>
 </div>
-<p>We can see how the banded structure in <span class="math notranslate nohighlight">\(V\)</span> induces samples with similar rows within a certain range.</p>
+<p>We can see how the banded structure in <span class="math notranslate nohighlight">\(V\)</span> induces samples with similar rows within a certain range given by the width of the band.</p>
 </div>
 </div>
 
@@ -689,7 +717,7 @@ div.rendered_html tbody tr:hover {
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

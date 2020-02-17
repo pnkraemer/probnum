@@ -4,23 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Diagonal &#8212; probnum  documentation</title>
+    <title>ScalarMult &#8212; probnum  documentation</title>
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kronecker" href="probnum.linalg.linear_operators.Kronecker.html" />
+    <link rel="next" title="MatrixMult" href="probnum.linalg.linear_operators.MatrixMult.html" />
     <link rel="prev" title="Identity" href="probnum.linalg.linear_operators.Identity.html" />
 
 <meta charset='utf-8'>
@@ -146,16 +146,19 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="diagonal">
-<h1>Diagonal<a class="headerlink" href="#diagonal" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="scalarmult">
+<h1>ScalarMult<a class="headerlink" href="#scalarmult" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="probnum.linalg.linear_operators.Diagonal">
-<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">Diagonal</code><span class="sig-paren">(</span><em class="sig-param">Op</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#Diagonal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">ScalarMult</code><span class="sig-paren">(</span><em class="sig-param">shape</em>, <em class="sig-param">scalar</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linalg.linear_operators.LinearOperator</span></code></a></p>
-<p>A linear operator representing the diagonal from another linear operator.</p>
+<p>A linear operator representing scalar multiplication.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>Op</strong> (<a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><em>LinearOperator</em></a>) – Linear operator of which to represent the diagonal.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – Matrix dimensions (M, N).</p></li>
+<li><p><strong>scalar</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Scalar to multiply by.</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Attributes Summary</p>
@@ -165,10 +168,10 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.H" title="probnum.linalg.linear_operators.Diagonal.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.H" title="probnum.linalg.linear_operators.ScalarMult.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
 <td><p>Hermitian adjoint.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.T" title="probnum.linalg.linear_operators.Diagonal.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.T" title="probnum.linalg.linear_operators.ScalarMult.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
@@ -180,57 +183,60 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.__call__" title="probnum.linalg.linear_operators.Diagonal.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.__call__" title="probnum.linalg.linear_operators.ScalarMult.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x)</p></td>
 <td><p>Call self as a function.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.adjoint" title="probnum.linalg.linear_operators.Diagonal.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.adjoint" title="probnum.linalg.linear_operators.ScalarMult.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
 <td><p>Hermitian adjoint.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.cond" title="probnum.linalg.linear_operators.Diagonal.cond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cond</span></code></a>([p])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.cond" title="probnum.linalg.linear_operators.ScalarMult.cond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cond</span></code></a>([p])</p></td>
 <td><p>Compute the condition number of the linear operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.det" title="probnum.linalg.linear_operators.Diagonal.det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">det</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.det" title="probnum.linalg.linear_operators.ScalarMult.det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">det</span></code></a>()</p></td>
 <td><p>Determinant of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.dot" title="probnum.linalg.linear_operators.Diagonal.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.dot" title="probnum.linalg.linear_operators.ScalarMult.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
 <td><p>Matrix-matrix or matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.eigvals" title="probnum.linalg.linear_operators.Diagonal.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.eigvals" title="probnum.linalg.linear_operators.ScalarMult.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
 <td><p>Eigenvalue spectrum of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.logabsdet" title="probnum.linalg.linear_operators.Diagonal.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.inv" title="probnum.linalg.linear_operators.ScalarMult.inv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inv</span></code></a>()</p></td>
+<td><p>Inverse of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.logabsdet" title="probnum.linalg.linear_operators.ScalarMult.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
 <td><p>Log absolute determinant of the linear operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.matmat" title="probnum.linalg.linear_operators.Diagonal.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.matmat" title="probnum.linalg.linear_operators.ScalarMult.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
 <td><p>Matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.matvec" title="probnum.linalg.linear_operators.Diagonal.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.matvec" title="probnum.linalg.linear_operators.ScalarMult.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
 <td><p>Matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.rank" title="probnum.linalg.linear_operators.Diagonal.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.rank" title="probnum.linalg.linear_operators.ScalarMult.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
 <td><p>Rank of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.rmatmat" title="probnum.linalg.linear_operators.Diagonal.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.rmatmat" title="probnum.linalg.linear_operators.ScalarMult.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
 <td><p>Adjoint matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.rmatvec" title="probnum.linalg.linear_operators.Diagonal.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.rmatvec" title="probnum.linalg.linear_operators.ScalarMult.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.todense" title="probnum.linalg.linear_operators.Diagonal.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.todense" title="probnum.linalg.linear_operators.ScalarMult.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
 <td><p>Dense matrix representation of the linear operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.trace" title="probnum.linalg.linear_operators.Diagonal.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.trace" title="probnum.linalg.linear_operators.ScalarMult.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
 <td><p>Trace of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Diagonal.transpose" title="probnum.linalg.linear_operators.Diagonal.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.ScalarMult.transpose" title="probnum.linalg.linear_operators.ScalarMult.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes Documentation</p>
 <dl class="attribute">
-<dt id="probnum.linalg.linear_operators.Diagonal.H">
-<code class="sig-name descname">H</code><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.H" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.H" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hermitian adjoint.</p>
 <p>Returns the Hermitian adjoint of self, aka the Hermitian
 conjugate or Hermitian transpose. For a complex matrix, the
@@ -247,22 +253,22 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="probnum.linalg.linear_operators.Diagonal.T">
-<code class="sig-name descname">T</code><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.T" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.T">
+<code class="sig-name descname">T</code><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.T" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transpose this linear operator.</p>
 <p>Can be abbreviated self.T instead of self.transpose().</p>
 </dd></dl>
 
 <p class="rubric">Methods Documentation</p>
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.__call__" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call self as a function.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.adjoint">
-<code class="sig-name descname">adjoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.adjoint" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.adjoint">
+<code class="sig-name descname">adjoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.adjoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Hermitian adjoint.</p>
 <p>Returns the Hermitian adjoint of self, aka the Hermitian
 conjugate or Hermitian transpose. For a complex matrix, the
@@ -279,8 +285,8 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.cond">
-<code class="sig-name descname">cond</code><span class="sig-paren">(</span><em class="sig-param">p=None</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.cond" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.cond">
+<code class="sig-name descname">cond</code><span class="sig-paren">(</span><em class="sig-param">p=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.cond"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.cond" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the condition number of the linear operator.</p>
 <p>The condition number of the linear operator with respect to the <code class="docutils literal notranslate"><span class="pre">p</span></code> norm. It measures how much the solution
 <span class="math notranslate nohighlight">\(x\)</span> of the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> changes with respect to small changes in <span class="math notranslate nohighlight">\(b\)</span>.</p>
@@ -327,14 +333,14 @@ Hermitian adjoint is equal to the conjugate transpose.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.det">
-<code class="sig-name descname">det</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.det" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.det">
+<code class="sig-name descname">det</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.det"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.det" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determinant of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.dot">
-<code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.dot" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.dot">
+<code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-matrix or matrix-vector multiplication.
 :param x: 1-d or 2-d array, representing a vector or matrix.
 :type x: array_like</p>
@@ -350,20 +356,26 @@ the result of applying this linear operator on x.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.eigvals">
-<code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.eigvals" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.eigvals">
+<code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.eigvals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.eigvals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Eigenvalue spectrum of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.logabsdet">
-<code class="sig-name descname">logabsdet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.logabsdet" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.inv">
+<code class="sig-name descname">inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.inv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.ScalarMult.logabsdet">
+<code class="sig-name descname">logabsdet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.logabsdet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.logabsdet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log absolute determinant of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.matmat">
-<code class="sig-name descname">matmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.matmat" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.matmat">
+<code class="sig-name descname">matmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.matmat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-matrix multiplication.</p>
 <p>Performs the operation y=A*X where A is an MxN linear
 operator and X dense N*K matrix or ndarray.</p>
@@ -385,8 +397,8 @@ _matmat method to ensure that y has the correct type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.matvec">
-<code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.matvec" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.matvec">
+<code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.matvec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-vector multiplication.
 Performs the operation y=A*x where A is an MxN linear
 operator and x is a 1-d array or random variable.</p>
@@ -408,14 +420,14 @@ _matvec method to ensure that y has the correct shape and type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.rank">
-<code class="sig-name descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.rank" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rank of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.rmatmat">
-<code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.rmatmat" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.rmatmat">
+<code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.rmatmat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adjoint matrix-matrix multiplication.</p>
 <p>Performs the operation y = A^H * x where A is an MxN linear
 operator and x is a column vector or 1-d array, or 2-d array.
@@ -436,8 +448,8 @@ The default implementation defers to the adjoint.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.rmatvec">
-<code class="sig-name descname">rmatvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.rmatvec" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.rmatvec">
+<code class="sig-name descname">rmatvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.rmatvec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adjoint matrix-vector multiplication.</p>
 <p>Performs the operation y = A^H * x where A is an MxN linear
 operator and x is a column vector or 1-d array.</p>
@@ -459,8 +471,8 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.todense">
-<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.todense" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.todense">
+<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.todense"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.todense" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dense matrix representation of the linear operator.</p>
 <p>This method can be computationally very costly depending on the shape of the linear operator. Use with caution.</p>
 <dl class="field-list simple">
@@ -474,14 +486,14 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.trace">
-<code class="sig-name descname">trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.trace" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#ScalarMult.trace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trace of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="probnum.linalg.linear_operators.Diagonal.transpose">
-<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Diagonal.transpose" title="Permalink to this definition">¶</a></dt>
+<dt id="probnum.linalg.linear_operators.ScalarMult.transpose">
+<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.ScalarMult.transpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transpose this linear operator.</p>
 <p>Can be abbreviated self.T instead of self.transpose().</p>
 </dd></dl>
@@ -503,14 +515,14 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
         <br/>
         
 <div id="sourcelink">
-  <a href="../_sources/automod/probnum.linalg.linear_operators.Diagonal.rst"
+  <a href="../_sources/automod/probnum.linalg.linear_operators.ScalarMult.rst"
      rel="nofollow">Source</a>
 </div>
       
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

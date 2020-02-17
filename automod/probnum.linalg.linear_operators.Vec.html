@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vec &#8212; probnum  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Svec" href="probnum.linalg.linear_operators.Svec.html" />
+    <link rel="prev" title="SymmetricKronecker" href="probnum.linalg.linear_operators.SymmetricKronecker.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+<!-- Font Awesome -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- favicons via realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="180x180" href="_static/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="_static/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="_static/favicons/favicon-16x16.png">
+<link rel="manifest" href="_static/favicons/site.webmanifest">
+<link rel="mask-icon" href="_static/favicons/safari-pinned-tab.svg" color="#107d79">
+<link rel="shortcut icon" href="_static/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="ProbNum">
+<meta name="application-name" content="ProbNum">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-config" content="_static/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons -->
+
+  </head><body>
+
+<div id="navbar" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html"><span><img src="../_static/pn_logo.png"></span>
+        probnum</a>
+      <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+    </div>
+
+      <div class="collapse navbar-collapse nav-collapse">
+        <ul class="nav navbar-nav">
+          
+              <li><a href="../intro.html">About</a></li>
+              <li><a href="../modules.html">Documentation</a></li>
+              <li><a href="../notebooks/examples.html">Examples</a></li>
+              <li><a href="../contributing.html">Development</a></li>
+            <li>
+              <a href="https://github.com/probabilistic-numerics/probnum">
+                GitHub
+                <i class="fa fa-github fa-lg" style=" vertical-align: text-middle;" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+          
+            <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Sitemap <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Probabilistic Numerics in Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#installation-and-documentation">Installation and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#package-development">Package Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#license-and-contact">License and Contact</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../probability.html">probnum.probability Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../linalg.html">probnum.linalg.linear_operators Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linalg.html#module-probnum.linalg.linear_solvers">probnum.linalg.linear_solvers Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">probnum.utils Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/random_variables.html">Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/linear_operators.html">Linear Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/linear_systems.html">Linear Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/discretized_diff_eq.html">Discretized Differential Equations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Package Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#code-contributors">Code Contributors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+</ul>
+</li>
+            
+          
+          
+          
+          
+
+          
+        </ul>
+
+        
+          
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="vec">
+<h1>Vec<a class="headerlink" href="#vec" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="probnum.linalg.linear_operators.Vec">
+<em class="property">class </em><code class="sig-prename descclassname">probnum.linalg.linear_operators.</code><code class="sig-name descname">Vec</code><span class="sig-paren">(</span><em class="sig-param">order='col'</em>, <em class="sig-param">dim=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#Vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.Vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">probnum.linalg.linear_operators.LinearOperator</span></code></a></p>
+<p>Vectorization operator.</p>
+<p>The column- or row-wise vectorization operator stacking the columns or rows of a matrix representation of a
+linear operator into a vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Stacking order to apply. One of <code class="docutils literal notranslate"><span class="pre">row</span></code> or <code class="docutils literal notranslate"><span class="pre">col</span></code>. Defaults to column-wise stacking.</p></li>
+<li><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Either number of rows or columns, depending on the vectorization <code class="docutils literal notranslate"><span class="pre">order</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.H" title="probnum.linalg.linear_operators.Vec.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
+<td><p>Hermitian adjoint.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.T" title="probnum.linalg.linear_operators.Vec.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
+<td><p>Transpose this linear operator.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.__call__" title="probnum.linalg.linear_operators.Vec.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(x)</p></td>
+<td><p>Call self as a function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.adjoint" title="probnum.linalg.linear_operators.Vec.adjoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjoint</span></code></a>()</p></td>
+<td><p>Hermitian adjoint.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.cond" title="probnum.linalg.linear_operators.Vec.cond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cond</span></code></a>([p])</p></td>
+<td><p>Compute the condition number of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.det" title="probnum.linalg.linear_operators.Vec.det"><code class="xref py py-obj docutils literal notranslate"><span class="pre">det</span></code></a>()</p></td>
+<td><p>Determinant of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.dot" title="probnum.linalg.linear_operators.Vec.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(x)</p></td>
+<td><p>Matrix-matrix or matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.eigvals" title="probnum.linalg.linear_operators.Vec.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
+<td><p>Eigenvalue spectrum of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.inv" title="probnum.linalg.linear_operators.Vec.inv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inv</span></code></a>()</p></td>
+<td><p>Inverse of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.logabsdet" title="probnum.linalg.linear_operators.Vec.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
+<td><p>Log absolute determinant of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.matmat" title="probnum.linalg.linear_operators.Vec.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
+<td><p>Matrix-matrix multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.matvec" title="probnum.linalg.linear_operators.Vec.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
+<td><p>Matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.rank" title="probnum.linalg.linear_operators.Vec.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
+<td><p>Rank of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.rmatmat" title="probnum.linalg.linear_operators.Vec.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<td><p>Adjoint matrix-matrix multiplication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.rmatvec" title="probnum.linalg.linear_operators.Vec.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<td><p>Adjoint matrix-vector multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.todense" title="probnum.linalg.linear_operators.Vec.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<td><p>Dense matrix representation of the linear operator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.trace" title="probnum.linalg.linear_operators.Vec.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
+<td><p>Trace of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.Vec.transpose" title="probnum.linalg.linear_operators.Vec.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<td><p>Transpose this linear operator.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="attribute">
+<dt id="probnum.linalg.linear_operators.Vec.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.H" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hermitian adjoint.</p>
+<p>Returns the Hermitian adjoint of self, aka the Hermitian
+conjugate or Hermitian transpose. For a complex matrix, the
+Hermitian adjoint is equal to the conjugate transpose.</p>
+<p>Can be abbreviated self.H instead of self.adjoint().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>A_H</strong> – Hermitian adjoint of self.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator">LinearOperator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="probnum.linalg.linear_operators.Vec.T">
+<code class="sig-name descname">T</code><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose this linear operator.</p>
+<p>Can be abbreviated self.T instead of self.transpose().</p>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.adjoint">
+<code class="sig-name descname">adjoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.adjoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hermitian adjoint.</p>
+<p>Returns the Hermitian adjoint of self, aka the Hermitian
+conjugate or Hermitian transpose. For a complex matrix, the
+Hermitian adjoint is equal to the conjugate transpose.</p>
+<p>Can be abbreviated self.H instead of self.adjoint().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>A_H</strong> – Hermitian adjoint of self.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator">LinearOperator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.cond">
+<code class="sig-name descname">cond</code><span class="sig-paren">(</span><em class="sig-param">p=None</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.cond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the condition number of the linear operator.</p>
+<p>The condition number of the linear operator with respect to the <code class="docutils literal notranslate"><span class="pre">p</span></code> norm. It measures how much the solution
+<span class="math notranslate nohighlight">\(x\)</span> of the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> changes with respect to small changes in <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>{None</em><em>, </em><em>1</em><em>, </em><em>, </em><em>2</em><em>, </em><em>, </em><em>inf</em><em>, </em><em>'fro'}</em><em>, </em><em>optional</em>) – <p>Order of the norm:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 89%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>p</p></th>
+<th class="head"><p>norm for matrices</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>2-norm, computed directly via singular value decomposition</p></td>
+</tr>
+<tr class="row-odd"><td><p>’fro’</p></td>
+<td><p>Frobenius norm</p></td>
+</tr>
+<tr class="row-even"><td><p>np.inf</p></td>
+<td><p>max(sum(abs(x), axis=1))</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>max(sum(abs(x), axis=0))</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>2-norm (largest sing. value)</p></td>
+</tr>
+</tbody>
+</table>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cond</strong> – The condition number of the linear operator. May be infinite.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{float, inf}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.det">
+<code class="sig-name descname">det</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.det" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determinant of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.dot">
+<code class="sig-name descname">dot</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-matrix or matrix-vector multiplication.
+:param x: 1-d or 2-d array, representing a vector or matrix.
+:type x: array_like</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>Ax</strong> – 1-d or 2-d array (depending on the shape of x) that represents
+the result of applying this linear operator on x.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.eigvals">
+<code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.eigvals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Eigenvalue spectrum of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.inv">
+<code class="sig-name descname">inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.logabsdet">
+<code class="sig-name descname">logabsdet</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.logabsdet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log absolute determinant of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.matmat">
+<code class="sig-name descname">matmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.matmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-matrix multiplication.</p>
+<p>Performs the operation y=A*X where A is an MxN linear
+operator and X dense N*K matrix or ndarray.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (N,K).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – A matrix or ndarray with shape (M,K) depending on
+the type of the X argument.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This matmat wraps any user-specified matmat routine or overridden
+_matmat method to ensure that y has the correct type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.matvec">
+<code class="sig-name descname">matvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.matvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix-vector multiplication.
+Performs the operation y=A*x where A is an MxN linear
+operator and x is a 1-d array or random variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray</em><em>, </em><em>RandomVariable}</em>) – An array or RandomVariable with shape (N,) or (N,1).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray or RandomVariable with shape (M,) or (M,1) depending
+on the type and shape of the x argument.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This matvec wraps the user-specified matvec routine or overridden
+_matvec method to ensure that y has the correct shape and type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rank of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.rmatmat">
+<code class="sig-name descname">rmatmat</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.rmatmat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjoint matrix-matrix multiplication.</p>
+<p>Performs the operation y = A^H * x where A is an MxN linear
+operator and x is a column vector or 1-d array, or 2-d array.
+The default implementation defers to the adjoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – A matrix or 2D array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Y</strong> – A matrix or 2D array depending on the type of the input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This rmatmat wraps the user-specified rmatmat routine.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.rmatvec">
+<code class="sig-name descname">rmatvec</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.rmatvec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjoint matrix-vector multiplication.</p>
+<p>Performs the operation y = A^H * x where A is an MxN linear
+operator and x is a column vector or 1-d array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>{matrix</em><em>, </em><em>ndarray}</em>) – An array with shape (M,) or (M,1).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – A matrix or ndarray with shape (N,) or (N,1) depending
+on the type and shape of the x argument.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>{matrix, ndarray}</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This rmatvec wraps the user-specified rmatvec routine or overridden
+_rmatvec method to ensure that y has the correct shape and type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.todense">
+<code class="sig-name descname">todense</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.todense" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dense matrix representation of the linear operator.</p>
+<p>This method can be computationally very costly depending on the shape of the linear operator. Use with caution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>matrix</strong> – Matrix representation of the linear operator.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trace of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.Vec.transpose">
+<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#probnum.linalg.linear_operators.Vec.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose this linear operator.</p>
+<p>Can be abbreviated self.T instead of self.transpose().</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../_sources/automod/probnum.linalg.linear_operators.Vec.rst"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

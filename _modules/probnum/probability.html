@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -1148,6 +1148,8 @@
 <span class="sd">    {&#39;mean&#39;: 0.0, &#39;cov&#39;: 4.0}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># TODO: only keep Cholesky factors as covariance to avoid losing symmetry</span>
+
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Factory method for Normal subclasses</span>
         <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="n">Normal</span><span class="p">:</span>
@@ -1165,7 +1167,10 @@
                     <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Normal</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">_MatrixvariateNormal</span><span class="p">)</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span>
                                                                                     <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">):</span>
-                <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Normal</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">_OperatorvariateNormal</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">linear_operators</span><span class="o">.</span><span class="n">SymmetricKronecker</span><span class="p">)</span> <span class="ow">and</span> <span class="n">cov</span><span class="o">.</span><span class="n">_ABequal</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Normal</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">_SymmetricKroneckerIdenticalFactorsNormal</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Normal</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">_OperatorvariateNormal</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="s2">&quot;Cannot instantiate normal distribution with mean of type </span><span class="si">{}</span><span class="s2"> and covariance of type </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -1451,7 +1456,7 @@
         <span class="n">otherdist</span> <span class="o">=</span> <span class="n">asdist</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">otherdist</span><span class="p">,</span> <span class="n">Dirac</span><span class="p">):</span>
             <span class="n">delta</span> <span class="o">=</span> <span class="n">otherdist</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">@</span> <span class="n">delta</span><span class="p">,</span>
+            <span class="k">return</span> <span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">delta</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
                           <span class="n">cov</span><span class="o">=</span><span class="n">delta</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span> <span class="o">@</span> <span class="n">delta</span><span class="o">.</span><span class="n">T</span><span class="p">),</span>
                           <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
@@ -1484,7 +1489,7 @@
         <span class="n">pdf_ravelled</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
                                                            <span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
                                                            <span class="n">cov</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
-        <span class="c1"># TODO: this reshape doesnt make sense, write test for multiple matrices</span>
+        <span class="c1"># TODO: this reshape is incorrect, write test for multiple matrices</span>
         <span class="k">return</span> <span class="n">pdf_ravelled</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -1527,7 +1532,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Check parameters</span>
-        <span class="n">_mean_dim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mean_dim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
         <span class="c1"># Kronecker structured covariance</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">linear_operators</span><span class="o">.</span><span class="n">Kronecker</span><span class="p">):</span>
@@ -1546,7 +1551,7 @@
                     <span class="o">+</span> <span class="s2">&quot; and square covariance factors with matching dimensions.&quot;</span>
                 <span class="p">)</span>
         <span class="c1"># General case</span>
-        <span class="k">elif</span> <span class="n">_mean_dim</span> <span class="o">!=</span> <span class="n">cov</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">_mean_dim</span> <span class="o">!=</span> <span class="n">cov</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean_dim</span> <span class="o">!=</span> <span class="n">cov</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean_dim</span> <span class="o">!=</span> <span class="n">cov</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Shape mismatch of mean and covariance.&quot;</span>
             <span class="p">)</span>
@@ -1607,6 +1612,45 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
             <span class="s2">&quot;Matrix multiplication not implemented for </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                                                                           <span class="n">other</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">_SymmetricKroneckerIdenticalFactorsNormal</span><span class="p">(</span><span class="n">_OperatorvariateNormal</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Normal distribution with symmetric Kronecker structured covariance with identical factors V (x)_s V.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">m</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="n">mean</span><span class="o">.</span><span class="n">shape</span>
+        <span class="c1"># Mean has to be square. If mean has dimension (n x n) then covariance factors must be (n x n).</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">!=</span> <span class="n">cov</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">!=</span> <span class="n">cov</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Normal distribution with symmetric Kronecker structured covariance must have square mean&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot; and square covariance factors with matching dimensions.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">()):</span>
+        <span class="c1"># Draw standard normal samples</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+        <span class="n">size_sample</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">stdnormal_samples</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size_sample</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="c1"># Cholesky decomposition</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span> <span class="mi">12</span>  <span class="c1"># TODO: damping needed to avoid negative definite covariances</span>
+        <span class="n">cholA</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span> <span class="o">+</span> <span class="n">eps</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">),</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Scale and shift</span>
+        <span class="c1"># TODO: can we avoid todense here and just return operator samples?</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinearOperator</span><span class="p">):</span>
+            <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="c1"># Appendix E: Bartels, S., Probabilistic Linear Algebra, PhD Thesis 2019</span>
+        <span class="n">samples_scaled</span> <span class="o">=</span> <span class="p">(</span><span class="n">linear_operators</span><span class="o">.</span><span class="n">Symmetrize</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span>
+                <span class="n">linear_operators</span><span class="o">.</span><span class="n">Kronecker</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">cholA</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="n">cholA</span><span class="p">)</span> <span class="o">@</span> <span class="n">stdnormal_samples</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">mean</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">samples_scaled</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="asrandvar"><a class="viewcode-back" href="../../automod/probnum.probability.asrandvar.html#probnum.probability.asrandvar">[docs]</a><span class="k">def</span> <span class="nf">asrandvar</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -1741,7 +1785,7 @@
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

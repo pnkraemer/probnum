@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -179,34 +179,42 @@ one would expect from matrix algebra.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" title="probnum.linalg.linear_operators.LinearOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearOperator</span></code></a>(dtype, shape)</p></td>
 <td><p>Finite dimensional linear operators.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" title="probnum.linalg.linear_operators.MatrixMult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixMult</span></code></a>(A)</p></td>
-<td><p>A linear operator defined via a matrix.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" title="probnum.linalg.linear_operators.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>(shape[, dtype])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" title="probnum.linalg.linear_operators.Identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Identity</span></code></a>(shape[, dtype])</p></td>
 <td><p>The identity operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Diagonal.html#probnum.linalg.linear_operators.Diagonal" title="probnum.linalg.linear_operators.Diagonal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Diagonal</span></code></a>(Op)</p></td>
-<td><p>A linear operator representing the diagonal from another linear operator.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.ScalarMult.html#probnum.linalg.linear_operators.ScalarMult" title="probnum.linalg.linear_operators.ScalarMult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScalarMult</span></code></a>(shape, scalar)</p></td>
+<td><p>A linear operator representing scalar multiplication.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" title="probnum.linalg.linear_operators.MatrixMult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MatrixMult</span></code></a>(A)</p></td>
+<td><p>A linear operator defined via a matrix.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" title="probnum.linalg.linear_operators.Kronecker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Kronecker</span></code></a>(A, B[, dtype])</p></td>
 <td><p>Kronecker product of two linear operators.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" title="probnum.linalg.linear_operators.SymmetricKronecker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SymmetricKronecker</span></code></a>(A, B[, dtype])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" title="probnum.linalg.linear_operators.SymmetricKronecker"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SymmetricKronecker</span></code></a>(A[, B, dtype])</p></td>
 <td><p>Symmetric Kronecker product of two linear operators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Vec.html#probnum.linalg.linear_operators.Vec" title="probnum.linalg.linear_operators.Vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vec</span></code></a>([order, dim])</p></td>
+<td><p>Vectorization operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_operators.Svec.html#probnum.linalg.linear_operators.Svec" title="probnum.linalg.linear_operators.Svec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Svec</span></code></a>(dim[, check_symmetric])</p></td>
+<td><p>Symmetric vectorization operator.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h2>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h2>
-<div class="graphviz"><img src="_images/inheritance-ffd1d07959322fa4217168f7936dafdf32857da0.png" alt="Inheritance diagram of probnum.linalg.linear_operators.LinearOperator, probnum.linalg.linear_operators.MatrixMult, probnum.linalg.linear_operators.Identity, probnum.linalg.linear_operators.Diagonal, probnum.linalg.linear_operators.Kronecker, probnum.linalg.linear_operators.SymmetricKronecker" usemap="#inheritanceddf34ab508" class="inheritance graphviz" /></div>
-<map id="inheritanceddf34ab508" name="inheritanceddf34ab508">
-<area shape="rect" id="node1" href="automod/probnum.linalg.linear_operators.Diagonal.html#probnum.linalg.linear_operators.Diagonal" target="_top" title="A linear operator representing the diagonal from another linear operator." alt="" coords="211,5,290,31"/>
-<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,129,124,155"/>
-<area shape="rect" id="node3" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" target="_top" title="The identity operator." alt="" coords="215,55,287,80"/>
-<area shape="rect" id="node4" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" target="_top" title="Kronecker product of two linear operators." alt="" coords="207,104,294,129"/>
-<area shape="rect" id="node6" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,179,465,204"/>
-<area shape="rect" id="node7" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" target="_top" title="Symmetric Kronecker product of two linear operators." alt="" coords="173,255,329,280"/>
+<div class="graphviz"><img src="_images/inheritance-204b1b500479f6d0a19cd46f0bba161f4ff65b37.png" alt="Inheritance diagram of probnum.linalg.linear_operators.LinearOperator, probnum.linalg.linear_operators.Identity, probnum.linalg.linear_operators.ScalarMult, probnum.linalg.linear_operators.MatrixMult, probnum.linalg.linear_operators.Kronecker, probnum.linalg.linear_operators.SymmetricKronecker, probnum.linalg.linear_operators.Vec, probnum.linalg.linear_operators.Svec" usemap="#inheritance501febdf1f" class="inheritance graphviz" /></div>
+<map id="inheritance501febdf1f" name="inheritance501febdf1f">
+<area shape="rect" id="node1" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" target="_top" title="The identity operator." alt="" coords="385,5,457,31"/>
+<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.ScalarMult.html#probnum.linalg.linear_operators.ScalarMult" target="_top" title="A linear operator representing scalar multiplication." alt="" coords="206,5,295,31"/>
+<area shape="rect" id="node3" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" target="_top" title="Kronecker product of two linear operators." alt="" coords="207,55,294,80"/>
+<area shape="rect" id="node4" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,155,124,180"/>
+<area shape="rect" id="node6" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,129,465,155"/>
+<area shape="rect" id="node7" href="automod/probnum.linalg.linear_operators.Svec.html#probnum.linalg.linear_operators.Svec" target="_top" title="Symmetric vectorization operator." alt="" coords="215,205,287,231"/>
+<area shape="rect" id="node8" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" target="_top" title="Symmetric Kronecker product of two linear operators." alt="" coords="173,255,329,280"/>
+<area shape="rect" id="node9" href="automod/probnum.linalg.linear_operators.Vec.html#probnum.linalg.linear_operators.Vec" target="_top" title="Vectorization operator." alt="" coords="215,304,287,329"/>
 </map></div>
 </div>
 <div class="section" id="module-probnum.linalg.linear_solvers">
@@ -226,7 +234,7 @@ to return a posterior distribution.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.problinsolve.html#probnum.linalg.linear_solvers.problinsolve" title="probnum.linalg.linear_solvers.problinsolve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">problinsolve</span></code></a>(A, b[, A0, Ainv0, x0, …])</p></td>
 <td><p>Infer a solution to the linear system <span class="math notranslate nohighlight">\(A x = b\)</span> in a Bayesian framework.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg" title="probnum.linalg.linear_solvers.bayescg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bayescg</span></code></a>(A, b[, x0, maxiter, resid_tol])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="automod/probnum.linalg.linear_solvers.bayescg.html#probnum.linalg.linear_solvers.bayescg" title="probnum.linalg.linear_solvers.bayescg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bayescg</span></code></a>(A, b[, x0, maxiter, atol, rtol, …])</p></td>
 <td><p>Conjugate Gradients using prior information on the solution of the linear system.</p></td>
 </tr>
 </tbody>
@@ -254,7 +262,7 @@ to return a posterior distribution.</p>
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

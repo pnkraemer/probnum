@@ -23,6 +23,7 @@ LinearOperator
       ~LinearOperator.det
       ~LinearOperator.dot
       ~LinearOperator.eigvals
+      ~LinearOperator.inv
       ~LinearOperator.logabsdet
       ~LinearOperator.matmat
       ~LinearOperator.matvec
@@ -46,6 +47,7 @@ LinearOperator
    .. automethod:: det
    .. automethod:: dot
    .. automethod:: eigvals
+   .. automethod:: inv
    .. automethod:: logabsdet
    .. automethod:: matmat
    .. automethod:: matvec

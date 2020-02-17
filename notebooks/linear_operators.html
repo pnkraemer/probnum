@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -212,9 +212,9 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    min-width: 5.5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -238,7 +238,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -312,6 +311,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -348,7 +368,7 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Linear-Operators">
 <h1>Linear Operators<a class="headerlink" href="#Linear-Operators" title="Permalink to this headline">¶</a></h1>
-<p>Finite dimensional linear operators allow matrix algebra without explicitly constructing a full representation. Instead it suffices to define a matrix-vector product and a shape attribute. This avoids unnecessary memory usage and can often be more convenient to derive.</p>
+<p>Finite dimensional linear operators allow matrix algebra without explicitly constructing a full matrix representation. Instead it suffices to define a matrix-vector product and a shape attribute. This avoids unnecessary memory usage and can often be more convenient to derive.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -370,6 +390,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Sparsity-and-Operator-Arithmetic">
 <h2>Sparsity and Operator Arithmetic<a class="headerlink" href="#Sparsity-and-Operator-Arithmetic" title="Permalink to this headline">¶</a></h2>
+<p>We begin by sampling a random sparse matrix, represent it as a <code class="docutils literal notranslate"><span class="pre">LinearOperator</span></code> and perform some simple arithmetic.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -418,6 +439,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="The-Kronecker-Product">
 <h2>The Kronecker Product<a class="headerlink" href="#The-Kronecker-Product" title="Permalink to this headline">¶</a></h2>
+<p>A frequently occuring linear operator is the <em>Kronecker product</em> of two matrices. Example application areas are matrix-variate distributions, signal processing, image processing, semi-definite programming and deep learning. We will illustrate some basic properties here.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -459,6 +481,8 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <img alt="../_images/notebooks_linear_operators_7_0.svg" src="../_images/notebooks_linear_operators_7_0.svg" /></div>
 </div>
+<p>The elements of the Kronecker product <span class="math notranslate nohighlight">\(A \otimes B\)</span> consist of all possible products of an entry of <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{m_2 \times n_2}\)</span> with an entry of <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m_1 \times n_1}\)</span>. If this was represented as a full matrix instead of a linear operator, one would have to store and multiply with a matrix of dimensions <span class="math notranslate nohighlight">\(m_1m_2 \times n_1n_2\)</span>. However, by just defining the matrix-vector product instead, it suffices to store the matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>A useful relative of the Kronecker product is the <em>symmetric Kronecker product</em>. As we will see later it can be used to define a distribution over symmetric matrices.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -497,28 +521,30 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_linear_operators_9_0.svg" src="../_images/notebooks_linear_operators_9_0.svg" /></div>
+<img alt="../_images/notebooks_linear_operators_10_0.svg" src="../_images/notebooks_linear_operators_10_0.svg" /></div>
 </div>
-<p>Note, that the symmetric Kronecker product generally does <strong>not</strong> have a <strong>symmetric</strong> matrix representation. If its arguments are symmetric, then so is their product. We also observe another property of the symmetric Kronecker product, namely that <span class="math notranslate nohighlight">\(C \otimes_s D = D \otimes_s C\)</span>. This is not the case for the Kronecker product as we saw above.</p>
+<p>Note, that the symmetric Kronecker product generally does <em>not</em> have a <em>symmetric</em> matrix representation. If its arguments are symmetric, then so is their product. We also observe another property of the symmetric Kronecker product, namely that <span class="math notranslate nohighlight">\(C \otimes_s D = D \otimes_s C\)</span>. This is not the case for the Kronecker product as we saw above.</p>
 </div>
-<div class="section" id="Linear-Operators-as-Random-Variables">
-<h2>Linear Operators as Random Variables<a class="headerlink" href="#Linear-Operators-as-Random-Variables" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Linear-Operators-and-Random-Variables">
+<h2>Linear Operators and Random Variables<a class="headerlink" href="#Linear-Operators-and-Random-Variables" title="Permalink to this headline">¶</a></h2>
+<p>When defining distributions over <span class="math notranslate nohighlight">\(m \times n\)</span> matrices, the covariance has dimension <span class="math notranslate nohighlight">\((mn)^2\)</span>, which quickly becomes prohibitively large. This can be somewhat remedied by using linear operators as parameters, since for most computations with matrix-variate random variables the full covariance matrix never needs to be formed explicitly. An example is the matrix-variate normal distribution, where one often assumes Kronecker-structured covariances. One can use the symmetric Kronecker
+product in this context to define a distribution over symmetric matrices.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span>
-<span class="kn">from</span> <span class="nn">probnum.linalg.linear_operators</span> <span class="kn">import</span> <span class="n">MatrixMult</span><span class="p">,</span> <span class="n">Identity</span>
+<span class="kn">from</span> <span class="nn">probnum.linalg.linear_operators</span> <span class="kn">import</span> <span class="n">MatrixMult</span><span class="p">,</span> <span class="n">Identity</span><span class="p">,</span> <span class="n">SymmetricKronecker</span>
 <span class="kn">from</span> <span class="nn">probnum.probability</span> <span class="kn">import</span> <span class="n">RandomVariable</span><span class="p">,</span> <span class="n">Normal</span>
 
-<span class="c1"># Linear operators _as_ random variables</span>
-<span class="n">m</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="c1"># Linear operators as random variable parameters</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">15</span>
-<span class="n">mat</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">()</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">mat</span> <span class="o">+</span> <span class="n">mat</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="n">opmean</span> <span class="o">=</span> <span class="n">MatrixMult</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="n">mat</span><span class="p">)</span>
-<span class="n">opcov</span> <span class="o">=</span> <span class="n">Kronecker</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">Identity</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">B</span><span class="o">=</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">Identity</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">opcov</span> <span class="o">=</span> <span class="n">SymmetricKronecker</span><span class="p">(</span><span class="o">.</span><span class="mi">8</span> <span class="o">*</span> <span class="n">Identity</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 
 <span class="n">Y</span> <span class="o">=</span> <span class="n">RandomVariable</span><span class="p">(</span><span class="n">distribution</span><span class="o">=</span><span class="n">Normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">opmean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">opcov</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
@@ -533,17 +559,17 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;(30, 15) RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
+&lt;(15, 15) RandomVariable with dtype=&lt;class &#39;float&#39;&gt;&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Plot</span>
-<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(Y)$&quot;</span> <span class="p">:</span> <span class="n">Y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span>
-          <span class="s2">&quot;$Y_1$&quot;</span> <span class="p">:</span> <span class="n">Ysamples</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;$Y_2$&quot;</span> <span class="p">:</span> <span class="n">Ysamples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;$Y_3$&quot;</span> <span class="p">:</span> <span class="n">Ysamples</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
+<span class="n">rvdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$\mathbb</span><span class="si">{E}</span><span class="s2">(\mathsf</span><span class="si">{Y}</span><span class="s2">)$&quot;</span> <span class="p">:</span> <span class="n">Y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span>
+          <span class="s2">&quot;$\mathsf</span><span class="si">{Y}</span><span class="s2">_1$&quot;</span> <span class="p">:</span> <span class="n">Ysamples</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;$\mathsf</span><span class="si">{Y}</span><span class="s2">_2$&quot;</span> <span class="p">:</span> <span class="n">Ysamples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;$\mathsf</span><span class="si">{Y}</span><span class="s2">_3$&quot;</span> <span class="p">:</span> <span class="n">Ysamples</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
 <span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
 <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">rvdict</span><span class="o">.</span><span class="n">values</span><span class="p">())])</span>
 
@@ -560,7 +586,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_linear_operators_13_0.svg" src="../_images/notebooks_linear_operators_13_0.svg" /></div>
+<img alt="../_images/notebooks_linear_operators_14_0.svg" src="../_images/notebooks_linear_operators_14_0.svg" /></div>
 </div>
 </div>
 </div>
@@ -585,7 +611,7 @@ div.rendered_html tbody tr:hover {
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

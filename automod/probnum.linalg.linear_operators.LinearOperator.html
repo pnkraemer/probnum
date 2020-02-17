@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="MatrixMult" href="probnum.linalg.linear_operators.MatrixMult.html" />
+    <link rel="next" title="Identity" href="probnum.linalg.linear_operators.Identity.html" />
     <link rel="prev" title="aslinop" href="probnum.linalg.linear_operators.aslinop.html" />
 
 <meta charset='utf-8'>
@@ -244,31 +244,34 @@ compatibility.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.eigvals" title="probnum.linalg.linear_operators.LinearOperator.eigvals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigvals</span></code></a>()</p></td>
 <td><p>Eigenvalue spectrum of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.logabsdet" title="probnum.linalg.linear_operators.LinearOperator.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.inv" title="probnum.linalg.linear_operators.LinearOperator.inv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inv</span></code></a>()</p></td>
+<td><p>Inverse of the linear operator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.logabsdet" title="probnum.linalg.linear_operators.LinearOperator.logabsdet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logabsdet</span></code></a>()</p></td>
 <td><p>Log absolute determinant of the linear operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.matmat" title="probnum.linalg.linear_operators.LinearOperator.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.matmat" title="probnum.linalg.linear_operators.LinearOperator.matmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matmat</span></code></a>(X)</p></td>
 <td><p>Matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.matvec" title="probnum.linalg.linear_operators.LinearOperator.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.matvec" title="probnum.linalg.linear_operators.LinearOperator.matvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matvec</span></code></a>(x)</p></td>
 <td><p>Matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rank" title="probnum.linalg.linear_operators.LinearOperator.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rank" title="probnum.linalg.linear_operators.LinearOperator.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>()</p></td>
 <td><p>Rank of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatmat" title="probnum.linalg.linear_operators.LinearOperator.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatmat" title="probnum.linalg.linear_operators.LinearOperator.rmatmat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatmat</span></code></a>(X)</p></td>
 <td><p>Adjoint matrix-matrix multiplication.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatvec" title="probnum.linalg.linear_operators.LinearOperator.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.rmatvec" title="probnum.linalg.linear_operators.LinearOperator.rmatvec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmatvec</span></code></a>(x)</p></td>
 <td><p>Adjoint matrix-vector multiplication.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.todense" title="probnum.linalg.linear_operators.LinearOperator.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.todense" title="probnum.linalg.linear_operators.LinearOperator.todense"><code class="xref py py-obj docutils literal notranslate"><span class="pre">todense</span></code></a>()</p></td>
 <td><p>Dense matrix representation of the linear operator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.trace" title="probnum.linalg.linear_operators.LinearOperator.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.trace" title="probnum.linalg.linear_operators.LinearOperator.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trace</span></code></a>()</p></td>
 <td><p>Trace of the linear operator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.transpose" title="probnum.linalg.linear_operators.LinearOperator.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#probnum.linalg.linear_operators.LinearOperator.transpose" title="probnum.linalg.linear_operators.LinearOperator.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
 <td><p>Transpose this linear operator.</p></td>
 </tr>
 </tbody>
@@ -399,6 +402,12 @@ the result of applying this linear operator on x.</p>
 <dt id="probnum.linalg.linear_operators.LinearOperator.eigvals">
 <code class="sig-name descname">eigvals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.eigvals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.eigvals" title="Permalink to this definition">¶</a></dt>
 <dd><p>Eigenvalue spectrum of the linear operator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="probnum.linalg.linear_operators.LinearOperator.inv">
+<code class="sig-name descname">inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/probnum/linalg/linear_operators.html#LinearOperator.inv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#probnum.linalg.linear_operators.LinearOperator.inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverse of the linear operator.</p>
 </dd></dl>
 
 <dl class="method">
@@ -556,7 +565,7 @@ _rmatvec method to ensure that y has the correct shape and type.</p>
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>

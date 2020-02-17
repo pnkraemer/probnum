@@ -1,0 +1,10 @@
+<map id="inheritance501febdf1f" name="inheritance501febdf1f">
+<area shape="rect" id="node1" href="automod/probnum.linalg.linear_operators.Identity.html#probnum.linalg.linear_operators.Identity" target="_top" title="The identity operator." alt="" coords="385,5,457,31"/>
+<area shape="rect" id="node2" href="automod/probnum.linalg.linear_operators.ScalarMult.html#probnum.linalg.linear_operators.ScalarMult" target="_top" title="A linear operator representing scalar multiplication." alt="" coords="206,5,295,31"/>
+<area shape="rect" id="node3" href="automod/probnum.linalg.linear_operators.Kronecker.html#probnum.linalg.linear_operators.Kronecker" target="_top" title="Kronecker product of two linear operators." alt="" coords="207,55,294,80"/>
+<area shape="rect" id="node4" href="automod/probnum.linalg.linear_operators.LinearOperator.html#probnum.linalg.linear_operators.LinearOperator" target="_top" title="Common interface for performing matrix vector products" alt="" coords="5,155,124,180"/>
+<area shape="rect" id="node6" href="automod/probnum.linalg.linear_operators.MatrixMult.html#probnum.linalg.linear_operators.MatrixMult" target="_top" title="A linear operator defined via a matrix." alt="" coords="377,129,465,155"/>
+<area shape="rect" id="node7" href="automod/probnum.linalg.linear_operators.Svec.html#probnum.linalg.linear_operators.Svec" target="_top" title="Symmetric vectorization operator." alt="" coords="215,205,287,231"/>
+<area shape="rect" id="node8" href="automod/probnum.linalg.linear_operators.SymmetricKronecker.html#probnum.linalg.linear_operators.SymmetricKronecker" target="_top" title="Symmetric Kronecker product of two linear operators." alt="" coords="173,255,329,280"/>
+<area shape="rect" id="node9" href="automod/probnum.linalg.linear_operators.Vec.html#probnum.linalg.linear_operators.Vec" target="_top" title="Vectorization operator." alt="" coords="215,304,287,329"/>
+</map>

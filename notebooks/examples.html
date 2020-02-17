@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-styles.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -149,8 +149,8 @@
   <div class="section" id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
 <p>See the notebooks below to learn more about how to use ProbNum and its functionality. They describe random variables,
-the main in- and outputs of probabilistic numerical methods; linear operators; linear systems and their application to
-solving (discretized) differential equations.</p>
+the main in- and outputs of probabilistic numerical methods, linear operators, probabilistic linear solvers and their
+application to solving (partial) differential equations.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Jupyter Notebooks:</span></p>
 <ul>
@@ -163,17 +163,20 @@ solving (discretized) differential equations.</p>
 <li class="toctree-l1"><a class="reference internal" href="linear_operators.html">Linear Operators</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="linear_operators.html#Sparsity-and-Operator-Arithmetic">Sparsity and Operator Arithmetic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_operators.html#The-Kronecker-Product">The Kronecker Product</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear_operators.html#Linear-Operators-as-Random-Variables">Linear Operators as Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_operators.html#Linear-Operators-and-Random-Variables">Linear Operators and Random Variables</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="linear_systems.html">Linear Systems</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="linear_systems.html#Prior-Information">Prior Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_systems.html#Probabilistic-Linear-Solvers">Probabilistic Linear Solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_systems.html#Numerical-Uncertainty">Numerical Uncertainty</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="discretized_diff_eq.html">Discretized Differential Equations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Linear-System-via-Discretization">Linear System via Discretization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Propagation-of-Uncertainty">Propagation of Uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Discretization-Mesh">Discretization Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Problem-in-Matrix-Form">Problem in Matrix Form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Solution-using-a-Probabilistic-Linear-Solver">Solution using a Probabilistic Linear Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discretized_diff_eq.html#Error-and-Uncertainty-Calibration">Error and Uncertainty Calibration</a></li>
 </ul>
 </li>
 </ul>
@@ -202,7 +205,7 @@ solving (discretized) differential equations.</p>
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
     </p>
   </div>
 </footer>
