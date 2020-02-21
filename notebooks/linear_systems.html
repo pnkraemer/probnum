@@ -396,7 +396,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>We begin by creating a random linear system with a symmetric positive definite matrix.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -433,7 +433,7 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -510,7 +510,7 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
 <h2>Probabilistic Linear Solvers<a class="headerlink" href="#Probabilistic-Linear-Solvers" title="Permalink to this headline">¶</a></h2>
 <p>We now use a <em>probabilistic linear solver</em>, taking into account the prior information we just specified, to solve the linear system. The algorithm iteratively chooses <em>actions</em> <span class="math notranslate nohighlight">\(\mathbf{s}\)</span> and makes linear <em>observations</em> <span class="math notranslate nohighlight">\(\mathbf{y}=A \mathbf{s}\)</span> to update its belief over the solution, the matrix and its inverse.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -521,7 +521,7 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -530,12 +530,20 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
 &lt;(25, 25) RandomVariable with dtype=float64&gt;
 </pre></div></div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+ /home/j/.virtualenvs/probnum/lib/python3.6/site-packages/probnum/linalg/linear_solvers.py:541: UserWarning:Iteration terminated. Solver reached the maximum number of iterations.
+</pre></div></div>
+</div>
 </div>
 <div class="section" id="Numerical-Uncertainty">
 <h2>Numerical Uncertainty<a class="headerlink" href="#Numerical-Uncertainty" title="Permalink to this headline">¶</a></h2>
 <p>The solver returns random variables <span class="math notranslate nohighlight">\(\mathsf{x}\)</span>, <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathsf{H}\)</span>, which quantify numerical uncertainty in the solution, the linear operator itself and the estimate of the inverse. For illustration we stopped the solver early after <span class="math notranslate nohighlight">\(k=6\)</span> iterations. We plot means and samples from the resulting distributions of <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathsf{H}\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -564,7 +572,7 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
 <img alt="../_images/notebooks_linear_systems_12_0.svg" src="../_images/notebooks_linear_systems_12_0.svg" /></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -589,18 +597,7 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-1-627f7de79f10&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Plot</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> rvdict = {&#34;$A^{-1}&#34;: np.linalg.inv(A), &#34;$\mathbb{E}(\mathsf{H})&#34; : Ainv.mean().todense(),
-</span><span class="ansi-green-intense-fg ansi-bold">      3</span>           &#34;$\mathsf{H}_1&#34; : Ainv_samples[0], &#34;$\mathsf{H}_2&#34; : Ainv_samples[1]}
-<span class="ansi-green-intense-fg ansi-bold">      4</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> fig<span class="ansi-blue-fg">,</span> axes <span class="ansi-blue-fg">=</span> plt<span class="ansi-blue-fg">.</span>subplots<span class="ansi-blue-fg">(</span>nrows<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> ncols<span class="ansi-blue-fg">=</span>len<span class="ansi-blue-fg">(</span>rvdict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> figsize<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">6</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> sharey<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;np&#39; is not defined
-</pre></div></div>
+<img alt="../_images/notebooks_linear_systems_13_0.svg" src="../_images/notebooks_linear_systems_13_0.svg" /></div>
 </div>
 <p>Even though the solver has only explored a subspace of dimension <span class="math notranslate nohighlight">\(k \ll n\)</span>, the estimates for the matrix and its inverse are already close. This is primarily due to the informative prior that we used. We can see that the uncertainty of the solver about these quantities is still relatively high by looking at the samples from <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathsf{H}\)</span> .</p>
 </div>
@@ -626,7 +623,7 @@ Eigenvalues: [ 0.48580904  0.62514308  0.66439741  0.74364588  0.81083848  0.886
     </p>
     <p>
         &copy; Copyright 2020.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.2.<br/>
     </p>
   </div>
 </footer>
