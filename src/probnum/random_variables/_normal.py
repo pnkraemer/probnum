@@ -597,3 +597,287 @@ class Normal(_random_variable.ContinuousRandomVariable[_ValueType]):
 
         # TODO: can we avoid todense here and just return operator samples?
         return self.dense_mean[None, :, :] + samples_scaled.T.reshape(-1, n, n)
+
+
+import abc
+
+
+"""
+sample = self._univariate_sample
+in_support = Normal._univariate_in_support
+pdf = self._univariate_pdf
+logpdf = self._univariate_logpdf
+cdf = self._univariate_cdf
+logcdf = self._univariate_logcdf
+quantile = self._univariate_quantile
+
+median = lambda: self._mean
+var = lambda: self._cov
+entropy = self._univariate_entropy
+
+self._compute_cov_cholesky = self._univariate_cov_cholesky
+"""
+
+
+class CleanerNormal:
+
+    # These are potential implementations that are checked for.
+    possibilities = [_UnivariateNormal, _MultivariateNormal, _MatrixvariateNormal]
+
+    @staticmethod
+    def _errormsg_cannot_instantiate(meantype, col_factor_name, col_factor_type):
+        return (
+            f"Cannot instantiate normal distribution with mean of type "
+            f"{meantype} and {col_factor_name} of type "
+            f"{col_factor_type}."
+        )
+
+    def __init__(self, mean, cov, random_state=None, _implementation=None):
+
+        if _implementation is None:
+            for poss in self.possibilities:
+                if poss.matches(mean, cov):
+                    self._implementation = poss.from_cov(mean, cov, random_state)
+            raise ValueError(
+                CleanerNormal._errormsg_cannot_instantiate(
+                    meantype=mean.__class__.__name__,
+                    col_factor_name="cov",
+                    col_factor_type=cov.__class__.__name__,
+                )
+            )
+
+        # if called from one of the constructor methods we end up here
+        # and mean, cov and random_state are ignored.
+        else:
+            self._implementation = _implementation
+
+    def sample(self, *args):
+        return self._implementation.sample(*args)
+
+    def in_support(self):
+        return self._implementation.in_support()
+
+    @property
+    def random_state(self):
+        return self._implementation.random_state
+
+    @property
+    def shape(self):
+        return self._implementation.shape
+
+
+    # and so on... always loading off the lifting to self._implementation
+
+    @classmethod
+    def from_cholesky(cls, mean, cov_cholesky, random_state=None):
+        for poss in cls.possibilities:
+            if poss.matches(mean, cov_cholesky):
+                _implementation = poss.from_cholesky(mean, cov_cholesky, random_state)
+                return cls(
+                    mean=None,
+                    cov=None,
+                    random_state=None,
+                    _implementation=_implementation,
+                )
+        raise ValueError(
+            CleanerNormal._errormsg_cannot_instantiate(
+                meantype=mean.__class__.__name__,
+                col_factor_name="cov_cholesky",
+                col_factor_type=cov_cholesky.__class__.__name__,
+            )
+        )
+
+    @classmethod
+    def from_svd(cls, mean, cov_svd, random_state):
+        for poss in cls.possibilities:
+            if poss.matches(mean, cov_svd):
+                _implementation = poss.from_svd(mean, cov_svd, random_state)
+                return cls(
+                    mean=None,
+                    cov=None,
+                    random_state=None,
+                    _implementation=_implementation,
+                )
+        raise ValueError(
+            CleanerNormal._errormsg_cannot_instantiate(
+                meantype=mean.__class__.__name__,
+                col_factor_name="cov_svd",
+                col_factor_type=cov_svd.__class__.__name__,
+            )
+        )
+
+    @classmethod
+    def from_eigen(cls, mean, cov_eigen, random_state):
+        for poss in cls.possibilities:
+            if poss.matches(mean, cov_eigen):
+                _implementation = poss.from_svd(mean, cov_eigen, random_state)
+                return cls(
+                    mean=None,
+                    cov=None,
+                    random_state=None,
+                    _implementation=_implementation,
+                )
+        raise ValueError(
+            CleanerNormal._errormsg_cannot_instantiate(
+                meantype=mean.__class__.__name__,
+                col_factor_name="cov_eigen",
+                col_factor_type=cov_eigen.__class__.__name__,
+            )
+        )
+
+    # and so on ... always calling the respective constructor in self.possibilities
+
+    def _add_normal(self, other: "Normal") -> "Normal":
+        if other.shape != self.shape:
+            raise ValueError(
+                "Addition of two normally distributed random variables is only "
+                "possible if both operands have the same shape."
+            )
+
+        return Normal(
+            mean=self.mean + other.mean,
+            cov=self.cov + other.cov,
+            random_state=_utils.derive_random_seed(
+                self.random_state, other.random_state
+            ),
+        )
+
+    # and so on ... very simple adding; type checking taken care of when adding and
+    # at respective _NormalImplementation.matches().
+
+    # We can also compute the respective decompositions after initialisation.
+    # This is again loaded off to the respective implementation.
+    # We dont have to worry about case distinctions anymore.
+
+    def compute_cholesky(self, damping_factor=1e-12):
+        self._implementation.compute_cholesky(damping_factor=damping_factor)
+
+    def compute_svd(self, hermitian=True):
+        pass
+
+
+class _NormalImplementation(abc.ABC):
+    """Interface for different realisations of Normal distribution, e.g. univariate, multivariate or matrix-variate."""
+
+    def __init__(self, mean, cov=None, cholesky=None, svd=None, random_state=None):
+        # the same for all! Don't overwrite. Only called with constructors internally.
+        # Setting cov to None as well as the alternative constructors allows initialising
+        # with JUST the cholesky.
+        self.mean = mean
+        self._cov = cov
+        self._cholesky = cholesky
+        self._svd = svd
+        self.random_state = random_state
+
+    @staticmethod
+    @abc.abstractmethod
+    def matches(mean, cov):
+        """Is this class the right one?"""
+        raise NotImplementedError
+
+    @classmethod
+    def from_cov(cls, mean, cov, random_state=None):
+        return cls(mean=mean, cov=cov, random_state=random_state)
+
+    @classmethod
+    def from_cholesky(cls, mean, cholesky, random_state=None):
+        return cls(mean=mean, cholesky=cholesky, random_state=random_state)
+
+    @classmethod
+    def from_svd(cls, mean, svd, random_state=None):
+        return cls(mean=mean, svd=svd, random_state=random_state)
+
+    @classmethod
+    def from_eigen(cls, mean, eigen, random_state=None):
+        return cls(mean=mean, eigen=eigen, random_state=random_state)
+
+    @cached_property
+    def cov(self):
+        if self._cov is not None:
+            return self._cov
+        elif self._cholesky is not None:
+            return self._cholesky @ self._cholesky
+        elif self._svd is not None:
+            return self._svd[0] @ self._svd[1] @ self._svd[2].T
+
+    @abc.abstractmethod
+    def sample(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def in_support(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def pdf(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def logpdf(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def cdf(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def logcdf(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def quantile(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def median(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def var(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def entropy(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def cov_cholesky(self):
+        raise NotImplementedError
+
+
+class _UnivariateNormal(_NormalImplementation):
+    """Implementation of univariate normals."""
+
+
+    def sample(self):
+        raise NotImplementedError
+
+    def in_support(self):
+        raise NotImplementedError
+
+    def pdf(self):
+        raise NotImplementedError
+
+    def logpdf(self):
+        raise NotImplementedError
+
+    def cdf(self):
+        raise NotImplementedError
+
+    def logcdf(self):
+        raise NotImplementedError
+
+    def quantile(self):
+        raise NotImplementedError
+
+    def median(self):
+        raise NotImplementedError
+
+    def var(self):
+        raise NotImplementedError
+
+    def entropy(self):
+        raise NotImplementedError
+
+    def cov_cholesky(self):
+        raise NotImplementedError
