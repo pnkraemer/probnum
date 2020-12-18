@@ -3,7 +3,12 @@
 Interface for Runge-Kutta, ODEFilter.
 """
 
+import typing
 from abc import ABC, abstractmethod
+
+import probnum.random_variables as pnrv
+
+from .odesolution import ODESolution
 
 
 class ODESolver(ABC):
@@ -14,16 +19,21 @@ class ODESolver(ABC):
         self.order = order  # e.g.: RK45 has order=5, IBM(q) has order=q
         self.num_steps = 0
 
-    def solve(self, steprule):
+    def solve(
+        self, steprule, output="dense"
+    ) -> typing.Union[ODESolution, pnrv.RandomVariable]:
         """Solve an IVP.
 
         Parameters
         ----------
         steprule : :class:`StepRule`
             Step-size selection rule, e.g. constant steps or adaptive steps.
+        output
+            Dense output (`output="dense"`)  or just the final random variable (`output="only_final"`) ?
         """
         t, current_rv = self.initialise()
-        times, rvs = [t], [current_rv]
+        if output == "dense":
+            times, rvs = [t], [current_rv]
         stepsize = steprule.firststep
 
         while t < self.ivp.tmax:
@@ -42,17 +52,22 @@ class ODESolver(ABC):
                 )
                 t = t_new
                 current_rv = proposed_rv
-                times.append(t)
-                rvs.append(current_rv)
+                if output == "dense":
+                    times.append(t)
+                    rvs.append(current_rv)
+                # 'else: output = "only_final"'
 
             suggested_stepsize = steprule.suggest(
                 stepsize, internal_norm, localconvrate=self.order + 1
             )
             stepsize = min(suggested_stepsize, self.ivp.tmax - t)
 
-        odesol = self.rvlist_to_odesol(times=times, rvs=rvs)
-        odesol = self.postprocess(odesol)
-        return odesol
+        if output == "dense":
+            odesol = self.rvlist_to_odesol(times=times, rvs=rvs)
+            odesol = self.postprocess(odesol)
+            return odesol
+        # 'else: output = "only_final"':
+        return current_rv
 
     @abstractmethod
     def initialise(self):
