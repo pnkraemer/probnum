@@ -19,6 +19,16 @@ import probnum.type
 class ODESolution(abc.ABC):
     """ODE Solution interface."""
 
+    def __init__(self):
+        self.num_funevs = 0
+        self.num_jacevs = 0
+        self.num_accept_steps = 0
+        self.num_failed_steps = 0
+
+    def store(self, t, rv):
+        """Store values."""
+        pass
+
     @property
     @abc.abstractmethod
     def t(self) -> np.ndarray:
