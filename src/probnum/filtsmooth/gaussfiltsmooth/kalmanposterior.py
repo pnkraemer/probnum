@@ -3,6 +3,8 @@
 Contains the discrete time and function outputs. Provides dense output
 by being callable. Can function values can also be accessed by indexing.
 """
+import bisect
+import collections
 from warnings import warn
 
 import numpy as np
@@ -73,26 +75,30 @@ class KalmanPosterior(FiltSmoothPosterior):
             )
 
         if t in self.locations:
-            idx = (self.locations <= t).sum() - 1
+            idx = self._next_smallest_idx(t)
             discrete_estimate = self.state_rvs[idx]
             return discrete_estimate
 
         if self.locations[0] < t < self.locations[-1]:
-            pred_rv = self._predict_to_loc(t)
+            prev_idx = self._next_smallest_idx(t)
+            next_idx = prev_idx + 1
+            pred_rv = self._predict_to_loc(t, prev_idx=prev_idx)
             if self._with_smoothing:
-                smoothed_rv = self._smooth_prediction(pred_rv, t)
+                smoothed_rv = self._smooth_prediction(pred_rv, t, next_idx=next_idx)
                 return smoothed_rv
             else:
                 return pred_rv
 
-        # else: t > self.locations[-1]:
+        # now we are in "else: t > self.locations[-1]:"
         if self._with_smoothing:
             warn("`smoothed=True` is ignored for extrapolation.")
-        return self._predict_to_loc(t)
+        return self._predict_to_loc(t, prev_idx=-1)
 
-    def _predict_to_loc(self, loc):
+    def _next_smallest_idx(self, t):
+        return bisect.bisect_left(self._locations, t)
+
+    def _predict_to_loc(self, loc, prev_idx):
         """Predict states at location `loc` from the closest, previous state."""
-        prev_idx = (self.locations < loc).sum() - 1
         prev_loc = self.locations[prev_idx]
         prev_rv = self.state_rvs[prev_idx]
 
@@ -101,9 +107,8 @@ class KalmanPosterior(FiltSmoothPosterior):
         )
         return pred_rv
 
-    def _smooth_prediction(self, pred_rv, loc):
+    def _smooth_prediction(self, pred_rv, loc, next_idx):
         """Smooth the predicted state at location `loc` using the next closest."""
-        next_idx = (self.locations < loc).sum()
         next_loc = self.locations[next_idx]
         next_rv = self._state_rvs[next_idx]
         smoothed_rv = self.gauss_filter.smooth_step(pred_rv, next_rv, loc, next_loc)
