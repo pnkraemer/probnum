@@ -2,6 +2,8 @@
 
 import abc
 
+import numpy as np
+
 import probnum.random_variables as pnrv
 from probnum._randomvariablelist import _RandomVariableList
 from probnum.type import IntArgType
@@ -287,7 +289,11 @@ class Transition(abc.ABC):
         return _RandomVariableList(out_rvs)
 
     def jointly_sample_list_backward(
-        self, rv_list, locations, _previous_posterior=None
+        self,
+        rv_list,
+        locations,
+        _previous_posterior=None,
+        unit_samples=None,
     ):
         """Jointly sample from a list of random variables, according to the present
         transition.
@@ -313,7 +319,15 @@ class Transition(abc.ABC):
         _RandomVariableList
             List of smoothed random variables.
         """
-        curr_sample = rv_list[-1].sample()
+        num_gridpoints = len(rv_list)
+        sample_dimension = len(rv_list[-1].mean)
+
+        if unit_samples is None:
+            unit_samples = np.random.randn(num_gridpoints, sample_dimension)
+
+        curr_rv = rv_list[-1]
+        curr_sample = curr_rv.mean + curr_rv.cov_cholesky @ unit_samples[-1]
+
         out_samples = [curr_sample]
 
         for idx in reversed(range(1, len(locations))):
@@ -334,7 +348,10 @@ class Transition(abc.ABC):
             )
 
             # Follow up smoothing with a sample, and turn the sample into a pseudo-Normal distribution.
-            curr_sample = curr_rv.sample()
+            # print(curr_rv.shape)
+            unit_sample = unit_samples[idx - 1]
+            curr_sample = curr_rv.mean + curr_rv.cov_cholesky @ unit_sample
+            # curr_sample = curr_rv.sample()
             out_samples.append(curr_sample)
 
         out_samples.reverse()

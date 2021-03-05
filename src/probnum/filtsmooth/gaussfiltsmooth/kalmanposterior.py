@@ -139,7 +139,7 @@ class SmoothingPosterior(KalmanPosterior):
 
         return curr_rv
 
-    def sample(self, locations=None, size=()):
+    def sample(self, locations=None, size=(), unit_samples=None):
         # In the present setting, only works for sampling from the smoothing posterior.
 
         size = utils.as_shape(size)
@@ -164,7 +164,7 @@ class SmoothingPosterior(KalmanPosterior):
         if size == ():
             return np.array(
                 self.transition.jointly_sample_list_backward(
-                    locations=locations, rv_list=random_vars
+                    locations=locations, rv_list=random_vars, unit_samples=unit_samples
                 )
             )
 

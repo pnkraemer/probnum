@@ -116,6 +116,7 @@ class KalmanODESolution(ODESolution):
         self,
         t: typing.Optional[float] = None,
         size: typing.Optional[probnum.type.ShapeArgType] = (),
+        unit_samples=None,
     ) -> np.ndarray:
         """Sample from the Gaussian filtering ODE solution by sampling from the Gauss-
         Markov posterior."""
@@ -127,7 +128,9 @@ class KalmanODESolution(ODESolution):
         if size != ():
             return np.array([self.sample(t=t, size=size[1:]) for _ in range(size[0])])
 
-        samples = self.kalman_posterior.sample(locations=t, size=size)
+        samples = self.kalman_posterior.sample(
+            locations=t, size=size, unit_samples=unit_samples
+        )
         return np.array([self.proj_to_y @ sample for sample in samples])
 
     @property
